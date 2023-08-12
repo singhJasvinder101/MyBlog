@@ -18,7 +18,7 @@ app.use(cookieParser())
 app.use(fileUpload())
 
 
-const allowedOrigins = ['https://blog-backend-1m3w.onrender.com', 'https://my-techblog.netlify.app'];
+const allowedOrigins = ['https://blogbackend-jyeb.onrender.com', 'https://my-techblog.netlify.app'];
 const corsOptions = {
     origin: function (origin, callback) {
         if (allowedOrigins.includes(origin) || !origin) {
