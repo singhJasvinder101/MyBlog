@@ -56,9 +56,9 @@ const loginUser = async (req, res, next) => {
         const userExists = await User.findOne({ email }).orFail();
         if (userExists && comparePassword(password, userExists.password)) {
             const cookieParams = {
-                secure: process.env.NODE_ENV === 'production',
                 httpOnly: true,
-                sameSite: "none"
+                secure: process.env.NODE_ENV === "production",
+                sameSite: process.env.NODE_ENV === "production" ? "none" : "strict"
             }
             if (donotlogout) {
                 cookieParams = { ...cookieParams, maxAge: 1000 * 60 * 60 * 24 * 7 }

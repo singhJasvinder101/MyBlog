@@ -33,7 +33,12 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', req.headers.origin);
+    const allowedOrigins = ['https://blogbackend-jyeb.onrender.com', 'https://my-techblog.netlify.app'];
+
+    const origin = req.headers.origin;
+    if (allowedOrigins.includes(origin)) {
+        res.header('Access-Control-Allow-Origin', origin);
+    }
     res.header('Access-Control-Allow-Credentials', 'true');
     app.options('*', cors(corsOptions));
     next();
