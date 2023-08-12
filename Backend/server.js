@@ -18,16 +18,16 @@ app.use(cookieParser())
 app.use(fileUpload())
 
 
-const allowedOrigins = ['https://blog-backend-1m3w.onrender.com', 'http://localhost:5174'];
+const allowedOrigins = ['https://blog-backend-1m3w.onrender.com', 'https://my-techblog.netlify.app'];
 const corsOptions = {
-  origin: function (origin, callback) {
-    if (allowedOrigins.includes(origin) || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true, 
+    origin: function (origin, callback) {
+        if (allowedOrigins.includes(origin) || !origin) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    credentials: true,
 };
 
 app.use(cors(corsOptions));
