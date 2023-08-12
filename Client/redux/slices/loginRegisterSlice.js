@@ -19,19 +19,27 @@ export const loginRegisterSlice = createSlice({
             }
         },
         logOutUser(state, action) {
+
+            // solving error of pageNot found
             axios.get('/api/logout')
                 .then(response => {
                     localStorage.removeItem("userInfo");
                     sessionStorage.removeItem("userInfo");
-                    state.userInfo = {};
-                    window.location.href = "/login"; // Redirect to the login page
+                    window.location.href = "/login"; 
+                    return {
+                        ...state,
+                        userInfo: {}
+                    };
                 })
                 .catch(error => {
                     console.error("Logout error:", error);
                     localStorage.removeItem("userInfo");
                     sessionStorage.removeItem("userInfo");
-                    state.userInfo = {};
-                    window.location.href = "/login"; // Redirect to the login page
+                    window.location.href = "/login"; 
+                    return {
+                        ...state,
+                        userInfo: {} 
+                    };
                 });
         }
     }
