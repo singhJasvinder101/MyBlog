@@ -2,40 +2,38 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, Outlet } from 'react-router-dom';
 import LoginPage from '../pages/LoginPage';
+import { useDispatch } from "react-redux";
+import { logOutUser, setRedxUserState } from "../../redux/slices/loginRegisterSlice";
 
 const ProtectedRoutesComponent = () => {
     const [isAuth, setIsAuth] = useState(false);
+
     const navigate = useNavigate();
     const apiUrl = import.meta.env.VITE_API_URI;
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        fetch("http://localhost:3000/api/get-token", {
-            method: "GET",
-            credentials: "same-origin" // Include cookies
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(data => {
+        const check_token = async () => {
+            try {
+                const { data } = await axios.get(`${apiUrl}/api/get-token`, {
+                    withCredentials: true,
+                })
                 if (data.token) {
-                    setIsAuth(data.token);
+                    setIsAuth(true)
                 } else {
-                    console.log("Token not found in response data.");
+                    setIsAuth(false)
+                    dispatch(logOutUser());
                 }
-            })
-            .catch(error => {
-                console.log("Fetch error:", error);
-                // Handle 401 status code (unauthorized) appropriately, e.g., navigate to login page
-                if (error.message.includes("Status: 401")) {
-                    navigate("/login");
-                }
-            });
-    }, [navigate]);
+            } catch (error) {
+                console.log(error);
+                setIsAuth(false);
+                dispatch(logOutUser())
+            }
+        }
+        check_token()
+    }, [isAuth]);
 
-    if (isAuth === undefined) return null;
+    if (isAuth === undefined) return <LoginPage />;
     if (isAuth) {
         return <Outlet />;
     } else {

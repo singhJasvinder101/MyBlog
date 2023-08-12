@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
+const apiUrl = import.meta.env.VITE_API_URI;
 
 const userInfoInLocalStorage = localStorage.getItem("userInfo")
     ? JSON.parse(localStorage.getItem("userInfo"))
@@ -8,12 +9,18 @@ const userInfoInLocalStorage = localStorage.getItem("userInfo")
         ? JSON.parse(sessionStorage.getItem("userInfo"))
         : {}
 
-export const logOutUser = createAsyncThunk("user/logout", async (_, { dispatch }) => {
+export const logOutUser = createAsyncThunk("user/logout", async (payload, thunkAPI) => {
     try {
-        await axios.get("/api/logout");
-        localStorage.removeItem("userInfo");
-        sessionStorage.removeItem("userInfo");
-        dispatch(setRedxUserState({}));
+        const { data } = await axios.get(`${apiUrl}/api/logout`, {
+            withCredentials: true,
+        });
+        // let userInfo = thunkAPI.getState().userLoggedIn.userInfo
+        if (data === "access token cleared") {
+            localStorage.removeItem("userInfo");
+            sessionStorage.removeItem("userInfo");
+            window.location.href = "/login"
+            thunkAPI.dispatch(setRedxUserState({}));
+        }
     } catch (error) {
         console.error("Logout error:", error);
         throw error;

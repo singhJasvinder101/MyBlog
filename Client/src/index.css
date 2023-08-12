@@ -646,9 +646,30 @@ body {
     margin: 0 !important;
   }
 
-  .input1:focus,
+  /* .input1:focus,
   .input1:not(:placeholder-shown) {
     width: 150px;
+    margin-top: 1rem;
+  } */
+  .search-container {
+    margin-right: 1rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .login-signup {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 300px) and (max-width: 460px) {
+  .search-container {
+    margin-right: 0.1rem !important;
+  }
+
+  .input1:focus,
+  .input1:not(:placeholder-shown) {
+    width: 160px;
   }
 }
 

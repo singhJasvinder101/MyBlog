@@ -30,6 +30,11 @@ const corsOptions = {
     credentials: true,
 };
 
+// // for local server cors setting 
+// corsOptions ={
+//     origin: true,
+//     credentials: true,
+// };
 app.use(cors(corsOptions));
 
 app.use((req, res, next) => {

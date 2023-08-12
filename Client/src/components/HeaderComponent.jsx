@@ -23,12 +23,6 @@ const HeaderComponent = () => {
 
   const handleLogout = () => {
     dispatch(logOutUser())
-      .then(() => {
-        window.location.href = '/login' 
-      })
-      .catch((error) => {
-        console.error("Logout error:", error);
-      });
   }
 
   return (

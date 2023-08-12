@@ -11,12 +11,13 @@ app.get('/', (req, res) => {
 })
 
 app.get("/logout", (req, res) => {
-    return res.clearCookie("auth_token").send("access token cleared")
+    return res.clearCookie("auth_token").send("access token cleared");
 })
 
 app.get("/get-token", (req, res) => {
     try {
-        const accessToken = req.cookies["auth_token"]
+        // console.log(req.cookies.auth_token)
+        const accessToken = req.cookies.auth_token
         const decoded = jwt.verify(accessToken, process.env.JWT_SECRET_KEY);
         // console.log(process.env.JWT_SECRET_KEY)
         return res.json({ token: decoded.name, isAdmin: decoded.isAdmin });
