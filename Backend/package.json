@@ -1,0 +1,32 @@
+{
+  "dependencies": {
+    "axios": "^1.4.0",
+    "bcryptjs": "^2.4.3",
+    "concurrently": "^8.2.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dateformat": "^5.0.3",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-fileupload": "^1.4.0",
+    "helmet": "^7.0.0",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.4.1",
+    "nodemon": "^3.0.1",
+    "react-redux": "^8.1.2",
+    "uuid": "^9.0.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "server-dev": "nodemon server.js",
+    "server-prod": "NODE_ENV=production node server.js",
+    "client": "npm run dev --prefix ../Client",
+    "both": "concurrently \"npm run server-dev\" \"npm run client\""
+  },
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "this is backend for the blog ",
+  "main": "server.js",
+  "author": "",
+  "license": "ISC"
+}
