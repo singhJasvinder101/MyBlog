@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const userInfoInLocalStorage = localStorage.getItem("userInfo")
@@ -6,6 +6,17 @@ const userInfoInLocalStorage = localStorage.getItem("userInfo")
     : sessionStorage.getItem("userInfo")
         ? JSON.parse(sessionStorage.getItem("userInfo"))
         : {}
+
+export const logoutUser = createAsyncThunk("user/logout", async () => {
+    try {
+        await axios.get("/api/logout");
+        localStorage.removeItem("userInfo");
+        sessionStorage.removeItem("userInfo");
+    } catch (error) {
+        console.error("Logout error:", error);
+        throw error;
+    }
+});
 
 export const loginRegisterSlice = createSlice({
     name: "Handling_Login",
@@ -18,31 +29,20 @@ export const loginRegisterSlice = createSlice({
                 ...state.userInfo, ...action.payload
             }
         },
-        logOutUser(state, action) {
-
-            // solving error of pageNot found
-            axios.get('/api/logout')
-                .then(response => {
-                    localStorage.removeItem("userInfo");
-                    sessionStorage.removeItem("userInfo");
-                    window.location.href = "/login"; 
-                    return {
-                        ...state,
-                        userInfo: {}
-                    };
-                })
-                .catch(error => {
-                    console.error("Logout error:", error);
-                    localStorage.removeItem("userInfo");
-                    sessionStorage.removeItem("userInfo");
-                    window.location.href = "/login"; 
-                    return {
-                        ...state,
-                        userInfo: {} 
-                    };
-                });
+    },
+    extraReducers: (builder) => {
+        builder
+            .addCase(logoutUser.pending, (state) => {
+                state.userInfo = {};
+            })
+            .addCase(logoutUser.fulfilled, (state) => {
+                state.userInfo = {};
+                window.location.href = "/login";
+            })
+            .addCase(logoutUser.rejected, (state) => {
+                state.userInfo = {};
+            });
         }
-    }
 })
 
 export const { setRedxUserState, logOutUser } = loginRegisterSlice.actions
