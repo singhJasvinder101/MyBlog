@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const userInfoInLocalStorage = localStorage.getItem("userInfo")
     ? JSON.parse(localStorage.getItem("userInfo"))
@@ -38,12 +39,14 @@ export const loginRegisterSlice = createSlice({
             .addCase(logoutUser.fulfilled, (state) => {
                 state.userInfo = {};
                 window.location.href = "/login";
+                const history = useHistory();
+                history.push("/login");
             })
             .addCase(logoutUser.rejected, (state) => {
                 state.userInfo = {};
             });
-        }
+    }
 })
 
-export const { setRedxUserState, logOutUser } = loginRegisterSlice.actions
+export const { setRedxUserState } = loginRegisterSlice.actions
 export default loginRegisterSlice.reducer
