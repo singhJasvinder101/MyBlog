@@ -35,7 +35,7 @@ app.use(cors(corsOptions));
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', req.headers.origin);
     res.header('Access-Control-Allow-Credentials', 'true');
-    app.options('*', cors(corsOptions)); // Pre-flight request
+    app.options('*', cors(corsOptions));
     next();
 });
 
