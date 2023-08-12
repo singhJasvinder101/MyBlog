@@ -19,11 +19,20 @@ export const loginRegisterSlice = createSlice({
             }
         },
         logOutUser(state, action) {
-            window.location.href = "/login"
             axios.get('/api/logout')
-            localStorage.removeItem("userInfo");
-            sessionStorage.removeItem("userInfo");
-            state.userInfo = {}
+                .then(response => {
+                    localStorage.removeItem("userInfo");
+                    sessionStorage.removeItem("userInfo");
+                    state.userInfo = {};
+                    window.location.href = "/login"; // Redirect to the login page
+                })
+                .catch(error => {
+                    console.error("Logout error:", error);
+                    localStorage.removeItem("userInfo");
+                    sessionStorage.removeItem("userInfo");
+                    state.userInfo = {};
+                    window.location.href = "/login"; // Redirect to the login page
+                });
         }
     }
 })
