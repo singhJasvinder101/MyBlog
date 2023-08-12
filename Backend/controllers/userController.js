@@ -58,7 +58,7 @@ const loginUser = async (req, res, next) => {
             const cookieParams = {
                 secure: process.env.NODE_ENV === 'production',
                 httpOnly: true,
-                sameSite: "strict"
+                sameSite: "none"
             }
             if (donotlogout) {
                 cookieParams = { ...cookieParams, maxAge: 1000 * 60 * 60 * 24 * 7 }
