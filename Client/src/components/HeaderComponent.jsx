@@ -21,6 +21,16 @@ const HeaderComponent = () => {
   const userInfo = useSelector(state => state.userLoggedIn.userInfo)
   // console.log(userInfo)
 
+  const handleLogout = () => {
+    dispatch(logOutUser())
+      .then(() => {
+        window.location.href = '/login' 
+      })
+      .catch((error) => {
+        console.error("Logout error:", error);
+      });
+  }
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
@@ -184,7 +194,7 @@ const HeaderComponent = () => {
                     </a>
                   </li>
                   <li>
-                    <a className="dropdown-item pb-3 pt-2" onClick={() => dispatch(logOutUser())} href="#">
+                    <a className="dropdown-item pb-3 pt-2" onClick={handleLogout} href="#">
                       Logout
                     </a>
                   </li>

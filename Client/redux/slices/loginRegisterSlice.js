@@ -8,11 +8,13 @@ const userInfoInLocalStorage = localStorage.getItem("userInfo")
         ? JSON.parse(sessionStorage.getItem("userInfo"))
         : {}
 
-export const logoutUser = createAsyncThunk("user/logout", async () => {
+export const logOutUser = createAsyncThunk("user/logout", async (_, { dispatch }) => {
     try {
         await axios.get("/api/logout");
         localStorage.removeItem("userInfo");
         sessionStorage.removeItem("userInfo");
+        dispatch(setRedxUserState({}));
+        window.location.href = '/login';
     } catch (error) {
         console.error("Logout error:", error);
         throw error;
@@ -33,16 +35,13 @@ export const loginRegisterSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(logoutUser.pending, (state) => {
+            .addCase(logOutUser.pending, (state) => {
                 state.userInfo = {};
             })
-            .addCase(logoutUser.fulfilled, (state) => {
+            .addCase(logOutUser.fulfilled, (state) => {
                 state.userInfo = {};
-                window.location.href = "/login";
-                const history = useHistory();
-                history.push("/login");
             })
-            .addCase(logoutUser.rejected, (state) => {
+            .addCase(logOutUser.rejected, (state) => {
                 state.userInfo = {};
             });
     }
