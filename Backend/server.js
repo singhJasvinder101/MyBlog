@@ -16,29 +16,31 @@ const cors = require('cors');
 app.use(express.json())
 app.use(cookieParser())
 app.use(fileUpload())
-<<<<<<< HEAD
-
-app.use(cors({
-    origin: "http://localhost:5173",
-    credentials: true
-}));
-=======
-// app.use(cors())
-app.use(cors());
->>>>>>> e06b23a81adb5e9e11a848f58c01b6ad6ea1af13
 
 
-app.use(helmet({
-    contentSecurityPolicy: false, 
-    crossOriginEmbedderPolicy: false
-}))
+const allowedOrigins = ['https://blog-backend-1m3w.onrender.com', 'http://localhost:5174'];
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true, 
+};
+
+app.use(cors(corsOptions));
+
+
+
+// app.use(helmet({
+//     contentSecurityPolicy: false,
+//     crossOriginEmbedderPolicy: false
+// }))
 
 app.get('/', (req, res) => {
-<<<<<<< HEAD
-    // res.setHeader("Access-Control-Allow-Credentials", "true")
-=======
     res.setHeader("Access-Control-Allow-Credentials", "true")
->>>>>>> e06b23a81adb5e9e11a848f58c01b6ad6ea1af13
     res.send("Api running....")
 })
 

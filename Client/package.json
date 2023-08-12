@@ -13,6 +13,7 @@
     "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.4.0",
     "bootstrap": "^5.3.1",
+    "cookie-parser": "^1.4.6",
     "dateformat": "^5.0.3",
     "jquery": "^3.7.0",
     "mdb-react-ui-kit": "^6.1.0",

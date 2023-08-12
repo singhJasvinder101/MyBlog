@@ -22,7 +22,7 @@ const HomePage = () => {
             console.log(error)
         }
     }
-    console.log(apiUrl)
+    // console.log(apiUrl)
 
     useEffect(() => {
         fetchArticles().then(data => setPosts(data.posts))

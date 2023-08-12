@@ -43,14 +43,18 @@ const BlogDescriptionPage = () => {
     // console.log(isLiked)
 
     const handleLike = async () => {
-        const { data } = await axios.post(`${apiUrl}/api/users/like/${postId}`)
+        const { data } = await axios.post(`${apiUrl}/api/users/like/${postId}`, {}, {
+            withCredentials: true,
+        })
         if (data.success) {
             setIsLiked(prevIsLiked => !prevIsLiked);
         }
     }
 
     const handleCommentLike = async (commentId) => {
-        const { data } = await axios.post(`${apiUrl}/api/users/commentlike/${commentId}`)
+        const { data } = await axios.post(`${apiUrl}/api/users/commentlike/${commentId}`, {}, {
+            withCredentials: true,
+        })
         if (data.success) {
             setIsCommentLiked(!isCommentLiked)
         }
@@ -65,7 +69,10 @@ const BlogDescriptionPage = () => {
         // console.log(form)
 
         try {
-            const { data } = await axios.post(`${apiUrl}/api/users/comment/${postId}`, { comment })
+            const { data } = await axios.post(`${apiUrl}/api/users/comment/${postId}`, 
+            { comment }, {
+                withCredentials: true,
+            })
             setCommentResponseState({
                 success: data.success,
                 loading: false,

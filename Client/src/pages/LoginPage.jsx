@@ -10,7 +10,9 @@ const userLoginApiRequest = async (email, password, donotlogout) => {
     const apiUrl = import.meta.env.VITE_API_URI;
 
     const { data } = await axios.post(`${apiUrl}/api/users/login`,
-        { email, password, donotlogout })
+        { email, password, donotlogout }, {
+            withCredentials: true,
+        })
     if (data.userLoggedIn.donotlogout) {
         localStorage.setItem("userInfo", JSON.stringify(data.userLoggedIn))
     } else {

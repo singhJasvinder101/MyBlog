@@ -84,7 +84,7 @@ const HeaderComponent = () => {
           </ul>
         </div>
 
-        <div className="nav-top d-flex align-items-center justify-content-center">
+        <div className="right-header nav-top d-flex align-items-center justify-content-center">
 
           <div className="search-container">
             <input

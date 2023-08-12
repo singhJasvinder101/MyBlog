@@ -15,7 +15,7 @@ const PaginationComponent = ({ currentPage, paginationLinksNumber, onPageChange 
     onPageChange(currentPage - 1)
   }
 
-  {console.log(paginationLinksNumber)}
+  // {console.log(paginationLinksNumber)}
 
   const renderPageNumbers = () => {
     // const totalPages = Math.ceil(totalresults / pageSize);

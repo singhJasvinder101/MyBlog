@@ -63,6 +63,7 @@ const loginUser = async (req, res, next) => {
             if (donotlogout) {
                 cookieParams = { ...cookieParams, maxAge: 1000 * 60 * 60 * 24 * 7 }
             }
+            // console.log("hello")
             return res.cookie('auth_token', generatingAuthToken(
                 userExists._id, userExists.name, userExists.lastname, userExists.email, userExists.password, userExists.isAdmin
             ), cookieParams)
