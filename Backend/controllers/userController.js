@@ -27,7 +27,7 @@ const registerUser = async (req, res, next) => {
             ), {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === "production",
-                sameSite: "strict"
+                sameSite: "none"
             })
                 .status(201).json({
                     success: "user created",
