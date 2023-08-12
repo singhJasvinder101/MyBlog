@@ -14,7 +14,6 @@ export const logOutUser = createAsyncThunk("user/logout", async (_, { dispatch }
         localStorage.removeItem("userInfo");
         sessionStorage.removeItem("userInfo");
         dispatch(setRedxUserState({}));
-        window.location.href = '/login';
     } catch (error) {
         console.error("Logout error:", error);
         throw error;
