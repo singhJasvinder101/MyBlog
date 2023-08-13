@@ -49,6 +49,17 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use(session({
+    secret: "your-secret-key",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        secure: true, 
+        sameSite: "none", 
+    }
+}));
+
+
 app.use(helmet({
     contentSecurityPolicy: false,
     crossOriginEmbedderPolicy: false
