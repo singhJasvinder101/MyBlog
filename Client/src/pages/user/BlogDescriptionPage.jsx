@@ -5,6 +5,9 @@ import axios from 'axios'
 import dateFormat from 'dateformat'
 import { useSelector } from 'react-redux'
 import PaginationComponent from '../../components/PaginationComponent'
+
+
+const apiUrl = import.meta.env.VITE_API_URI;
 const check_token = async () => {
     try {
         const { data } = await axios.get(`${apiUrl}/api/get-token`, {
@@ -20,7 +23,6 @@ const check_token = async () => {
 check_token()
 
 const BlogDescriptionPage = () => {
-    const apiUrl = import.meta.env.VITE_API_URI;
 
     const userInfo = useSelector(state => state.userLoggedIn.userInfo)
     const { postId } = useParams()
