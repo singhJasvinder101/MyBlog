@@ -11,6 +11,7 @@ mongoDB()
 const cookieParser = require("cookie-parser")
 const fileUpload = require("express-fileupload")
 const cors = require('cors');
+const session = require("express-session");
 
 // middleware to recognize the body by express
 app.use(express.json())
