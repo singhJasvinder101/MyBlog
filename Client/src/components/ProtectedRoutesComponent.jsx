@@ -30,13 +30,13 @@ const ProtectedRoutesComponent = () => {
         check_token()
     }, [isAuth]);
 
-    if (isAuth === undefined) return <LoginPage />;
+    // if (isAuth === undefined) return <LoginPage />;
     if (isAuth) {
         return <Outlet />;
-    } else {
-        navigate("/login");
-        return null;
-    }
+    // } else {
+    //     navigate("/login");
+    //     return null;
+    // }
 };
 
 export default ProtectedRoutesComponent;
