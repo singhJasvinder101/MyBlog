@@ -4,7 +4,6 @@ import { Link, useParams } from 'react-router-dom'
 import axios from 'axios'
 import dateFormat from 'dateformat'
 import { useSelector } from 'react-redux'
-import PaginationComponent from '../../components/PaginationComponent'
 
 
 const apiUrl = import.meta.env.VITE_API_URI;
@@ -20,7 +19,9 @@ const check_token = async () => {
         console.log(error);
     }
 }
-check_token()
+setTimeout(() => {
+    check_token()
+}, 2000);
 
 const BlogDescriptionPage = () => {
 
