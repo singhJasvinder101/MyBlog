@@ -33,10 +33,11 @@ const ProtectedRoutesComponent = () => {
     // if (isAuth === undefined) return <LoginPage />;
     if (isAuth) {
         return <Outlet />;
-    // } else {
-    //     navigate("/login");
-    //     return null;
-    // }
-};
+        // } else {
+        //     navigate("/login");
+        //     return null;
+        // }
+    }
+}
 
 export default ProtectedRoutesComponent;
