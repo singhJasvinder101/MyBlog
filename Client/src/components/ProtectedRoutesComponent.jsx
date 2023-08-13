@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logOutUser, setRedxUserState } from "../../redux/slices/loginRegisterSlice";
 const ProtectedRoutesComponent = () => {
     const [isAuth, setIsAuth] = useState(false);
-    const userInfo = useSelector((state) => state.loginRegister.userInfo);
+    const userInfo = useSelector((state) => state.userLoggedIn.userInfo);
 
     const navigate = useNavigate();
     const apiUrl = import.meta.env.VITE_API_URI;
