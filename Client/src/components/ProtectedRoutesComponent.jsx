@@ -20,24 +20,28 @@ const ProtectedRoutesComponent = () => {
                 })
                 if (data.token) {
                     setIsAuth(true)
+                } else {
+                    setIsAuth(false)
+                    dispatch(logOutUser());
                 }
             } catch (error) {
                 console.log(error);
                 setIsAuth(false);
-                // dispatch(logOutUser())
+                dispatch(logOutUser())
             }
         }
-        check_token()
-    }, []);
+        setTimeout(() => {
+            check_token()
+        }, 1000);
+    }, [isAuth]);
 
-    // if (isAuth === undefined) return <LoginPage />;
+    if (isAuth === undefined) return <LoginPage />;
     if (isAuth) {
         return <Outlet />;
-        // } else {
-        //     navigate("/login");
-        //     return null;
-        // }
+    } else {
+        navigate("/login");
+        return null;
     }
-}
+};
 
 export default ProtectedRoutesComponent;

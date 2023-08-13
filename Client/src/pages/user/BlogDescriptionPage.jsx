@@ -7,21 +7,6 @@ import { useSelector } from 'react-redux'
 
 
 const apiUrl = import.meta.env.VITE_API_URI;
-const check_token = async () => {
-    try {
-        const { data } = await axios.get(`${apiUrl}/api/get-token`, {
-            withCredentials: true,
-        })
-        if (data.token) {
-            console.log(data.token)
-        }
-    } catch (error) {
-        console.log(error);
-    }
-}
-setTimeout(() => {
-    check_token()
-}, 2000);
 
 const BlogDescriptionPage = () => {
 
