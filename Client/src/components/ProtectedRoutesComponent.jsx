@@ -15,9 +15,7 @@ const ProtectedRoutesComponent = () => {
     useEffect(() => {
         const check_token = async () => {
             try {
-                const { data } = await axios.get(`${apiUrl}/api/get-token`, {
-                    withCredentials: true,
-                })
+                const { data } = await axios.get(`${apiUrl}/api/get-token`)
                 if (data.token) {
                     setIsAuth(true)
                 }
