@@ -24,7 +24,7 @@ const ProtectedRoutesComponent = () => {
             } catch (error) {
                 console.log(error);
                 setIsAuth(false);
-                dispatch(logOutUser())
+                // dispatch(logOutUser())
             }
         }
         check_token()
