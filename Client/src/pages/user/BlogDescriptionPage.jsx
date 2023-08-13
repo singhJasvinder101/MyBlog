@@ -23,7 +23,9 @@ const BlogDescriptionPage = () => {
 
     const fetchPostDetails = async (postId) => {
         try {
-            const { data } = await axios.get(`${apiUrl}/api/blogs/get-one/${postId}`);
+            const { data } = await axios.get(`${apiUrl}/api/blogs/get-one/${postId}`, {
+                withCredentials: true,
+            });
             return data;
         } catch (error) {
             console.log("Error fetching post details:", error);

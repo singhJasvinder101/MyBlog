@@ -20,9 +20,6 @@ const ProtectedRoutesComponent = () => {
                 })
                 if (data.token) {
                     setIsAuth(true)
-                } else {
-                    setIsAuth(false)
-                    dispatch(logOutUser());
                 }
             } catch (error) {
                 console.log(error);
