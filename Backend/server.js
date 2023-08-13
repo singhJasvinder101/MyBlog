@@ -18,41 +18,41 @@ app.use(cookieParser())
 app.use(fileUpload())
 
 
-// const allowedOrigins = ['https://blogbackend-jyeb.onrender.com', 'https://my-techblog.netlify.app'];
-// const corsOptions = {
-//     origin: function (origin, callback) {
-//         if (allowedOrigins.includes(origin) || !origin) {
-//             callback(null, true);
-//         } else {
-//             callback(new Error('Not allowed by CORS'));
-//         }
-//     },
-//     credentials: true,
-// };
-
-// for local server cors setting 
-corsOptions ={
-    origin: true,
+const allowedOrigins = ['https://blogbackend-jyeb.onrender.com', 'https://my-techblog.netlify.app'];
+const corsOptions = {
+    origin: function (origin, callback) {
+        if (allowedOrigins.includes(origin) || !origin) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     credentials: true,
 };
+
+// for local server cors setting 
+// corsOptions ={
+//     origin: true,
+//     credentials: true,
+// };
 app.use(cors(corsOptions));
 
-// app.use((req, res, next) => {
-//     const allowedOrigins = ['https://blogbackend-jyeb.onrender.com', 'https://my-techblog.netlify.app'];
+app.use((req, res, next) => {
+    const allowedOrigins = ['https://blogbackend-jyeb.onrender.com', 'https://my-techblog.netlify.app'];
 
-//     const origin = req.headers.origin;
-//     if (allowedOrigins.includes(origin)) {
-//         res.header('Access-Control-Allow-Origin', origin);
-//     }
-//     res.header('Access-Control-Allow-Credentials', 'true');
-//     app.options('*', cors(corsOptions));
-//     next();
-// });
+    const origin = req.headers.origin;
+    if (allowedOrigins.includes(origin)) {
+        res.header('Access-Control-Allow-Origin', origin);
+    }
+    res.header('Access-Control-Allow-Credentials', 'true');
+    app.options('*', cors(corsOptions));
+    next();
+});
 
-// app.use(helmet({
-//     contentSecurityPolicy: false,
-//     crossOriginEmbedderPolicy: false
-// }))
+app.use(helmet({
+    contentSecurityPolicy: false,
+    crossOriginEmbedderPolicy: false
+}))
 
 app.get('/', (req, res) => {
     res.setHeader("Access-Control-Allow-Credentials", "true")
