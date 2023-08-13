@@ -5,6 +5,19 @@ import axios from 'axios'
 import dateFormat from 'dateformat'
 import { useSelector } from 'react-redux'
 import PaginationComponent from '../../components/PaginationComponent'
+const check_token = async () => {
+    try {
+        const { data } = await axios.get(`${apiUrl}/api/get-token`, {
+            withCredentials: true,
+        })
+        if (data.token) {
+            console.log(data.token)
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+check_token()
 
 const BlogDescriptionPage = () => {
     const apiUrl = import.meta.env.VITE_API_URI;

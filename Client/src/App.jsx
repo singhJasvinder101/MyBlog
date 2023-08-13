@@ -20,10 +20,10 @@ function App() {
           <Route exact path='/' element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route element={<ProtectedRoutesComponent />}>
+          {/* <Route element={<ProtectedRoutesComponent />}> */}
             <Route path="/post-details/:postId" element={<BlogDescriptionPage />} />
             <Route path="/blogs/:tag" element={<BlogSpecificPage />} />
-          </Route>
+          {/* </Route> */}
           {/* <Route path="/:categoryName" element={<BlogSpecificPage/>} /> */}
         </Routes>
       </Router>

@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux"
 import { setRedxUserState } from '../../redux/slices/loginRegisterSlice';
 import axios from "axios"
+axios.defaults.withCredentials = true;
 
 const userLoginApiRequest = async (email, password, donotlogout) => {
     const apiUrl = import.meta.env.VITE_API_URI;

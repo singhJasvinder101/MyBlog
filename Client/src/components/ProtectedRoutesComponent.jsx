@@ -15,7 +15,9 @@ const ProtectedRoutesComponent = () => {
     useEffect(() => {
         const check_token = async () => {
             try {
-                const { data } = await axios.get(`${apiUrl}/api/get-token`)
+                const { data } = await axios.get(`${apiUrl}/api/get-token`, {
+                    withCredentials: true,
+                })
                 if (data.token) {
                     setIsAuth(true)
                 }
@@ -26,7 +28,7 @@ const ProtectedRoutesComponent = () => {
             }
         }
         check_token()
-    }, [isAuth]);
+    }, []);
 
     // if (isAuth === undefined) return <LoginPage />;
     if (isAuth) {
