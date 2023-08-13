@@ -4,17 +4,17 @@ import { useNavigate, Outlet } from 'react-router-dom';
 import LoginPage from '../pages/LoginPage';
 import { useDispatch } from "react-redux";
 import { logOutUser, setRedxUserState } from "../../redux/slices/loginRegisterSlice";
-
 const ProtectedRoutesComponent = () => {
     const [isAuth, setIsAuth] = useState(false);
-
+    
     const navigate = useNavigate();
     const apiUrl = import.meta.env.VITE_API_URI;
     const dispatch = useDispatch()
-
+    
     useEffect(() => {
         const check_token = async () => {
             try {
+                axios.defaults.withCredentials = true;
                 const { data } = await axios.get(`${apiUrl}/api/get-token`, {
                     withCredentials: true,
                 })

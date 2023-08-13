@@ -21,6 +21,7 @@ const BlogDescriptionPage = () => {
         error: "",
         loading: false,
     })
+    axios.defaults.withCredentials = true;
 
     const fetchPostDetails = async (postId) => {
         try {

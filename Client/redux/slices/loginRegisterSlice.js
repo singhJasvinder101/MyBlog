@@ -11,6 +11,7 @@ const userInfoInLocalStorage = localStorage.getItem("userInfo")
 
 export const logOutUser = createAsyncThunk("user/logout", async (payload, thunkAPI) => {
     try {
+        axios.defaults.withCredentials = true;
         const { data } = await axios.get(`${apiUrl}/api/logout`, {
             withCredentials: true,
         });

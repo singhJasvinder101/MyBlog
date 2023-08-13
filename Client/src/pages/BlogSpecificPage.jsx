@@ -12,6 +12,7 @@ const BlogSpecificPage = () => {
     const [totalpaginationLinks, settotalpaginationLinks] = useState(1)
 
     const apiUrl = import.meta.env.VITE_API_URI;
+    axios.defaults.withCredentials = true;
 
     const searchTagData = async (tag, currentPage) => {
         // console.log(tag)
