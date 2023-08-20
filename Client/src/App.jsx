@@ -10,13 +10,13 @@ import RegisterPage from './pages/RegisterPage'
 import BlogDescriptionPage from './pages/user/BlogDescriptionPage'
 import BlogSpecificPage from './pages/BlogSpecificPage'
 import ProtectedRoutesComponent from './components/ProtectedRoutesComponent'
-import SpeedDialComponent from './components/speedDialComponent'
+import SpeedDialComponent from './components/SpeedDialComponente'
 import CreatePostPage from './pages/CreatePostPage'
 
 function App() {
   return (
     <>
-        <speedDialComponent />
+        <SpeedDialComponent />
       <Router>
         <HeaderComponent />
         <Routes>
