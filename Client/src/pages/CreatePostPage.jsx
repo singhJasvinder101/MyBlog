@@ -162,7 +162,7 @@ const TextEditor = () => {
                         <CloudinaryContext cloudName="dfdmyewjs" className='my-3'>
                             <Image className='cloudinary-image' publicId={uploadedImagePublicId} height='200' width="400" crop="scale" />
                         </CloudinaryContext>
-                    ) : (<Image className='d-block my-3 posted-img' height='20%' width="36vw" crop="scale" src='https://res.cloudinary.com/practicaldev/image/fetch/s--gIvrKWQi--/c_imagga_scale,f_auto,fl_progressive,h_500,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/5rbe6wwa5mcc2q4me43s.png' />)}
+                    ) : (<Image className='d-block my-3 posted-img' height='20%' width="50%" crop="scale" src='https://res.cloudinary.com/practicaldev/image/fetch/s--gIvrKWQi--/c_imagga_scale,f_auto,fl_progressive,h_500,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/5rbe6wwa5mcc2q4me43s.png' />)}
 
                 </div>
                 <div className="text-editor container">

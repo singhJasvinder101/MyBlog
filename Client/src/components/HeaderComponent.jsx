@@ -111,6 +111,7 @@ const HeaderComponent = () => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onKeyPress={handleKeyPress}
+              autoComplete="off"
             />
             <div className="icon">
               <svg viewBox="0 0 512 512" className="ionicon" xmlns="http://www.w3.org/2000/svg">
@@ -140,7 +141,7 @@ const HeaderComponent = () => {
               {/* best thing */}
               <div className="dropdown">
                 <a
-                  className="nav-link dropdown-toggle position-relative mr-1 text-muted"
+                  className="nav-link ghanti dropdown-toggle position-relative mr-1 text-muted"
                   href="#"
                   id="navbarDropdownMenuLink"
                   role="button"

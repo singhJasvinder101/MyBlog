@@ -716,9 +716,12 @@ body {
   .posted-img{
     width: 80vw !important;
   }
-  .search-container{
+  /* .search-container{
     display: none !important;
-  } 
+  }  */
+  .ghanti{
+    display: none;
+  }
 }
 
 @media (max-width: 580px) {
@@ -787,7 +790,7 @@ body {
 
   .input1:focus,
   .input1:not(:placeholder-shown) {
-    width: 160px;
+    width: 180px;
   }
 }
 
