@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios'
 import { useDispatch, useSelector } from "react-redux";
 import { logOutUser } from "../../redux/slices/loginRegisterSlice";
-import SpeedDialComponent from "./speedDialComponent";
+import SpeedDialComponent from "./SpeedDialComponente";
 import { BiLogOut } from "react-icons/bi";
 const HeaderComponent = () => {
   const apiUrl = import.meta.env.VITE_API_URI;
