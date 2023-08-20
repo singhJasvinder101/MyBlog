@@ -10,10 +10,13 @@ import RegisterPage from './pages/RegisterPage'
 import BlogDescriptionPage from './pages/user/BlogDescriptionPage'
 import BlogSpecificPage from './pages/BlogSpecificPage'
 import ProtectedRoutesComponent from './components/ProtectedRoutesComponent'
+import SpeedDialComponent from './components/speedDialComponent'
+import CreatePostPage from './pages/CreatePostPage'
 
 function App() {
   return (
     <>
+        <speedDialComponent />
       <Router>
         <HeaderComponent />
         <Routes>
@@ -24,7 +27,7 @@ function App() {
             <Route path="/post-details/:postId" element={<BlogDescriptionPage />} />
             <Route path="/blogs/:tag" element={<BlogSpecificPage />} />
           </Route>
-          {/* <Route path="/:categoryName" element={<BlogSpecificPage/>} /> */}
+          <Route path="/user/createPost" element={<CreatePostPage/>} />
         </Routes>
       </Router>
       {/* <PaginationComponent /> */}

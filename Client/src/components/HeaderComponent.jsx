@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom"
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
 import { useDispatch, useSelector } from "react-redux";
 import { logOutUser } from "../../redux/slices/loginRegisterSlice";
+import SpeedDialComponent from "./speedDialComponent";
+import { BiLogOut } from "react-icons/bi";
 const HeaderComponent = () => {
   const apiUrl = import.meta.env.VITE_API_URI;
 
@@ -11,6 +13,7 @@ const HeaderComponent = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const searchInputRef = useRef(null)
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
@@ -24,6 +27,13 @@ const HeaderComponent = () => {
   const handleLogout = () => {
     dispatch(logOutUser())
   }
+
+  const focusSearchInput = () => {
+    // You can use a ref to reference the search input and focus on it
+    if (searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -92,6 +102,7 @@ const HeaderComponent = () => {
 
           <div className="search-container">
             <input
+              ref={searchInputRef}
               placeholder="Search by tag e.g. ai"
               required=""
               className="input1"
@@ -125,7 +136,7 @@ const HeaderComponent = () => {
               </Link>
             </li>
           ) : userInfo.name && !userInfo.isAdmin ? (
-            <div>
+            <div className="d-flex align-items-center"> 
               {/* best thing */}
               <div className="dropdown">
                 <a
@@ -145,13 +156,7 @@ const HeaderComponent = () => {
                   aria-labelledby="navbarDropdownMenuLink"
                 >
                   <li>
-                    <a className="dropdown-item pt-3 pb-2" href="#">Some news</a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item py-2" href="#">Another news</a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item pb-3 pt-2" href="#">Something else here</a>
+                    <a className="dropdown-item py-3" href="#">Hi! welcome to my blog</a>
                   </li>
                 </ul>
               </div>
@@ -178,18 +183,8 @@ const HeaderComponent = () => {
                   aria-labelledby="navbarDropdownMenuAvatar"
                 >
                   <li>
-                    <a className="dropdown-item pt-3 pb-2" href="#">
-                      My profile
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item py-2" href="#">
-                      Settings
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item pb-3 pt-2" onClick={handleLogout} href="#">
-                      Logout
+                    <a className="dropdown-item py-3" onClick={handleLogout} href="#">
+                      Logout  <BiLogOut />
                     </a>
                   </li>
                 </ul>
@@ -209,8 +204,8 @@ const HeaderComponent = () => {
           )}
 
         </div>
-
       </div>
+        <SpeedDialComponent style={{display: 'none'}} focusSearchInput={focusSearchInput} />
     </nav>
 
   );

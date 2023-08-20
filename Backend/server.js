@@ -20,6 +20,7 @@ app.use(fileUpload())
 
 
 const allowedOrigins = ['https://blogbackend-jyeb.onrender.com', 'https://my-techblog.netlify.app'];
+// const allowedOrigins = ['http://localhost:3000', 'http://localhost:5173'];
 const corsOptions = {
     origin: function (origin, callback) {
         if (allowedOrigins.includes(origin) || !origin) {
@@ -40,6 +41,7 @@ app.use(cors(corsOptions));
 
 app.use((req, res, next) => {
     const allowedOrigins = ['https://blogbackend-jyeb.onrender.com', 'https://my-techblog.netlify.app'];
+    // const allowedOrigins = ['http://localhost:3000', 'http://localhost:5173'];
 
     const origin = req.headers.origin;
     if (allowedOrigins.includes(origin)) {
@@ -55,11 +57,16 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        secure: true, 
-        sameSite: "none", 
+        secure: true,
+        sameSite: "none",
     }
 }));
 
+// cloudinary.config({
+//     cloud_name: process.env.CLOUD_NAME,
+//     api_key: process.env.API_KEY,
+//     api_secret: process.env.API_SECRET
+// });
 
 app.use(helmet({
     contentSecurityPolicy: false,

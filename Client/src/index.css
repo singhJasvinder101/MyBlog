@@ -567,6 +567,106 @@ body {
   background-color: #007bffe7;
 }
 
+.text-editor {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.toolbar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.toolbar button {
+  padding: 5px 10px;
+  border: none;
+  background-color: #1a202c;
+  color: white;
+  cursor: pointer;
+}
+
+.editor textarea {
+  width: 50vw;
+  padding: 16px 20px 20px 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: vertical;
+  font-size: 1.1rem;
+  flex-grow: 1;
+  margin-bottom: 1rem;
+}
+
+.preview {
+  width: 100%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.preview p {
+  /* font-weight: bold; */
+  margin-bottom: 10px;
+}
+
+.post-input {
+  width: 60vw;
+  height: 3.5rem;
+  font-size: 1.7rem;
+  padding: 0 1rem;
+  font-family: 'Noto Sans', sans-serif;
+  border: none;
+}
+
+
+.post-container h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 100;
+}
+
+.post-container input:focus,
+.post-container input:valid {
+  outline: 0;
+  /* border-bottom-color: lightblue; */
+}
+
+
+.input-text {
+  /* border: 2px solid black; */
+  height: 2rem;
+  margin-top: 1.3rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: lighter;
+}
+
+.cloudinary-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.tags-input {
+  width: 30vw;
+}
+
+.post-tag {
+  background-color: #051f2c;
+  color: white;
+  padding: 6px 10px;
+  margin-right: 8px;
+  border-radius: 3px;
+}
+
+.speed-dial{
+  position: fixed !important;
+  bottom: 1rem !important;
+  right: 1rem !important;
+}
 
 @media (max-width: 1068px) {
   .navbar-brand {
@@ -575,7 +675,7 @@ body {
   }
 
   .dropdown-menu {
-    left: 1rem;
+    /* left: 1rem; */
     min-width: 10rem;
     z-index: +1;
     min-width: 12rem;
@@ -601,6 +701,24 @@ body {
   .sidebar {
     left: 1.5%;
   }
+
+  .cover-image-input {
+    display: block !important;
+  }
+
+  .tags-input {
+    width: 80vw;
+  }
+
+  .post-input {
+    width: 90vw;
+  }
+  .posted-img{
+    width: 80vw !important;
+  }
+  .search-container{
+    display: none !important;
+  } 
 }
 
 @media (max-width: 580px) {
@@ -651,9 +769,9 @@ body {
     width: 150px;
     margin-top: 1rem;
   } */
-  .search-container {
+  /* .search-container {
     margin-right: 1rem;
-  }
+  } */
 }
 
 @media (max-width: 380px) {
@@ -683,8 +801,8 @@ body {
   }
 
   .dropdown-menu {
-    /* right: 0; */
-    left: 1rem;
+    right: -5rem;
+    /* left: 1rem; */
     min-width: 10rem;
     z-index: +1;
     min-width: 12rem;

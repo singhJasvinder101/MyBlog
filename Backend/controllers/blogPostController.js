@@ -24,6 +24,29 @@ const adminCreatePost = async (req, res, next) => {
     }
 }
 
+const userCreatePost = async (req, res, next) => {
+    try {
+        const post = new Blog()
+        const { title, description, body_html, tags, author, images } = req.body
+        post.title = title;
+        post.description = description;
+        post.body_html = body_html;
+        post.tags = tags;
+        post.images = images;
+        post.author = author;
+
+        await post.save();
+
+        res.json({
+            message: "post created",
+            postId: post._id,
+        });
+
+    } catch (error) {
+        next(error)
+    }
+}
+
 const getPostByID = async (req, res, next) => {
     try {
         const Post = await Blog.findById(req.params.id)
@@ -206,5 +229,6 @@ module.exports = {
     getAllBlogPosts,
     adminDeletePost,
     adminUpdatePost,
-    adminUpload
+    adminUpload,
+    userCreatePost
 }

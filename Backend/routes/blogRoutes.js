@@ -7,7 +7,8 @@ const {
     getAllBlogPosts,
     adminDeletePost,
     adminUpdatePost,
-    adminUpload
+    adminUpload,
+    userCreatePost
 } = require("../controllers/blogPostController");
 
 router.get('/', getAllBlogPosts);
@@ -15,6 +16,9 @@ router.get('/get-one/:id', getPostByID);
 
 // middleware to get access to resources to admin only
 router.use(verifyIsLoggedIn)
+router.post("/createPost", userCreatePost)
+
+
 router.use(verifyIsAdmin)
 
 router.post("/admin", adminCreatePost)

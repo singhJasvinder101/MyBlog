@@ -39,7 +39,7 @@ const ProtectedRoutesComponent = () => {
     }, [isAuth]);
 
     if (isAuth === undefined) return <LoginPage />;
-    if (!isAuth) {
+    if (!isAuth) {  
         navigate('/login');
         return null;
     }
