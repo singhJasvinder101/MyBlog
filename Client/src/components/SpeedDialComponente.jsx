@@ -5,9 +5,7 @@ import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import { FaCopy } from 'react-icons/fa'
 import { FaNoteSticky } from 'react-icons/fa6'
 import { BiSolidSearch } from 'react-icons/bi'
-import { useNavigate } from 'react-router-dom';
 const SpeedDialComponent = ({ focusSearchInput }) => {
-    const navigate = useNavigate()
 
     const handleCopyUrl = () => {
         const currentUrl = window.location.href;

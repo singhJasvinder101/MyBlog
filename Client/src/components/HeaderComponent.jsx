@@ -136,7 +136,7 @@ const HeaderComponent = () => {
               </Link>
             </li>
           ) : userInfo.name && !userInfo.isAdmin ? (
-            <div className="d-flex align-items-center"> 
+            <div className="d-flex align-items-center">
               {/* best thing */}
               <div className="dropdown">
                 <a
@@ -205,7 +205,7 @@ const HeaderComponent = () => {
 
         </div>
       </div>
-        <SpeedDialComponent style={{display: 'none'}} focusSearchInput={focusSearchInput} />
+      <SpeedDialComponent style={{ display: 'none' }} focusSearchInput={focusSearchInput} />
     </nav>
 
   );
