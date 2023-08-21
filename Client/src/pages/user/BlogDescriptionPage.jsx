@@ -122,7 +122,7 @@ const BlogDescriptionPage = () => {
                         postDetails && (
                             <>
                                 <div className="icon d-flex flex-column align-items-center py-2">
-                                    {postDetails && !postDetails.likedBy.includes(userInfo._id) ? (
+                                    {postDetails.likedBy && !postDetails.likedBy.includes(userInfo._id) ? (
                                         <span className="cursor-pointer hover:text-[#ff6154]">
                                             <i onClick={handleLike} className="ri-heart-add-line"></i>
                                         </span>
@@ -221,7 +221,7 @@ const BlogDescriptionPage = () => {
                             <div className="mb-5 d-flex jusitfy-content-center flex-col p-8 rounded-2xl bg-white">
                                 {postDetails.reviews && postDetails.reviews.map((review, idx) => (
                                     <>
-                                        <div className="flex mt-5">
+                                        <div key={idx} className="flex mt-5">
                                             <div className="flex gap-4">
                                                 <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" alt="" className="w-12 h-12 cursor-pointer mr-2" />
                                                 <div className="comment-bar d-flex flex-column gap-1 justify-content-center">
