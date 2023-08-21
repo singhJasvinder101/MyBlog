@@ -662,10 +662,17 @@ body {
   border-radius: 3px;
 }
 
-.speed-dial{
+.speed-dial {
   position: fixed !important;
   bottom: 1rem !important;
   right: 1rem !important;
+}
+
+.ri-heart-fill {
+  color: rgba(255, 0, 0, 0.774) !important;
+}
+.ri-heart-add-fill{
+  color: rgba(255, 0, 0, 0.774) !important;
 }
 
 @media (max-width: 1068px) {
@@ -713,13 +720,15 @@ body {
   .post-input {
     width: 90vw;
   }
-  .posted-img{
+
+  .posted-img {
     width: 80vw !important;
   }
+
   /* .search-container{
     display: none !important;
   }  */
-  .ghanti{
+  .ghanti {
     display: none;
   }
 }

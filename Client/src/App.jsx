@@ -16,7 +16,7 @@ import CreatePostPage from './pages/CreatePostPage'
 function App() {
   return (
     <>
-        <SpeedDialComponent />
+      <SpeedDialComponent />
       <Router>
         <HeaderComponent />
         <Routes>
@@ -26,8 +26,8 @@ function App() {
           <Route element={<ProtectedRoutesComponent />}>
             <Route path="/post-details/:postId" element={<BlogDescriptionPage />} />
             <Route path="/blogs/:tag" element={<BlogSpecificPage />} />
+            <Route path="/user/createPost" element={<CreatePostPage />} />
           </Route>
-          <Route path="/user/createPost" element={<CreatePostPage/>} />
         </Routes>
       </Router>
       {/* <PaginationComponent /> */}

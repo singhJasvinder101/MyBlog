@@ -73,8 +73,8 @@ const BlogDescriptionPage = () => {
         // console.log(form)
 
         try {
-            const { data } = await axios.post(`${apiUrl}/api/users/comment/${postId}`, 
-            { comment }, {
+            const { data } = await axios.post(`${apiUrl}/api/users/comment/${postId}`,
+                { comment }, {
                 withCredentials: true,
             })
             setCommentResponseState({
@@ -95,7 +95,7 @@ const BlogDescriptionPage = () => {
 
     const handleCopyUrl = () => {
         const currentUrl = window.location.href;
-    
+
         navigator.clipboard.writeText(currentUrl)
             .then(() => {
                 alert('URL copied to clipboard!');
@@ -111,7 +111,7 @@ const BlogDescriptionPage = () => {
             commentsSection.scrollIntoView({ behavior: "smooth" });
         }
     };
-    
+
 
     return (
         <>
@@ -122,7 +122,17 @@ const BlogDescriptionPage = () => {
                         postDetails && (
                             <>
                                 <div className="icon d-flex flex-column align-items-center py-2">
-                                    <i onClick={handleLike} className="ri-heart-add-line"></i>
+                                    {!postDetails.likedBy.includes(userInfo._id) ? (
+                                        <span className="cursor-pointer hover:text-[#ff6154]">
+                                            <i onClick={handleLike} className="ri-heart-add-line"></i>
+                                        </span>
+                                    ) : (
+                                        <span className="cursor-pointer hover:text-[#ff6154]">
+                                            <i onClick={handleLike} className="ri-heart-add-fill"></i>
+                                        </span>
+                                    )
+                                    }
+                                    {/* {console.log(userInfo)} */}
                                     {postDetails.postLikes}
                                 </div>
                                 <div className="icon d-flex flex-column align-items-center py-2">
@@ -168,15 +178,15 @@ const BlogDescriptionPage = () => {
                             <label htmlFor="comment">Comment</label>
                         </div>
                         <button type="submit">
-                        {commentResponseState && commentResponseState.loading === true ? (
-                                    <Spinner
-                                        className='mx-2'
-                                        as="span"
-                                        animation="border"
-                                        size="sm"
-                                        role="status"
-                                        aria-hidden="true" />
-                                ) : ""}
+                            {commentResponseState && commentResponseState.loading === true ? (
+                                <Spinner
+                                    className='mx-2'
+                                    as="span"
+                                    animation="border"
+                                    size="sm"
+                                    role="status"
+                                    aria-hidden="true" />
+                            ) : ""}
                             Submit
                         </button>
                     </form>
@@ -234,7 +244,7 @@ const BlogDescriptionPage = () => {
                                             </span>
                                             {/* {console.log(review.likedBy)} */}
                                             {/* {console.log(review._id)} */}
-                        
+
                                             {!review.likedBy.includes(userInfo._id) ? (
                                                 <span className="cursor-pointer hover:text-[#ff6154]">
                                                     <i onClick={() => handleCommentLike(review._id)} className="ri-heart-line"></i>
