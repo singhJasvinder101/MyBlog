@@ -122,7 +122,7 @@ const BlogDescriptionPage = () => {
                         postDetails && (
                             <>
                                 <div className="icon d-flex flex-column align-items-center py-2">
-                                    {!postDetails.likedBy.includes(userInfo._id) ? (
+                                    {postDetails && !postDetails.likedBy.includes(userInfo._id) ? (
                                         <span className="cursor-pointer hover:text-[#ff6154]">
                                             <i onClick={handleLike} className="ri-heart-add-line"></i>
                                         </span>
