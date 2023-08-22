@@ -41,9 +41,14 @@ const HomePage = () => {
                 >
                     {/* {console.log(searchResults)} */}
                     {
-                        posts.filter(x => x._id.toString() !== "64d361430b96fbb0ea77c3d6").slice(0, 9).map((post, idx) => (
-                            <BlogForListPageComponent post={post} key={idx} />
-                        ))
+                        posts
+                            .filter(post => {
+                                const excludedIds = ["64d361430b96fbb0ea77c3d6", "64d361430b96fbb0ea77c3dc", "64d361430b96fbb0ea77c3e8"];
+                                return !excludedIds.includes(post._id.toString());
+                            })
+                            .slice(0, 9).map((post, idx) => (
+                                <BlogForListPageComponent post={post} key={idx} />
+                            ))
                     }
                     {
                         posts.slice(9, 30).map((post, idx) => (

@@ -31,6 +31,7 @@
     "react-icons": "^4.10.1",
     "react-redux": "^8.1.2",
     "react-router-dom": "^6.14.2",
+    "react-share": "^4.4.1",
     "react-simple-star-rating": "^5.1.7",
     "redux": "^4.2.1"
   },

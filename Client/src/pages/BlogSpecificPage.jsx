@@ -10,6 +10,7 @@ const BlogSpecificPage = () => {
     const [tagSpecificPosts, setTagSpecificPosts] = useState([])
     const [currentPage, setCurrentPage] = useState(1);
     const [totalpaginationLinks, settotalpaginationLinks] = useState(1)
+    const [loading, setLoading] = useState(false)
 
     const apiUrl = import.meta.env.VITE_API_URI;
     axios.defaults.withCredentials = true;
@@ -23,11 +24,16 @@ const BlogSpecificPage = () => {
     }
 
     useEffect(() => {
-        searchTagData(tag, currentPage).then(data => { 
-            setTagSpecificPosts(data.posts)
-            settotalpaginationLinks(data.paginationLinksNumber)
-            setCurrentPage(data.pageNum)
-        })
+        setLoading(true);
+        searchTagData(tag, currentPage)
+            .then(data => {
+                setTagSpecificPosts(data.posts)
+                settotalpaginationLinks(data.paginationLinksNumber)
+                setCurrentPage(data.pageNum)
+            })
+            .finally(() => {
+                setLoading(false);
+            });
     }, [tag, currentPage])
 
     const handlePageChange = (newPage) => {
@@ -54,7 +60,9 @@ const BlogSpecificPage = () => {
 
             <PaginationComponent currentPage={currentPage}
                 paginationLinksNumber={totalpaginationLinks}
-                onPageChange={handlePageChange} />
+                onPageChange={handlePageChange}
+                loading={loading}
+            />
         </div>
     )
 }

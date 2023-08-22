@@ -2,7 +2,18 @@ import { Col, Image, Row } from "react-bootstrap";
 import axios from "axios"
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import {
+    EmailShareButton,
+    FacebookShareButton,
+    WhatsappShareButton,
+    InstapaperShareButton,
+    TwitterShareButton,
+    LinkedinShareButton,
+    FacebookIcon,
+    WhatsappIcon,
+    TwitterIcon,
+    LinkedinIcon,
+} from "react-share";
 function BestPostHeader() {
     const [postDetails, setPostDetails] = useState({})
     const apiUrl = import.meta.env.VITE_API_URI;
@@ -20,6 +31,7 @@ function BestPostHeader() {
         })
     }, [])
     // console.log(postDetails)
+    const shareUrl = "https://tech-stuffs.netlify.app/"
 
     return (
         <div className="best-posts">
@@ -35,7 +47,24 @@ function BestPostHeader() {
                         <p>
                             {postDetails.description}
                         </p>
+                        <div className="social-icons d-flex">
+                            <LinkedinShareButton
+                                className="mx-1"
+                                url={shareUrl}
+                                title="share on linkedIn"
+                            >
+                                <LinkedinIcon size={35} round={true} />
+                            </LinkedinShareButton>
+                            <WhatsappShareButton className="mx-1" url={shareUrl}>
+                                <WhatsappIcon size={35} round={true} />
+                            </WhatsappShareButton>
+                            <TwitterShareButton className="mx-1" url={shareUrl}>
+                                <TwitterIcon size={35} round={true} />
+                            </TwitterShareButton>
+                        </div>
                     </div>
+                    {/* <!-- AddToAny BEGIN --> */}
+                    {/* <!-- AddToAny END --> */}
                 </Col>
             </Row>
         </div>

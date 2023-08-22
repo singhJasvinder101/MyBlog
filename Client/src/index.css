@@ -225,8 +225,9 @@ body {
   bottom: 0;
   left: 0;
   width: 100%;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   background-color: #051f2c;
+  gap: 1rem;
 }
 
 
@@ -270,6 +271,7 @@ body {
 .right {
   font-family: 'Roboto', sans-serif;
 }
+
 
 .posts-page {
   width: 100%;
@@ -358,6 +360,9 @@ body {
 .post-content ol {
   margin-left: 20px;
 }
+.post-content{
+  position: relative;
+}
 
 .container {
   max-width: 900px;
@@ -407,10 +412,10 @@ body {
   width: 50%;
   height: 40%;
   margin: 0.3rem auto;
+  writing-mode: horizontal-tb;
 }
 
 /* comment */
-
 .comment .comment-card {
   background-color: #fff;
   border-radius: 10px;
@@ -563,6 +568,11 @@ body {
   z-index: 122;
 }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
 .navbar-toggler {
   background-color: #007bffe7;
 }
@@ -671,8 +681,23 @@ body {
 .ri-heart-fill {
   color: rgba(255, 0, 0, 0.774) !important;
 }
-.ri-heart-add-fill{
+
+.ri-heart-add-fill {
   color: rgba(255, 0, 0, 0.774) !important;
+}
+
+.reviews-container {
+  margin: 0 auto !important;
+  width: 90%;
+}
+
+.comment {
+  width: 100%;
+}
+
+.banner-image {
+  width: 100%;
+  height: 73vh;
 }
 
 @media (max-width: 1068px) {
@@ -730,6 +755,10 @@ body {
   }  */
   .ghanti {
     display: none;
+  }
+
+  .footer {
+    flex-wrap: wrap;
   }
 }
 
