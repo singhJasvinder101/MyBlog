@@ -11,6 +11,8 @@
     "express": "^4.18.2",
     "express-fileupload": "^1.4.0",
     "express-session": "^1.17.3",
+    "firebase-admin": "^11.10.1",
+    "firebase-functions": "^4.4.1",
     "helmet": "^7.0.0",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.4.1",
@@ -23,7 +25,11 @@
     "server-dev": "nodemon server.js",
     "server-prod": "NODE_ENV=production node server.js",
     "client": "npm run dev --prefix ../Client",
-    "both": "concurrently \"npm run server-dev\" \"npm run client\""
+    "both": "concurrently \"npm run server-dev\" \"npm run client\"",
+    "deploy": "firebase deploy --only functions:api"
+  },
+  "engines": {
+    "node": "18"
   },
   "name": "backend",
   "version": "1.0.0",

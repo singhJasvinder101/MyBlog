@@ -18,8 +18,10 @@ import {
     LinkedinIcon,
     FacebookMessengerIcon,
 } from "react-share";
+import LinksPagination from './components/LinksPagination'
 
-import './blogDescription.css'
+
+// import './blogDescription.css'
 const apiUrl = import.meta.env.VITE_API_URI;
 
 const BlogDescriptionPage = () => {
@@ -51,7 +53,9 @@ const BlogDescriptionPage = () => {
 
     useEffect(() => {
         fetchPostDetails(postId).then(data => {
-            setPostDetails(data)
+            setTimeout(() => {
+                setPostDetails(data)
+            }, 100);
         }).catch(err => {
             console.log(err)
         })
@@ -131,7 +135,7 @@ const BlogDescriptionPage = () => {
 
     return (
         <div className='post-description-page'>
-            <div className='posts-page d-flex justify-content-evenly mt-4 container-fluid'>
+            <div className='posts-page d-flex justify-content-evenly mt-4 description-container'>
                 {/* {console.log(postDetails.body_html && postDetails.body_html.replace("DEV", "OUR"))} */}
                 <div className="sidebar">
                     {
@@ -162,14 +166,14 @@ const BlogDescriptionPage = () => {
                         )
                     }
                 </div>
-                <div className="container-fluid">
+                <div className="">
                     {
                         postDetails && (
                             <>
                                 <div className="banner container">
                                     <Image className='banner-image' fluid src={postDetails.images && postDetails.images[0].path} alt="" />
                                 </div>
-                                <div className="post-content my-5 container">
+                                <div className="post-content my-5 content-container">
                                     <div className="post-tags my-3">
                                         {
                                             postDetails.tags && postDetails.tags[0].split(",").map((tag, idx) => (
@@ -266,7 +270,7 @@ const BlogDescriptionPage = () => {
                             <div className="reviews-container mb-5 d-flex jusitfy-content-center flex-col p-8 rounded-2xl bg-white">
                                 {postDetails.reviews && postDetails.reviews.map((review, idx) => (
                                     <>
-                                        <div key={idx} className="flex mt-5">
+                                        <div key={idx + 10} className="flex mt-5">
                                             <div className="flex gap-4">
                                                 <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" alt="" className="w-12 h-12 cursor-pointer mr-2" />
                                                 <div className="comment-bar d-flex flex-column gap-1 justify-content-center">
