@@ -19,7 +19,8 @@ app.use(cookieParser())
 app.use(fileUpload())
 
 
-const allowedOrigins = ['https://blogbackend-jyeb.onrender.com', 'https://tech-stuffs.netlify.app'];
+// const allowedOrigins = ['https://blogbackend-jyeb.onrender.com', 'https://tech-stuffs.netlify.app'];
+const allowedOrigins = ['https://blog-backend-lxeq.onrender.com', 'https://tech-stuffs.netlify.app'];
 // const allowedOrigins = ['http://localhost:3000', 'http://localhost:5173'];
 const corsOptions = {
     origin: function (origin, callback) {
@@ -40,7 +41,8 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use((req, res, next) => {
-    const allowedOrigins = ['https://blogbackend-jyeb.onrender.com', 'https://tech-stuffs.netlify.app'];
+    // const allowedOrigins = ['https://blogbackend-jyeb.onrender.com', 'https://tech-stuffs.netlify.app'];
+    const allowedOrigins = ['https://blog-backend-lxeq.onrender.com', 'https://tech-stuffs.netlify.app'];
     // const allowedOrigins = ['http://localhost:3000', 'http://localhost:5173'];
 
     const origin = req.headers.origin;

@@ -58,11 +58,13 @@ const BlogSpecificPage = () => {
             </div>
             {/* {console.log(totalpaginationLinks)} */}
 
-            <PaginationComponent currentPage={currentPage}
-                paginationLinksNumber={totalpaginationLinks}
-                onPageChange={handlePageChange}
-                loading={loading}
-            />
+            {totalpaginationLinks > 1 ? (
+                <PaginationComponent currentPage={currentPage}
+                    paginationLinksNumber={totalpaginationLinks}
+                    onPageChange={handlePageChange}
+                    loading={loading}
+                />
+            ) : null}
         </div>
     )
 }
