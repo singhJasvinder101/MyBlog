@@ -21,7 +21,7 @@
     "uuid": "^9.0.0"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "node ./server.js",
     "server-dev": "nodemon server.js",
     "server-prod": "NODE_ENV=production node server.js",
     "client": "npm run dev --prefix ../Client",

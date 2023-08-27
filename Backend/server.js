@@ -20,8 +20,8 @@ app.use(fileUpload())
 
 
 // const allowedOrigins = ['https://blogbackend-jyeb.onrender.com', 'https://tech-stuffs.netlify.app'];
-const allowedOrigins = ['https://blog-backend-lxeq.onrender.com', 'https://tech-stuffs.netlify.app'];
-// const allowedOrigins = ['http://localhost:3000', 'http://localhost:5173'];
+// const allowedOrigins = ['https://blog-backend-lxeq.onrender.com', 'https://tech-stuffs.netlify.app'];
+const allowedOrigins = ['http://localhost:3000', 'http://localhost:5173'];
 const corsOptions = {
     origin: function (origin, callback) {
         if (allowedOrigins.includes(origin) || !origin) {
@@ -42,8 +42,8 @@ app.use(cors(corsOptions));
 
 app.use((req, res, next) => {
     // const allowedOrigins = ['https://blogbackend-jyeb.onrender.com', 'https://tech-stuffs.netlify.app'];
-    const allowedOrigins = ['https://blog-backend-lxeq.onrender.com', 'https://tech-stuffs.netlify.app'];
-    // const allowedOrigins = ['http://localhost:3000', 'http://localhost:5173'];
+    // const allowedOrigins = ['https://blog-backend-lxeq.onrender.com', 'https://tech-stuffs.netlify.app'];
+    const allowedOrigins = ['http://localhost:3000', 'http://localhost:5173'];
 
     const origin = req.headers.origin;
     if (allowedOrigins.includes(origin)) {
@@ -75,14 +75,6 @@ app.use(helmet({
     crossOriginEmbedderPolicy: false
 }))
 
-mongoDB().then(() => {
-    app.listen(port, () => {
-        console.log(`started at http://localhost:${port}`)
-
-    })
-
-})
-
 app.get('/', (req, res) => {
     res.setHeader("Access-Control-Allow-Credentials", "true")
     res.send("Api running....")
@@ -109,4 +101,12 @@ app.use((error, req, res, next) => {
             message: error.message
         })
     }
-});
+})
+
+mongoDB().then(() => {
+    app.listen(port, () => {
+        console.log(`started at http://localhost:${port}`)
+
+    })
+
+})
