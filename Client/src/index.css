@@ -838,6 +838,11 @@ body {
     min-width: 12rem;
   }
 
+  .best-post-content h1 {
+    font-size: 1.6rem;
+    font-weight: 600;
+  }
+
   .card {
     background-color: #222222;
     height: 545px !important;
@@ -907,7 +912,8 @@ body {
     color: #242424;
     margin-left: 0;
   }
-  .post-content h3{
+
+  .post-content h3 {
     font-size: 1.3rem;
   }
 
@@ -943,7 +949,8 @@ body {
   .comment .comment-card {
     width: 75%;
   }
-  .collapse.show .right-header{
+
+  .collapse.show .right-header {
     display: none !important;
   }
 }
