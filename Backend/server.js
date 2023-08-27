@@ -7,7 +7,7 @@ var helmet = require('helmet')
 
 // config
 const mongoDB = require("./config/db")
-mongoDB()
+
 const cookieParser = require("cookie-parser")
 const fileUpload = require("express-fileupload")
 const cors = require('cors');
@@ -105,4 +105,5 @@ app.use((error, req, res, next) => {
 
 app.listen(port, () => {
     console.log(`started at http://localhost:${port}`)
+    mongoDB()
 })
