@@ -51,14 +51,23 @@ function BestPostHeader() {
                             <LinkedinShareButton
                                 className="mx-1"
                                 url={shareUrl}
-                                title="share on linkedIn"
+                                title={postDetails.title}
+                                summary={postDetails.description && postDetails.description.slice(0, 30)}
                             >
                                 <LinkedinIcon size={35} round={true} />
                             </LinkedinShareButton>
-                            <WhatsappShareButton className="mx-1" url={shareUrl}>
+                            <WhatsappShareButton
+                                className="mx-1"
+                                url={shareUrl}
+                                title='hey there let"s join this tech blog for daily tech stuffs'
+                            >
                                 <WhatsappIcon size={35} round={true} />
                             </WhatsappShareButton>
-                            <TwitterShareButton className="mx-1" url={shareUrl}>
+                            <TwitterShareButton
+                                className="mx-1"
+                                url={shareUrl}
+                                title='hey there let"s join this tech blog for daily tech stuffs'
+                            >
                                 <TwitterIcon size={35} round={true} />
                             </TwitterShareButton>
                         </div>

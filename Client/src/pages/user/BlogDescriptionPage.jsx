@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Alert, Breadcrumb, Image, Spinner } from 'react-bootstrap'
+import { Alert, Breadcrumb, Carousel, Image, Spinner } from 'react-bootstrap'
 import { Link, useParams } from 'react-router-dom'
 import axios from 'axios'
 import dateFormat from 'dateformat'
@@ -19,6 +19,8 @@ import {
     FacebookMessengerIcon,
 } from "react-share";
 import LinksPagination from './components/LinksPagination'
+import BlogForListComponent2 from '../../components/BlogForListComponent2'
+import BlogForListPageComponent from '../../components/BlogForListPageComponent'
 
 
 // import './blogDescription.css'
@@ -131,6 +133,33 @@ const BlogDescriptionPage = () => {
     };
 
     const shareUrl = "https://tech-stuffs.netlify.app/"
+    const [posts, setPosts] = useState([])
+
+    const apiUrl = import.meta.env.VITE_API_URI;
+
+    const fetchArticles = async () => {
+        try {
+            const { data } = await axios.get(`${apiUrl}/api/blogs`)
+            return data
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        fetchArticles().then(data => setPosts(data.posts))
+            .catch(error => console.log(error))
+    }, [])
+
+    const [currentIndex, setCurrentIndex] = useState(15);
+
+    const nextCards = () => {
+        setCurrentIndex(currentIndex + 3);
+    };
+
+    const prevCards = () => {
+        setCurrentIndex(currentIndex - 3);
+    };
 
 
     return (
@@ -166,11 +195,11 @@ const BlogDescriptionPage = () => {
                         )
                     }
                 </div>
-                <div className="">
+                <div className="m-auto">
                     {
                         postDetails && (
                             <>
-                                <div className="banner container">
+                                <div className="banner banner-container container">
                                     <Image className='banner-image' fluid src={postDetails.images && postDetails.images[0].path} alt="" />
                                 </div>
                                 <div className="post-content my-5 content-container">
@@ -313,6 +342,28 @@ const BlogDescriptionPage = () => {
                     )
                 }
             </div>
+
+            <h2 className='text-center related-posts-heading'>Related Posts</h2>
+            <div className="related-posts slider mx-auto d-flex justify-content-center">
+                {
+                    posts
+                        .filter(post => {
+                            const excludedIds = ["64d361430b96fbb0ea77c3d6", "64d361430b96fbb0ea77c3dc", "64d361430b96fbb0ea77c3e8", "64d361430b96fbb0ea77c40e", "64d361430b96fbb0ea77c3ec", postId];
+                            return !excludedIds.includes(post._id.toString());
+                        }).slice(currentIndex, currentIndex + 3).map((post, idx) => (
+                            <BlogForListPageComponent post={post} key={idx} />
+                        ))
+                }
+            </div>
+            <button className="slider slider-button prev-button btn btn-primary" onClick={prevCards} disabled={currentIndex === 0}>
+                Previous
+            </button>
+            <button className="slider slider-button next-button btn btn-primary"
+                onClick={nextCards}
+                disabled={currentIndex + 3 >= posts.length}
+            >
+                Next
+            </button>
         </div>
     )
 }

@@ -8,7 +8,7 @@ const BlogForListPageComponent = ({ post }) => {
         <>
             <div className="card mx-2 text-light my-3" style={{ height: 'auto' }}>
                 <div className='my-2'>
-                    <a href="">
+                    <a href={`/post-details/${post._id}`}>
                         <img
                             crossOrigin='anonymous'
                             style={{ objectFit: 'cover' }}

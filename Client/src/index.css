@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Arvo:wght@700&family=Dancing+Script:wght@700&family=Lumanosimo&family=Montserrat:wght@800&family=Mulish:wght@500&family=Noto+Sans:wght@500&family=Open+Sans:wght@500&family=Pacifico&family=Roboto+Condensed&family=Roboto:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital@1&family=Montserrat:wght@800&family=Noto+Sans:wght@500&family=Open+Sans:wght@500&family=Roboto+Condensed&family=Roboto:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital@1&family=Martel+Sans:wght@600&family=Montserrat:wght@700;800&family=Noto+Sans:wght@500&family=Open+Sans:wght@500&family=Roboto+Condensed&family=Roboto:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital@1&family=Martel+Sans:wght@600&family=Montserrat:wght@700;800&family=Noto+Sans:wght@500&family=Nunito:wght@600&family=Open+Sans:wght@500&family=Poppins&family=Roboto+Condensed&family=Roboto:wght@500&display=swap');
 
 * {
   margin: 0;
@@ -218,7 +219,7 @@ html {
 body {
   display: flex;
   flex-direction: column;
-  margin-bottom: 3.5rem;
+  margin-bottom: 5rem;
 }
 
 .footer {
@@ -315,6 +316,7 @@ body {
 .content-container {
   width: 60%;
   margin: 0 auto;
+  /* margin-left: 2rem; */
 }
 
 .post-content>h1 {
@@ -327,24 +329,32 @@ body {
   padding: 0.6rem !important;
 }
 
+.post-content a {
+  margin: 0.3rem 0.3rem !important;
+}
+
 .post-content h1 {
   font-family: 'Noto Sans', sans-serif;
   /* font-weight: 900; */
   font-weight: bold !important;
   padding-left: 1rem;
   margin-top: 1rem;
-  margin-left: 1rem;
 }
 
 .post-content h2 {
   margin-top: 1.62em;
-  font-size: 30px;
+  font-size: 17px;
   font-weight: 600;
-  font-family: 'Martel Sans', sans-serif;
+  font-family: 'Poppins', sans-serif;
   /* width: 100%; */
   word-wrap: break-word;
   text-align: -webkit-match-parent;
   padding-left: 1rem;
+}
+
+.post-content h3 {
+  margin-top: 1rem;
+  margin-left: 0.4rem;
 }
 
 .post-content .tags {
@@ -367,15 +377,16 @@ body {
   font-size: 19px;
   margin-bottom: -0.46em;
   word-break: break-word;
-  margin-top: 2em;
+  margin-top: 1em;
   padding-left: 0px;
-  margin-left: 30px;
+  margin-left: 18px;
   list-style-type: disc;
   margin-bottom: -0.46em;
   color: #242424;
   font-weight: 400;
 }
-.post-content p{
+
+.post-content p {
   font-size: 20px !important;
 }
 
@@ -445,6 +456,10 @@ body {
   background-color: black;
   width: 100%;
   height: 100%;
+}
+
+.post-description-page {
+  overflow: hidden;
 }
 
 .blog-post-description img {
@@ -608,6 +623,35 @@ body {
   transform: translateY(2rem);
 }
 
+.related-posts {
+  width: 90%;
+  height: auto;
+  position: relative !important;
+  margin-bottom: 1rem;
+}
+
+.related-posts-heading {
+  font-family: 'Lato', sans-serif;
+  font-weight: bold;
+}
+
+.prev-button {
+  position: absolute;
+  top: 19%;
+  left: 0;
+  rotate: -90deg;
+  z-index: 1;
+}
+
+.next-button {
+  position: absolute;
+  top: 95%;
+  right: 1rem;
+  rotate: -90deg;
+  z-index: 1;
+}
+
+
 .bottom-pagination {
   z-index: 122;
 }
@@ -667,10 +711,11 @@ body {
 .preview p {
   /* font-weight: bold; */
   margin-bottom: 10px;
+  color: black;
 }
 
 .post-input {
-  width: 60vw;
+  width: 40vw;
   height: 3.5rem;
   font-size: 1.7rem;
   padding: 0 1rem;
@@ -688,6 +733,11 @@ body {
 .post-container input:valid {
   outline: 0;
   /* border-bottom-color: lightblue; */
+}
+
+.post-container {
+  width: 90vw;
+  margin: auto;
 }
 
 
@@ -732,22 +782,50 @@ body {
 
 .reviews-container {
   margin: 0 auto !important;
-  width: 90%;
+  width: 50%;
 }
 
 .comment {
   width: 100%;
 }
 
-.like-share-footer{
+.like-share-footer {
   display: none;
 }
+
+.post-tags {
+  margin-bottom: 2rem !important;
+}
+
+.create-post-page {
+  background-color: #0e0e0e;
+  color: white;
+  overflow: hidden;
+}
+
+.create-post-page input {
+  background-color: rgba(255, 255, 255, 0.925);
+  border-radius: 1.5rem;
+}
+
+
 /* .banner-image {
   width: 100%;
   height: 73vh;
 } */
 
 @media (max-width: 1068px) {
+  .slider {
+    display: flex !important;
+    flex-wrap: wrap;
+    height: auto;
+    width: 100%;
+  }
+
+  .slider-button {
+    display: none !important;
+  }
+
   .navbar-brand {
     margin-top: 1rem;
     margin-bottom: 0.7rem;
@@ -762,7 +840,7 @@ body {
 
   .card {
     background-color: #222222;
-    height: 535px !important;
+    height: 545px !important;
     width: 45%;
   }
 
@@ -775,14 +853,11 @@ body {
   .post-tags {
     display: flex !important;
     flex-wrap: wrap !important;
+    margin-left: 0.3rem;
   }
 
   .sidebar {
     left: 1.5%;
-  }
-
-  .cover-image-input {
-    display: block !important;
   }
 
   .tags-input {
@@ -790,11 +865,15 @@ body {
   }
 
   .post-input {
-    width: 90vw;
+    width: 90%;
   }
 
   .posted-img {
     width: 80vw !important;
+  }
+
+  .cover-image-input {
+    display: block !important;
   }
 
   /* .search-container{
@@ -826,23 +905,46 @@ body {
     font-weight: 700;
     font-style: normal;
     color: #242424;
+    margin-left: 0;
+  }
+  .post-content h3{
+    font-size: 1.3rem;
   }
 
   .content-container {
-    width: 90%;
+    width: 98%;
   }
-  .like-share-footer{
+
+  .like-share-footer {
     display: block;
     height: 4rem;
     position: fixed;
     bottom: 0;
     left: 0;
   }
-  .post-content p{
-    font-size: 19px !important;
+
+  .post-content p {
+    font-size: 18px !important;
   }
-  .post-content li{
+
+  .post-content li {
     font-size: 17px !important;
+  }
+
+  .post-container h1 {
+    font-size: 1.9rem !important;
+  }
+
+  .reviews-container {
+    margin: 0 auto !important;
+    width: 91%;
+  }
+
+  .comment .comment-card {
+    width: 75%;
+  }
+  .collapse.show .right-header{
+    display: none !important;
   }
 }
 
@@ -857,7 +959,7 @@ body {
 
   .card {
     background-color: #222222;
-    height: 510px !important;
+    height: 515px !important;
     width: 100%;
   }
 
@@ -890,17 +992,19 @@ body {
   }
 
   .post-content h2 {
-    letter-spacing: -1px;
+    /* letter-spacing: -1px; */
     /* line-height: 20px; */
     margin-top: 1.23em;
     font-size: 32px;
     /* margin-bottom: -0.31em; */
     font-weight: 600;
-    font-family: 'Martel Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.3rem;
   }
+
   .post-content h1 {
     letter-spacing: -1px;
-    margin-left: 1rem;
+    margin-left: 0;
   }
 
   /* .input1:focus,

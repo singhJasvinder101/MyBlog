@@ -20,6 +20,7 @@ const TextEditor = () => {
     const [tagInput, setTagInput] = useState('');
     const [tags, setTags] = useState([])
     const [imageUrl, setImageUrl] = useState("https://res.cloudinary.com/practicaldev/image/fetch/s--gIvrKWQi--/c_imagga_scale,f_auto,fl_progressive,h_500,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/5rbe6wwa5mcc2q4me43s.png")
+    const [loaderState, setLoaderState] = useState(false)
 
     const textAreaRef = useRef(null)
 
@@ -60,7 +61,7 @@ const TextEditor = () => {
                 setContent(prevContent => prevContent + '*Italic* ');
                 break;
             case 'code':
-                setContent(prevContent => prevContent + '\n```javascript\nconsole.log("Hello, World!");\n```');
+                setContent(prevContent => prevContent + '\n```javascript\nconsole.log("Hello, World!");```\n');
                 break;
             case 'orderedList':
                 setContent(prevContent => prevContent + '\n1. text1\n2. text2\n3. text3 ');
@@ -96,11 +97,13 @@ const TextEditor = () => {
     // console.log(user)
 
     const blogPostApiRequest = async (title, description, body_html, tags, images, author) => {
+        setLoaderState(true)
         const { data } = await axios.post(`${apiUrl}/api/blogs/createPost`, {
             title, description, body_html, tags, images, author
         }, {
             withCredentials: true,
         })
+        setLoaderState(false)
         return data
     }
 
@@ -132,17 +135,19 @@ const TextEditor = () => {
     }
 
     return (
-        <div>
+        <div className='create-post-page'>
             <form onSubmit={handleSubmit}>
-                <div className="post-container mt-4 container">
+                <div className="post-container pt-4 container text-center">
                     <h1 className='my-5 d-block'>Add Your Posts 🙌🏼</h1>
-                    <input name='title' type="text" className='post-input' placeholder='Post title...' />
+                    <input name='title' type="text" className='post-input text-center' placeholder='Post title...' required />
                     <input
-                        className='tags-input d-block my-4 px-2 py-2'
+                        id='tags'
+                        className='tags-input my-4 px-4 py-2'
                         placeholder='tags with commas,  then Enter'
                         onKeyPress={tagsHandler}
                         value={tagInput}
                         onChange={(e) => setTagInput(e.target.value)}
+                        required
                     />
 
                     <div className="post-tags">
@@ -151,18 +156,18 @@ const TextEditor = () => {
                         ))}
                     </div>
 
-                    <div className="cover-image-input">
+                    <div className="cover-image-input text-left">
                         <label title='add photo of 100:42 ratio' className="input-text" htmlFor="inputGroupFile01">Select you cover image {uploading ? <Spinner /> : null}</label>
                         <input type="file" id='inputGroupFile01'
                             className='form'
                             style={{ visibility: 'hidden' }}
-                            onChange={uploadImage} />
+                            onChange={uploadImage} required />
                     </div>
                     {uploadedImagePublicId ? (
                         <CloudinaryContext cloudName="dfdmyewjs" className='my-3'>
                             <Image className='cloudinary-image' publicId={uploadedImagePublicId} height='200' width="400" crop="scale" />
                         </CloudinaryContext>
-                    ) : (<Image className='d-block my-3 posted-img' height='20%' width="50%" crop="scale" src='https://res.cloudinary.com/practicaldev/image/fetch/s--gIvrKWQi--/c_imagga_scale,f_auto,fl_progressive,h_500,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/5rbe6wwa5mcc2q4me43s.png' />)}
+                    ) : (<Image className='d-block my-3 posted-img' height='20%' width="100%" crop="scale" src='https://res.cloudinary.com/practicaldev/image/fetch/s--gIvrKWQi--/c_imagga_scale,f_auto,fl_progressive,h_500,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/5rbe6wwa5mcc2q4me43s.png' />)}
 
                 </div>
                 <div className="text-editor container">
@@ -181,12 +186,13 @@ const TextEditor = () => {
                             value={content}
                             onChange={(e) => setContent(e.target.value)}
                             placeholder="Write description in detail..."
+                            required
                         />
-                        <div className="publish-post my-auto mx-2">
-                            <button type='submit' style={{ height: '3rem' }} className='btn btn-primary'>Publish Article
-                                🎉
-                            </button>
-                        </div>
+                    </div>
+                    <div className="publish-post my-auto">
+                        <button type='submit' style={{ height: '3rem' }} className='btn btn-primary'>Publish Article
+                            {loaderState && '\uD83C\uDF89'}
+                        </button>
                     </div>
                     <div className="preview container mt-3 mb-5">
                         <p>Preview:</p>
