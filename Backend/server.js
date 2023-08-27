@@ -75,6 +75,14 @@ app.use(helmet({
     crossOriginEmbedderPolicy: false
 }))
 
+mongoDB().then(() => {
+    app.listen(port, () => {
+        console.log(`started at http://localhost:${port}`)
+
+    })
+
+})
+
 app.get('/', (req, res) => {
     res.setHeader("Access-Control-Allow-Credentials", "true")
     res.send("Api running....")
@@ -102,8 +110,3 @@ app.use((error, req, res, next) => {
         })
     }
 });
-
-app.listen(port, () => {
-    console.log(`started at http://localhost:${port}`)
-    mongoDB()
-})
