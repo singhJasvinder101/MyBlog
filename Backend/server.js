@@ -4,9 +4,9 @@ const port = process.env.PORT || 3000
 const apiRoutes = require("./routes/ApiRoutes")
 require("dotenv").config()
 var helmet = require('helmet')
-
 // config
 const mongoDB = require("./config/db")
+mongoDB()
 
 const cookieParser = require("cookie-parser")
 const fileUpload = require("express-fileupload")
@@ -105,10 +105,8 @@ app.use((error, req, res, next) => {
     }
 })
 
-mongoDB().then(() => {
-    app.listen(port, () => {
-        console.log(`started at http://localhost:${port}`)
 
-    })
+app.listen(port, () => {
+    console.log(`started at http://localhost:${port}`)
 
 })
