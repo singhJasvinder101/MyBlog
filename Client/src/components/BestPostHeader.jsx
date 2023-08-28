@@ -59,14 +59,14 @@ function BestPostHeader() {
                             <WhatsappShareButton
                                 className="mx-1"
                                 url={shareUrl}
-                                title='hey there let"s join this tech blog for daily tech stuffs'
+                                title="hey!! let's join this tech blog for daily tech stuffs"
                             >
                                 <WhatsappIcon size={35} round={true} />
                             </WhatsappShareButton>
                             <TwitterShareButton
                                 className="mx-1"
                                 url={shareUrl}
-                                title='hey there let"s join this tech blog for daily tech stuffs'
+                                title="hey!! let's join this tech blog for daily tech stuffs"
                             >
                                 <TwitterIcon size={35} round={true} />
                             </TwitterShareButton>
