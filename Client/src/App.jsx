@@ -12,28 +12,72 @@ import BlogSpecificPage from './pages/BlogSpecificPage'
 import ProtectedRoutesComponent from './components/ProtectedRoutesComponent'
 import SpeedDialComponent from './components/SpeedDialComponente'
 import CreatePostPage from './pages/CreatePostPage'
+import { useEffect, useState } from 'react'
+
+// function App() {
+//   return (
+//     <>
+//       <SpeedDialComponent />
+//       <Router>
+//         <HeaderComponent />
+//         <Routes>
+//           <Route exact path='/' element={<HomePage />} />
+//           <Route path="/login" element={<LoginPage />} />
+//           <Route path="/register" element={<RegisterPage />} />
+//           <Route element={<ProtectedRoutesComponent />}>
+//             <Route path="/post-details/:postId" element={<BlogDescriptionPage />} />
+//             <Route path="/blogs/:tag" element={<BlogSpecificPage />} />
+//             <Route path="/user/createPost" element={<CreatePostPage />} />
+//           </Route>
+//         </Routes>
+//       </Router>
+//       {/* <PaginationComponent /> */}
+//       <FooterComponent />
+//     </>
+//   )
+// }
+
+
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true); // State to track loading
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+  }, []);
+
   return (
     <>
-      <SpeedDialComponent />
-      <Router>
-        <HeaderComponent />
-        <Routes>
-          <Route exact path='/' element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route element={<ProtectedRoutesComponent />}>
-            <Route path="/post-details/:postId" element={<BlogDescriptionPage />} />
-            <Route path="/blogs/:tag" element={<BlogSpecificPage />} />
-            <Route path="/user/createPost" element={<CreatePostPage />} />
-          </Route>
-        </Routes>
-      </Router>
-      {/* <PaginationComponent /> */}
-      <FooterComponent />
+      {isLoading ? ( // Conditionally render spinner or content
+        <div class="loader">
+          <div class="scanner">
+            <span>Loading...</span>
+          </div>
+        </div>
+      ) : (
+        <>
+          <SpeedDialComponent />
+          <Router>
+            <HeaderComponent />
+            <Routes>
+              <Route exact path="/" element={<HomePage setIsLoading={setIsLoading} />} />
+              <Route path="/login" element={<LoginPage setIsLoading={setIsLoading} />} />
+              <Route path="/register" element={<RegisterPage setIsLoading={setIsLoading} />} />
+              <Route element={<ProtectedRoutesComponent />}>
+                <Route path="/post-details/:postId" element={<BlogDescriptionPage setIsLoading={setIsLoading} />} />
+                <Route path="/blogs/:tag" element={<BlogSpecificPage setIsLoading={setIsLoading} />} />
+                <Route path="/user/createPost" element={<CreatePostPage setIsLoading={setIsLoading} />} />
+              </Route>
+            </Routes>
+          </Router>
+          {/* <PaginationComponent /> */}
+          <FooterComponent />
+        </>
+      )}
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -21,6 +21,7 @@ import {
 import LinksPagination from './components/LinksPagination'
 import BlogForListComponent2 from '../../components/BlogForListComponent2'
 import BlogForListPageComponent from '../../components/BlogForListPageComponent'
+import Sidebar from './components/PopularArticles'
 
 
 // import './blogDescription.css'
@@ -39,6 +40,7 @@ const BlogDescriptionPage = () => {
         error: "",
         loading: false,
     })
+
     axios.defaults.withCredentials = true;
 
     const fetchPostDetails = async (postId) => {
@@ -151,16 +153,6 @@ const BlogDescriptionPage = () => {
             .catch(error => console.log(error))
     }, [])
 
-    const [currentIndex, setCurrentIndex] = useState(15);
-
-    const nextCards = () => {
-        setCurrentIndex(currentIndex + 3);
-    };
-
-    const prevCards = () => {
-        setCurrentIndex(currentIndex - 3);
-    };
-
 
     return (
         <div className='post-description-page'>
@@ -195,21 +187,22 @@ const BlogDescriptionPage = () => {
                         )
                     }
                 </div>
-                <div className="m-auto">
+                <div className="">
                     {
                         postDetails && (
                             <>
-                                <div className="banner banner-container container">
-                                    <Image className='banner-image' fluid src={postDetails.images && postDetails.images[0].path} alt="" />
-                                </div>
-                                <div className="post-content my-5 content-container">
-                                    <div className="post-tags my-3">
-                                        {
-                                            postDetails.tags && postDetails.tags[0].split(",").map((tag, idx) => (
-                                                <Link to={`/blogs/${tag.trim()}`} key={idx} className='tags'># {tag}</Link>
-                                            ))
-                                        }
-                                        {/* <button class="btn">
+                                <div className="posts-description-container d-flex justify-content-between">
+                                    <div className="post-content content-container">
+                                        <div className="banner banner-container container">
+                                            <Image className='banner-image' fluid src={postDetails.images && postDetails.images[0].path} alt="" />
+                                        </div>
+                                        <div className="post-tags my-3">
+                                            {
+                                                postDetails.tags && postDetails.tags[0].split(",").map((tag, idx) => (
+                                                    <Link to={`/blogs/${tag.trim()}`} key={idx} className='tags'># {tag}</Link>
+                                                ))
+                                            }
+                                            {/* <button class="btn">
                                             <span>Share</span><span>
                                                 <svg height="18" width="18" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1024 1024" class="icon">
                                                     <path fill="#ffffff" d="M767.99994 585.142857q75.995429 0 129.462857 53.394286t53.394286 129.462857-53.394286 129.462857-129.462857 53.394286-129.462857-53.394286-53.394286-129.462857q0-6.875429 1.170286-19.456l-205.677714-102.838857q-52.589714 49.152-124.562286 49.152-75.995429 0-129.462857-53.394286t-53.394286-129.462857 53.394286-129.462857 129.462857-53.394286q71.972571 0 124.562286 49.152l205.677714-102.838857q-1.170286-12.580571-1.170286-19.456 0-75.995429 53.394286-129.462857t129.462857-53.394286 129.462857 53.394286 53.394286 129.462857-53.394286 129.462857-129.462857 53.394286q-71.972571 0-124.562286-49.152l-205.677714 102.838857q1.170286 12.580571 1.170286 19.456t-1.170286 19.456l205.677714 102.838857q52.589714-49.152 124.562286-49.152z">
@@ -238,9 +231,21 @@ const BlogDescriptionPage = () => {
                                                 </li>
                                             </ul>
                                         </button> */}
+                                        </div>
+                                        <h1 className='my-4'>{postDetails.title}</h1>
+                                        <div className='blog-post-description' dangerouslySetInnerHTML={{ __html: postDetails.body_html && marked.parse(postDetails.body_html.replace(/DEV/g, "OUR")) }} />
                                     </div>
-                                    <h1 className='my-4'>{postDetails.title}</h1>
-                                    <div className='blog-post-description' dangerouslySetInnerHTML={{ __html: postDetails.body_html && marked.parse(postDetails.body_html.replace(/DEV/g, "OUR")) }} />
+                                    <div className="right-sidebar">
+                                        <Sidebar
+                                            popularArticles={posts
+                                                .filter(post => {
+                                                    const excludedIds = ["64d361430b96fbb0ea77c3d6", "64d361430b96fbb0ea77c3dc", "64d361430b96fbb0ea77c3e8", "64d361430b96fbb0ea77c40e", "64d361430b96fbb0ea77c3ec", postId];
+                                                    return !excludedIds.includes(post._id.toString());
+                                                })}
+                                            postId={postId}
+                                            userDetails={postDetails}
+                                        />
+                                    </div>
                                 </div>
                             </>
                         )
@@ -315,7 +320,7 @@ const BlogDescriptionPage = () => {
                                                 {review.comment}
                                             </div>
                                         </div>
-                                        <div className="d-flex mt-3 comment-bottom gap-6 text-[#4b587c] text-[12px]">
+                                        <div className="d-flex mt-3 comment-bottom justify-content text-[#4b587c] text-[12px]">
                                             <span
                                                 className="cursor-pointer mr-4">
                                                 {dateFormat(review.createdAt)}
@@ -343,27 +348,6 @@ const BlogDescriptionPage = () => {
                 }
             </div>
 
-            <h2 className='text-center related-posts-heading'>Related Posts</h2>
-            <div className="related-posts slider mx-auto d-flex justify-content-center">
-                {
-                    posts
-                        .filter(post => {
-                            const excludedIds = ["64d361430b96fbb0ea77c3d6", "64d361430b96fbb0ea77c3dc", "64d361430b96fbb0ea77c3e8", "64d361430b96fbb0ea77c40e", "64d361430b96fbb0ea77c3ec", postId];
-                            return !excludedIds.includes(post._id.toString());
-                        }).slice(currentIndex, currentIndex + 3).map((post, idx) => (
-                            <BlogForListPageComponent post={post} key={idx} />
-                        ))
-                }
-            </div>
-            <button className="slider slider-button prev-button btn btn-primary" onClick={prevCards} disabled={currentIndex === 0}>
-                Previous
-            </button>
-            <button className="slider slider-button next-button btn btn-primary"
-                onClick={nextCards}
-                disabled={currentIndex + 3 >= posts.length}
-            >
-                Next
-            </button>
         </div>
     )
 }

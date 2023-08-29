@@ -10,6 +10,9 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
+    username: {
+        type: String,
+    },
     email: {
         type: String,
         required: true,
@@ -25,6 +28,14 @@ const userSchema = new Schema({
     work: {
         type: String,
         // required: true,
+    },
+    followers: {
+        type: Number,
+        default: 0,
+    },
+    followedBy: [{ type: mongoose.Schema.Types.ObjectId }],
+    following: {
+        type: Number,
     },
     password: {
         type: String,
