@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Alert, Breadcrumb, Image, Spinner } from 'react-bootstrap'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import axios from 'axios'
 import dateFormat from 'dateformat'
 import { useSelector } from 'react-redux'
@@ -23,17 +23,17 @@ import {
 // import './blogDescription.css'
 const apiUrl = import.meta.env.VITE_API_URI;
 const LinksPagination = ({ postId }) => {
+    // console.log(postId)
+    const location = useLocation();
 
     const userInfo = useSelector(state => state.userLoggedIn.userInfo)
     const [postDetails, setPostDetails] = useState([])
     const [isLiked, setIsLiked] = useState(false)
-    const [isComment, setIsComment] = useState(false)
-    const [isCommentLiked, setIsCommentLiked] = useState(false)
-    const [commentResponseState, setCommentResponseState] = useState({
-        success: "",
-        error: "",
-        loading: false,
-    })
+
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const [isSharingSupported, setIsSharingSupported] = useState(
+        Boolean(navigator.share)
+    );
     axios.defaults.withCredentials = true;
 
     const fetchPostDetails = async (postId) => {
@@ -41,7 +41,7 @@ const LinksPagination = ({ postId }) => {
             const { data } = await axios.get(`${apiUrl}/api/blogs/get-one/${postId}`, {
                 withCredentials: true,
             });
-            console.log(data)
+            // console.log(data)
             return data;
         } catch (error) {
             console.log("Error fetching post details:", error);
@@ -55,7 +55,19 @@ const LinksPagination = ({ postId }) => {
         }).catch(err => {
             console.log(err)
         })
-    }, [postId, isLiked, isComment, isCommentLiked])
+    }, [postId, isLiked])
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     // console.log(postDetails)
     // console.log(isLiked)
@@ -68,45 +80,6 @@ const LinksPagination = ({ postId }) => {
             setIsLiked(prevIsLiked => !prevIsLiked);
         }
     }
-
-    const handleCommentLike = async (commentId) => {
-        const { data } = await axios.post(`${apiUrl}/api/users/commentlike/${commentId}`, {}, {
-            withCredentials: true,
-        })
-        if (data.success) {
-            setIsCommentLiked(!isCommentLiked)
-        }
-    }
-
-    const handleSubmit = async (e) => {
-        setCommentResponseState({ loading: true })
-
-        e.preventDefault();
-        const form = e.currentTarget.elements
-        const comment = form.comment.value
-        // console.log(form)
-
-        try {
-            const { data } = await axios.post(`${apiUrl}/api/users/comment/${postId}`,
-                { comment }, {
-                withCredentials: true,
-            })
-            setCommentResponseState({
-                success: data.success,
-                loading: false,
-            })
-            if (data.success) {
-                // console.log("comment added")
-                setIsComment(!isComment)
-            }
-        } catch (err) {
-            setCommentResponseState({
-                error: err.response.data ? err.response.data : err.response
-            })
-            // console.error("Error adding comment:", err.response.data);
-        }
-    }
-
     const handleCopyUrl = () => {
         const currentUrl = window.location.href;
 
@@ -127,39 +100,67 @@ const LinksPagination = ({ postId }) => {
     };
 
     const shareUrl = "https://tech-stuffs.netlify.app/"
+    const handleShare = async () => {
+        try {
+            await navigator.share({
+                title: "Tech Blog",
+                text: "Hey! Let's join the blog to explore the tech world",
+                url: shareUrl, // Replace with your URL
+            });
+        } catch (error) {
+            console.error('Error sharing:', error);
+        }
+    };
+
 
     return (
-        <div className='like-share-footer bg-white text-dark'>
-            <div className="sidebar">
-                {
-                    postDetails && (
-                        <>
-                            <div className="icon d-flex flex-column align-items-center py-2">
-                                {postDetails.likedBy && !postDetails.likedBy.includes(userInfo._id) ? (
-                                    <span className="cursor-pointer hover:text-[#ff6154]">
-                                        <i onClick={handleLike} className="ri-heart-add-line"></i>
-                                    </span>
-                                ) : (
-                                    <span className="cursor-pointer hover:text-[#ff6154]">
-                                        <i onClick={handleLike} className="ri-heart-add-fill"></i>
-                                    </span>
-                                )
+        <>
+            <div className={`like-share-footer text-dark`}>
+                <div className="bottom-sidebar">
+                    {
+                        postDetails && (
+                            <>
+                                {
+                                    windowWidth <= 1068 && (
+                                        <>
+
+                                            <div className="icon d-flex align-items-center py-2">
+                                                {postDetails.likedBy && !postDetails.likedBy.includes(userInfo._id) ? (
+                                                    <span className="cursor-pointer mx-2 hover:text-[#ff6154]">
+                                                        <i onClick={handleLike} className="ri-heart-add-line"></i>
+                                                    </span>
+                                                ) : (
+                                                    <span className="cursor-pointer mx-2 hover:text-[#ff6154]">
+                                                        <i onClick={handleLike} className="ri-heart-add-fill"></i>
+                                                    </span>
+                                                )
+                                                }
+                                                {/* {console.log(userInfo)} */}
+                                                {postDetails.postLikes}
+                                            </div>
+                                            <div className="icon d-flex mx-2 align-items-center py-2">
+                                                <i onClick={handleGoToComments} className="ri-chat-3-line mx-2"></i>
+                                                {postDetails.reviews && postDetails.reviews.length}
+                                            </div>
+                                            <div className="icon d-flex py-2">
+                                                {/* <i onClick={handleCopyUrl} className="ri-file-copy-fill"></i> */}
+                                                {isSharingSupported && (
+                                                    <div className="icon d-flex mx-2 align-items-center py-2">
+                                                        <button onClick={handleShare} className="bottom-sidebar-share">
+                                                            <i className="ri-share-forward-line text-muted"></i>
+                                                        </button>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        </>
+                                    )
                                 }
-                                {/* {console.log(userInfo)} */}
-                                {postDetails.postLikes}
-                            </div>
-                            <div className="icon d-flex flex-column align-items-center py-2">
-                                <i onClick={handleGoToComments} className="ri-chat-3-line"></i>
-                                {postDetails.reviews && postDetails.reviews.length}
-                            </div>
-                            <div className="icon py-2">
-                                <i onClick={handleCopyUrl} className="ri-file-copy-fill"></i>
-                            </div>
-                        </>
-                    )
-                }
+                            </>
+                        )
+                    }
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 

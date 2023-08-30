@@ -5,6 +5,7 @@ import BestPostHeader from '../components/BestPostHeader'
 import BlogForListComponent2 from '../components/BlogForListComponent2'
 import { useLocation } from 'react-router-dom'
 import axios from 'axios'
+import LoaderComponent from './components/LoaderComponent'
 
 const HomePage = () => {
     const location = useLocation();
@@ -46,19 +47,7 @@ const HomePage = () => {
             <div className="home">
                 {isLoading ? (
                     <>
-                        <div className="spinnerContainer">
-                            <div className="spinner"></div>
-                            <div className="loader">
-                                <p>loading</p>
-                                <div className="words">
-                                    <span className="word">posts</span>
-                                    <span className="word">images</span>
-                                    <span className="word">followers</span>
-                                    <span className="word">hashtags</span>
-                                    <span className="word">posts</span>
-                                </div>
-                            </div>
-                        </div>
+                        <LoaderComponent />
                     </>
                 ) : (
                     <>

@@ -15,13 +15,14 @@ const ProtectedRoutesComponent = () => {
     useEffect(() => {
         const check_token = async () => {
             try {
-                // axios.defaults.withCredentials = true;
-                // const { data } = await axios.get(`${apiUrl}/api/get-token`, {
-                //     withCredentials: true,
-                // })
-                const data = userInfo
-                // if (data.token) {
-                if (data.name) {
+                axios.defaults.withCredentials = true;
+                const { data } = await axios.get(`${apiUrl}/api/get-token`, {
+                    withCredentials: true,
+                })
+                // console.log(data)
+                // const data = userInfo
+                // if (data.name) {
+                if (data.token) {
                     setIsAuth(true)
                 } else {
                     setIsAuth(false)
@@ -39,7 +40,7 @@ const ProtectedRoutesComponent = () => {
     }, [isAuth]);
 
     if (isAuth === undefined) return <LoginPage />;
-    if (!isAuth) {  
+    if (!isAuth) {
         navigate('/login');
         return null;
     }

@@ -14,29 +14,6 @@ import SpeedDialComponent from './components/SpeedDialComponente'
 import CreatePostPage from './pages/CreatePostPage'
 import { useEffect, useState } from 'react'
 
-// function App() {
-//   return (
-//     <>
-//       <SpeedDialComponent />
-//       <Router>
-//         <HeaderComponent />
-//         <Routes>
-//           <Route exact path='/' element={<HomePage />} />
-//           <Route path="/login" element={<LoginPage />} />
-//           <Route path="/register" element={<RegisterPage />} />
-//           <Route element={<ProtectedRoutesComponent />}>
-//             <Route path="/post-details/:postId" element={<BlogDescriptionPage />} />
-//             <Route path="/blogs/:tag" element={<BlogSpecificPage />} />
-//             <Route path="/user/createPost" element={<CreatePostPage />} />
-//           </Route>
-//         </Routes>
-//       </Router>
-//       {/* <PaginationComponent /> */}
-//       <FooterComponent />
-//     </>
-//   )
-// }
-
 
 
 function App() {
@@ -71,9 +48,9 @@ function App() {
                 <Route path="/user/createPost" element={<CreatePostPage setIsLoading={setIsLoading} />} />
               </Route>
             </Routes>
+          <FooterComponent />
           </Router>
           {/* <PaginationComponent /> */}
-          <FooterComponent />
         </>
       )}
     </>

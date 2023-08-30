@@ -6,7 +6,7 @@ import UserProfile from './UserProfile';
 const Sidebar = ({ popularArticles, userDetails, postId }) => {
     return (
         <>
-            <UserProfile userDetails={userDetails} postId={postId} />
+            {/* <UserProfile userDetails={userDetails} postId={postId} /> */}
             <h4>Popular Articles</h4>
             <ul>
                 {popularArticles.map((article, index) => (

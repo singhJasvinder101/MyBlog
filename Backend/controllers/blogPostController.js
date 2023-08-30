@@ -225,7 +225,7 @@ const adminUpload = async (req, res, next) => {
 
 const followUser = async (req, res, next) => {
     let username = decodeURI(req.params.username).trim()
-    console.log(username)
+    // console.log(username)
     try {
         const userExists = await User.findOne({
             $or: [
