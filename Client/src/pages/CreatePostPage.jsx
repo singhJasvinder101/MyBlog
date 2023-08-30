@@ -37,7 +37,7 @@ const TextEditor = () => {
         const file = e.target.files[0];
         const formData = new FormData();
         formData.append('file', file);
-        formData.append('upload_preset', 'hndevrtd'); // Replace with your Cloudinary upload preset
+        formData.append('upload_preset', 'hndevrtd');
         const response = await fetch(
             `https://api.cloudinary.com/v1_1/dfdmyewjs/image/upload`,
             {
@@ -49,7 +49,7 @@ const TextEditor = () => {
         setUploading(false)
         setUploadedImagePublicId(data.public_id);
         setImageUrl(data.url)
-        console.log(data);
+        // console.log(data);
     };
 
     const handleButtonClick = (format) => {
@@ -143,11 +143,10 @@ const TextEditor = () => {
                     <input
                         id='tags'
                         className='tags-input my-4 px-4 py-2'
-                        placeholder='tags with commas,  then Enter'
+                        placeholder='tags with commas,  then press Enter'
                         onKeyPress={tagsHandler}
                         value={tagInput}
                         onChange={(e) => setTagInput(e.target.value)}
-                        required
                     />
 
                     <div className="post-tags">
@@ -191,7 +190,15 @@ const TextEditor = () => {
                     </div>
                     <div className="publish-post my-auto">
                         <button type='submit' style={{ height: '3rem' }} className='btn btn-primary'>Publish Article
-                            {loaderState && '\uD83C\uDF89'}
+                            {loaderState ? (
+                                <Spinner
+                                    className='mx-2'
+                                    as="span"
+                                    animation="border"
+                                    size="sm"
+                                    role="status"
+                                    aria-hidden="true" />
+                            ) : ('\uD83C\uDF89')}
                         </button>
                     </div>
                     <div className="preview container mt-3 mb-5">

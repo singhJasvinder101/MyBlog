@@ -257,9 +257,10 @@ const BlogDescriptionPage = () => {
                                                 <span className="cursor-pointer hover:text-[#ff6154]">
                                                     <i onClick={handleLike} className="ri-heart-add-fill"></i>
                                                 </span>
-                                            )
-                                            }
-                                            {/* {console.log(userInfo)} */}
+                                            )}
+                                            
+                                            {/* {console.log(postDetails.likedBy)}
+                                            {console.log(userInfo._id)} */}
                                             {postDetails.postLikes}
                                         </div>
                                         <div className="icon d-flex flex-column align-items-center py-2">

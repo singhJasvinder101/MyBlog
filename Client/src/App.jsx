@@ -27,9 +27,9 @@ function App() {
 
   return (
     <>
-      {isLoading ? ( // Conditionally render spinner or content
-        <div class="loader">
-          <div class="scanner">
+      {isLoading ? ( 
+        <div className="loader">
+          <div className="scanner">
             <span>Loading...</span>
           </div>
         </div>
