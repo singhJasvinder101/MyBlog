@@ -143,7 +143,6 @@ const TextEditor = () => {
 
         const images = [{ path: imageUrl }]
         const author = user.name + user.lastname
-        let tags = tags
         blogPostApiRequest(title, description, body_html, tags, images, author)
             .then(res => {
                 console.log(res)
