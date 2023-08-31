@@ -52,7 +52,7 @@ const HeaderComponent = () => {
 
         <div className="nav-top-links nav-top collapse navbar-collapse" id="navbarSupportedContent">
           <Link to="/" className="navbar-brand mr-5 ml-5" href="#">
-            MyBlog
+            TechBytes
           </Link>
           <ul className="navbar-nav align-items-center">
             <li className="nav-item">

@@ -145,7 +145,8 @@ const TextEditor = () => {
         const author = user.name + user.lastname
         blogPostApiRequest(title, description, body_html, tags, images, author)
             .then(res => {
-                console.log(res)
+                // console.log(res)
+                window.location.href = "/"
             })
             .catch(err => console.log(err))
         // console.log(title, description, body_html, tags, images, author)
