@@ -234,7 +234,7 @@ const BlogDescriptionPage = () => {
         }
     }
 
-    
+
     useEffect(() => {
         Prism.highlightAll();
     }, [postDetails.body_html]);
@@ -262,7 +262,7 @@ const BlogDescriptionPage = () => {
                                                     <i onClick={handleLike} className="ri-heart-add-fill"></i>
                                                 </span>
                                             )}
-                                            
+
                                             {/* {console.log(postDetails.likedBy)}
                                             {console.log(userInfo._id)} */}
                                             {postDetails.postLikes}
@@ -288,10 +288,14 @@ const BlogDescriptionPage = () => {
                                                     <Image className='banner-image' fluid src={postDetails.images && postDetails.images[0].path} alt="" />
                                                 </div>
                                                 <div className="post-tags my-3">
+                                                    {/* {console.log(postDetails.tags)} */}
                                                     {
-                                                        postDetails.tags && postDetails.tags.map((tag, idx) => (
+                                                        postDetails.tags && postDetails.tags.length === 1 ? (postDetails.tags[0].split(",").map((tag, idx) => (
                                                             <Link to={`/blogs/${tag.trim()}`} key={idx} className='tags'># {tag}</Link>
-                                                        ))
+                                                        ))) : (
+                                                            postDetails.tags.map((tag, idx) => (
+                                                            <Link to={`/blogs/${tag.trim()}`} key={idx} className='tags'># {tag}</Link>
+                                                        )))
                                                     }
                                                 </div>
                                                 <div className="author-details d-flex align-items-center my-3">
