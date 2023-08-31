@@ -853,6 +853,14 @@ body {
   font-weight: 500;
 }
 
+:not(pre) > code[class*="language-"], pre[class*="language-"] {
+  margin-left: 1rem;
+}
+
+.preview img{
+  width: 90%;
+}
+
 @media (max-width: 1068px) {
   body{
     margin-bottom: 3rem;
@@ -1027,6 +1035,11 @@ body {
 
   .post-content .tags {
     font-size: 0.8rem;
+  }
+  .speed-dial {
+    position: fixed !important;
+    bottom: 3rem !important;
+    right: 1rem !important;
   }
 }
 

@@ -69,7 +69,7 @@ const BlogDescriptionPage = () => {
         })
     }, [postId, isLiked, isComment, isCommentLiked])
 
-    // console.log(postDetails)
+    console.log(postDetails.tags)
     // console.log(isLiked)
 
     const handleLike = async () => {
@@ -151,7 +151,6 @@ const BlogDescriptionPage = () => {
             console.log(error)
         }
     }
-
     useEffect(() => {
         fetchArticles().then(data => setPosts(data.posts))
             .catch(error => console.log(error))
@@ -235,6 +234,11 @@ const BlogDescriptionPage = () => {
         }
     }
 
+    
+    useEffect(() => {
+        Prism.highlightAll();
+    }, [postDetails.body_html]);
+
 
     return (
         <>
@@ -285,12 +289,12 @@ const BlogDescriptionPage = () => {
                                                 </div>
                                                 <div className="post-tags my-3">
                                                     {
-                                                        postDetails.tags && postDetails.tags[0].split(",").map((tag, idx) => (
+                                                        postDetails.tags && postDetails.tags.map((tag, idx) => (
                                                             <Link to={`/blogs/${tag.trim()}`} key={idx} className='tags'># {tag}</Link>
                                                         ))
                                                     }
                                                 </div>
-                                                <div className="author-details d-flex align-items-center my-5">
+                                                <div className="author-details d-flex align-items-center my-3">
                                                     <div className='ml-3 author'>
                                                         <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" alt="" className="w-12 h-12 cursor-pointer mr-2 rounded-circle" />
                                                     </div>
@@ -322,7 +326,7 @@ const BlogDescriptionPage = () => {
                                                     </div>
                                                 </div>
                                                 <h1 className='my-4'>{postDetails.title}</h1>
-                                                <div className='blog-post-description' dangerouslySetInnerHTML={{ __html: postDetails.body_html && marked.parse(postDetails.body_html.replace(/DEV/g, "OUR")) }} />
+                                                <div className='blog-post-description' dangerouslySetInnerHTML={{ __html: postDetails.body_html && postDetails.body_html.replace(/DEV/g, "OUR") }} />
                                             </div>
                                             <div className="right-sidebar">
                                                 <Sidebar

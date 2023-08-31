@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { marked } from "marked";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 import Prism from 'prismjs';
 import 'prismjs/components/prism-javascript';
 import "prismjs/themes/prism-tomorrow.css";
@@ -14,23 +16,17 @@ import { convert } from 'html-to-text';
 import axios from 'axios';
 
 const TextEditor = () => {
-    const [content, setContent] = useState('');
     const [uploadedImagePublicId, setUploadedImagePublicId] = useState(null);
     const [uploading, setUploading] = useState(false)
     const [tagInput, setTagInput] = useState('');
     const [tags, setTags] = useState([])
     const [imageUrl, setImageUrl] = useState("https://res.cloudinary.com/practicaldev/image/fetch/s--gIvrKWQi--/c_imagga_scale,f_auto,fl_progressive,h_500,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/5rbe6wwa5mcc2q4me43s.png")
     const [loaderState, setLoaderState] = useState(false)
-
+    const [articleStatePublished, setArticleStatePublished] = useState(false)
     const textAreaRef = useRef(null)
-
-    const getMarkdownText = (text) => {
-        var rawMarkup = marked.parse(text);
-        return { __html: rawMarkup };
-    }
-    useEffect(() => {
-        Prism.highlightAll()
-    }, [content])
+    const [content, setContent] = useState('')
+    const body_html = content   
+    
 
     const uploadImage = async (e) => {
         setUploading(true)
@@ -52,33 +48,6 @@ const TextEditor = () => {
         // console.log(data);
     };
 
-    const handleButtonClick = (format) => {
-        switch (format) {
-            case 'bold':
-                setContent(prevContent => prevContent + '**Bold** ');
-                break;
-            case 'italic':
-                setContent(prevContent => prevContent + '*Italic* ');
-                break;
-            case 'code':
-                setContent(prevContent => prevContent + '\n```javascript\nconsole.log("Hello, World!");```\n');
-                break;
-            case 'orderedList':
-                setContent(prevContent => prevContent + '\n1. text1\n2. text2\n3. text3 ');
-                break;
-            case 'unorderedList':
-                setContent(prevContent => prevContent + '\n-  text1\n- text2\n- text3 ');
-                break;
-            case 'link':
-                const linkURL = prompt('Enter the URL for the link:');
-                if (linkURL) {
-                    setContent(prevContent => prevContent + `[Link text](${linkURL}) `);
-                }
-                break;
-            default:
-                break;
-        }
-    };
 
     useEffect(() => {
         // console.log(tags);
@@ -104,10 +73,57 @@ const TextEditor = () => {
             withCredentials: true,
         })
         setLoaderState(false)
+        setArticleStatePublished(true)
         return data
     }
 
-    const body_html = content
+
+    const handleProcedureContentChange = (newContent) => {
+        // console.log("content---->", newContent);
+
+        const highlightedContent = newContent.replace(
+            /<blockquote>([\s\S]*?)<\/blockquote>/g,
+            (match, p1) => {
+                const highlightedCode = Prism.highlight(
+                    p1,
+                    Prism.languages.javascript,
+                    'javascript'
+                );
+                return `<pre><code class="language-javascript">${highlightedCode}</code></pre>`;
+            }
+        );
+        setContent(highlightedContent);
+    };
+
+
+    var modules = {
+        toolbar: [
+            [{ size: ["small", false, "large", "huge"] }],
+            ["bold", "italic", "underline", "strike", "blockquote"],
+            [{ list: "ordered" }, { list: "bullet" }],
+            ["link", "image"],
+            [
+                { list: "ordered" },
+                { list: "bullet" },
+                { indent: "-1" },
+                { indent: "+1" },
+                { align: [] }
+            ],
+            [{ "color": ["#000000", "#e60000", "#ff9900", "#ffff00", "#008a00", "#0066cc", "#9933ff", "#ffffff", "#facccc", "#ffebcc", "#ffffcc", "#cce8cc", "#cce0f5", "#ebd6ff", "#bbbbbb", "#f06666", "#ffc266", "#ffff66", "#66b966", "#66a3e0", "#c285ff", "#888888", "#a10000", "#b26b00", "#b2b200", "#006100", "#0047b2", "#6b24b2", "#444444", "#5c0000", "#663d00", "#666600", "#003700", "#002966", "#3d1466", 'custom-color'] }],
+        ],
+    };
+
+    var formats = [
+        "header", "height", "bold", "italic",
+        "underline", "strike", "blockquote",
+        "list", "color", "bullet", "indent",
+        "link", "image", "align", "size",
+    ];
+
+    useEffect(() => {
+        Prism.highlightAll();
+    }, [content]);
+
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -119,13 +135,14 @@ const TextEditor = () => {
 
         const form = e.currentTarget.elements;
         const title = form.title.value
-        const markedDescription = marked(textAreaRef.current.value);
-        const descriptionString = convert(markedDescription, options).slice(0, 30).replace(/\n/g, '');;
+        const markedDescription = content
+        const descriptionString = content.slice(0, 30).replace(/\n/g, '');;
 
         const description = descriptionString
 
         const images = [{ path: imageUrl }]
         const author = user.name + user.lastname
+        let tags = tags
         blogPostApiRequest(title, description, body_html, tags, images, author)
             .then(res => {
                 console.log(res)
@@ -133,6 +150,8 @@ const TextEditor = () => {
             .catch(err => console.log(err))
         // console.log(title, description, body_html, tags, images, author)
     }
+
+    console.log(tags)
 
     return (
         <div className='create-post-page'>
@@ -160,7 +179,7 @@ const TextEditor = () => {
                         <input type="file" id='inputGroupFile01'
                             className='form'
                             style={{ visibility: 'hidden' }}
-                            onChange={uploadImage} required />
+                            onChange={uploadImage} />
                     </div>
                     {uploadedImagePublicId ? (
                         <CloudinaryContext cloudName="dfdmyewjs" className='my-3'>
@@ -170,26 +189,18 @@ const TextEditor = () => {
 
                 </div>
                 <div className="text-editor container">
-                    <div className="toolbar">
-                        <button onClick={(e) => { handleButtonClick('bold'); e.preventDefault() }}>Bold</button>
-                        <button onClick={(e) => { handleButtonClick('italic'); e.preventDefault() }}>Italic</button>
-                        <button onClick={(e) => { handleButtonClick('code'); e.preventDefault() }}>Code</button>
-                        <button onClick={(e) => { handleButtonClick('orderedList'); e.preventDefault() }}>Ordered List</button>
-                        <button onClick={(e) => { handleButtonClick('unorderedList'); e.preventDefault() }}>Unordered List</button>
-                        <button onClick={(e) => { handleButtonClick('link'); e.preventDefault() }}>Link</button>
-                    </div>
-                    <div className="editor my-2 d-flex flex-wrap">
-                        <textarea
-                            ref={textAreaRef}
-                            className='text-container'
-                            value={content}
-                            onChange={(e) => setContent(e.target.value)}
-                            placeholder="Write description in detail..."
-                            required
-                        />
-                    </div>
-                    <div className="publish-post my-auto">
-                        <button type='submit' style={{ height: '3rem' }} className='btn btn-primary'>Publish Article
+                    <ReactQuill
+                        className='code-content'
+                        theme="snow"
+                        modules={modules}
+                        formats={formats}
+                        placeholder="write your content ...."
+                        onChange={handleProcedureContentChange}
+                        style={{ height: "220px" }}
+                    />
+                    <div className="publish-post mt-5">
+                        <button type='submit' style={{ height: '3rem' }} className='btn btn-primary'>
+                            {articleStatePublished ? 'Published \uD83C\uDF89' : 'Publish Article'}
                             {loaderState ? (
                                 <Spinner
                                     className='mx-2'
@@ -198,14 +209,16 @@ const TextEditor = () => {
                                     size="sm"
                                     role="status"
                                     aria-hidden="true" />
-                            ) : ('\uD83C\uDF89')}
+                            ) : ""}
                         </button>
                     </div>
-                    <div className="preview container mt-3 mb-5">
+                    <div className="preview my-4">
                         <p>Preview:</p>
-                        <div>
-                            <div dangerouslySetInnerHTML={getMarkdownText(content)} />
-                        </div>
+                        {/* <blockquote className='text-dark'>{content}</blockquote> */}
+                        <div
+                            className='language-javascript'
+                            dangerouslySetInnerHTML={{ __html: content }}
+                        />
                     </div>
                 </div>
             </form>
