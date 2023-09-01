@@ -132,7 +132,7 @@ const RegisterPage = () => {
                                     required
                                 />
                                 <Form.Control.Feedback type="invalid">Please enter a valid password</Form.Control.Feedback>
-                                <Form.Text className='text-muted'>password should have at least 3 characters</Form.Text>
+                                <Form.Text className='text-muted'>Both passwords must match</Form.Text>
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="formBasicPasswordRepeat">
