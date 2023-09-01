@@ -61,7 +61,7 @@ const HomePage = () => {
                             {
                                 posts
                                     .filter(post => {
-                                        const excludedIds = ["64d361430b96fbb0ea77c3d6", "64d361430b96fbb0ea77c3dc", "64d361430b96fbb0ea77c3e8"];
+                                        const excludedIds = ["64d361430b96fbb0ea77c3d6", "64d361430b96fbb0ea77c3dc", "64d361430b96fbb0ea77c406", "64d361430b96fbb0ea77c3e8"];
                                         return !excludedIds.includes(post._id.toString());
                                     })
                                     .slice(0, 9).map((post, idx) => (
