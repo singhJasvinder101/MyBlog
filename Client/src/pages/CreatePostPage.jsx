@@ -148,10 +148,10 @@ const TextEditor = () => {
         blogPostApiRequest(title, description, body_html, tags, images, author)
             .then(res => {
                 // console.log(res)
-                // window.location.href = "/"
+                window.location.href = "/"
             })
             .catch(err => console.log(err))
-        console.log(title, description, body_html, tags, images, author)
+        // console.log(title, description, body_html, tags, images, author)
     }
 
     // console.log(tags)

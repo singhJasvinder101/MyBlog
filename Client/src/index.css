@@ -347,21 +347,21 @@ body {
   font-size: 2.2rem;
   font-weight: bold;
   margin: 1rem 0;
-  color: black
+  /* color: black */
 }
 
 .ql-size-large{
   font-size: 1.6rem;
   font-weight: bold;
   margin: 1rem 0;
-  color: black;
+  /* color: black; */
 }
 
 .ql-size-normal{
   font-size: 1.1rem;
   line-height: 1.5;
   margin: 0.5rem 0;
-  color: black
+  /* color: black */
 }
 
 .ql-container {
