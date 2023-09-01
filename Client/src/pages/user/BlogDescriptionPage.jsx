@@ -69,7 +69,7 @@ const BlogDescriptionPage = () => {
         })
     }, [postId, isLiked, isComment, isCommentLiked])
 
-    console.log(postDetails.tags)
+    // console.log(postDetails.tags)
     // console.log(isLiked)
 
     const handleLike = async () => {
@@ -145,7 +145,7 @@ const BlogDescriptionPage = () => {
 
     const fetchArticles = async () => {
         try {
-            const { data } = await axios.get(`${apiUrl}/api/blogs`)
+            const { data } = await axios.get(`${apiUrl}/api/blogs/?pageNum=2`)
             return data
         } catch (error) {
             console.log(error)
@@ -294,11 +294,11 @@ const BlogDescriptionPage = () => {
                                                             <Link to={`/blogs/${tag.trim()}`} key={idx} className='tags'># {tag}</Link>
                                                         ))) : (
                                                             postDetails.tags.map((tag, idx) => (
-                                                            <Link to={`/blogs/${tag.trim()}`} key={idx} className='tags'># {tag}</Link>
-                                                        )))
+                                                                <Link to={`/blogs/${tag.trim()}`} key={idx} className='tags'># {tag}</Link>
+                                                            )))
                                                     }
                                                 </div>
-                                                <div className="author-details d-flex align-items-center my-3">
+                                                <div className="author-details d-flex align-items-center my-4">
                                                     <div className='ml-3 author'>
                                                         <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" alt="" className="w-12 h-12 cursor-pointer mr-2 rounded-circle" />
                                                     </div>
@@ -333,6 +333,7 @@ const BlogDescriptionPage = () => {
                                                 <div className='blog-post-description' dangerouslySetInnerHTML={{ __html: postDetails.body_html && postDetails.body_html.replace(/DEV/g, "OUR") }} />
                                             </div>
                                             <div className="right-sidebar">
+                                                {console.log(posts)}
                                                 <Sidebar
                                                     popularArticles={posts
                                                         .filter(post => {

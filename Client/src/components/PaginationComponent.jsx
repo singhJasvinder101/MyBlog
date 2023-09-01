@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react'
 // import { Link } from 'react-router-dom'
 
 const PaginationComponent = ({ currentPage, paginationLinksNumber, onPageChange }) => {
-  // const [page, setPage] = useState(1)
-  // const totalresults = 15
   const pageSize = 5
 
   // so use loading and set loading as prop or state
@@ -11,16 +9,13 @@ const PaginationComponent = ({ currentPage, paginationLinksNumber, onPageChange 
   // it must also removed when there is loading 
 
   const handlePreviousClick = async () => {
-    console.log("previous")
     onPageChange(currentPage - 1)
   }
 
-  // {console.log(paginationLinksNumber)}
 
   const renderPageNumbers = () => {
-    // const totalPages = Math.ceil(totalresults / pageSize);
     const totalPages = paginationLinksNumber;
-    const pageNumbers = [];     //  1 2 3 4  with their styles [] between previous and next buttons
+    const pageNumbers = [];  
 
     for (let i = 1; i <= totalPages; i++) {
       pageNumbers.push(
@@ -36,18 +31,12 @@ const PaginationComponent = ({ currentPage, paginationLinksNumber, onPageChange 
   };
 
   const handleNextClick = async () => {
-    console.log(currentPage)
-    console.log(paginationLinksNumber)
+    // console.log(currentPage)
+    // console.log(paginationLinksNumber)
     // if (currentPage < paginationLinksNumber) {
-      setLoading(true)
-      setTimeout(() => {
-        onPageChange(currentPage + 1)
-        console.log(currentPage)
-      }, 1000);
-      window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top
-    // } else {
-      // Doing nothing if next page exceeds total number of pages
-    // }
+    // setLoading(true)
+    onPageChange(currentPage + 1)
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     setLoading(false)
   }
 
@@ -67,7 +56,7 @@ const PaginationComponent = ({ currentPage, paginationLinksNumber, onPageChange 
           {renderPageNumbers()}
           <li className="page-item">
             <button
-              // disabled={!(currentPage + 1 <= paginationLinksNumber)}
+              disabled={!(currentPage + 1 <= paginationLinksNumber)}
               className="btn btn-primary"
               onClick={handleNextClick}>
               Next

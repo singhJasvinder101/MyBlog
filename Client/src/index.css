@@ -343,6 +343,51 @@ body {
   /* margin-left: 2rem; */
 }
 
+.ql-size-huge{
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin: 1rem 0;
+  color: black
+}
+
+.ql-size-large{
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin: 1rem 0;
+  color: black;
+}
+
+.ql-size-normal{
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin: 0.5rem 0;
+  color: black
+}
+
+.ql-container {
+  box-sizing: border-box;
+  font-family: Helvetica, Arial, sans-serif;
+  /* font-size: 13px; */
+  font-size: 12px;
+  height: 100%;
+  margin: 0px;
+  position: relative;
+}
+
+.ql-snow .ql-picker.ql-size .ql-picker-item[data-value=small]::before {
+  font-size: 13px;
+}
+
+.ql-snow .ql-picker.ql-size .ql-picker-item[data-value=large]::before {
+  /* font-size: 18px; */
+  font-size: 24px;
+}
+
+.ql-snow .ql-picker.ql-size .ql-picker-item[data-value=huge]::before {
+  /* font-size: 32px; */
+  font-size: 40px;
+}
+
 .post-content>h1 {
   font-weight: bold;
 }
@@ -738,10 +783,19 @@ body {
   color: black;
 }
 
-.post-input {
+.post-title-input {
   width: 40vw;
   height: 3.5rem;
   font-size: 1.7rem;
+  padding: 0 1rem;
+  font-family: 'Noto Sans', sans-serif;
+  border: none;
+}
+
+.post-description-input {
+  width: 60vw;
+  height: 3.0rem;
+  font-size: 1.3rem;
   padding: 0 1rem;
   font-family: 'Noto Sans', sans-serif;
   border: none;
@@ -919,7 +973,7 @@ body {
     width: 80vw;
   }
 
-  .post-input {
+  .post-title-input {
     width: 90%;
   }
 

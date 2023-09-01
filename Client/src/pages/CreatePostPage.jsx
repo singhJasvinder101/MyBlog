@@ -12,7 +12,8 @@ import { Link } from 'react-router-dom'
 import { Alert } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 const apiUrl = import.meta.env.VITE_API_URI;
-import { convert } from 'html-to-text';
+import parse from 'html-react-parser';
+import DOMPurify from 'dompurify';
 import axios from 'axios';
 
 const TextEditor = () => {
@@ -136,9 +137,10 @@ const TextEditor = () => {
 
         const form = e.currentTarget.elements;
         const title = form.title.value
-        const markedDescription = content
-        const descriptionString = content.slice(0, 30).replace(/\n/g, '');;
-
+        const purifiedDescription = DOMPurify.sanitize(content, {
+            ALLOWED_TAGS: [], 
+        });
+        const descriptionString = purifiedDescription.slice(0, 30).replace(/\n/g, '');;
         const description = descriptionString
 
         const images = [{ path: imageUrl }]
@@ -146,10 +148,10 @@ const TextEditor = () => {
         blogPostApiRequest(title, description, body_html, tags, images, author)
             .then(res => {
                 // console.log(res)
-                window.location.href = "/"
+                // window.location.href = "/"
             })
             .catch(err => console.log(err))
-        // console.log(title, description, body_html, tags, images, author)
+        console.log(title, description, body_html, tags, images, author)
     }
 
     // console.log(tags)
@@ -159,7 +161,7 @@ const TextEditor = () => {
             <form onSubmit={handleSubmit}>
                 <div className="post-container pt-4 container text-center">
                     <h1 className='my-5 d-block'>Add Your Posts 🙌🏼</h1>
-                    <input name='title' type="text" className='post-input text-center' placeholder='Post title...' required />
+                    <input name='title' type="text" className='post-title-input text-center' placeholder='Post title...' required />
                     <input
                         id='tags'
                         className='tags-input my-4 px-4 py-2'
