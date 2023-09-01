@@ -140,7 +140,7 @@ const TextEditor = () => {
         const purifiedDescription = DOMPurify.sanitize(content, {
             ALLOWED_TAGS: [], 
         });
-        const descriptionString = purifiedDescription.slice(0, 30).replace(/\n/g, '');;
+        const descriptionString = purifiedDescription.slice(0, 90).replace(/\n/g, '');;
         const description = descriptionString
 
         const images = [{ path: imageUrl }]
