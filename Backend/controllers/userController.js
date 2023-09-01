@@ -32,6 +32,7 @@ const registerUser = async (req, res, next) => {
                 .status(201).json({
                     success: "user created",
                     userCreated: {
+                        _id: newUser._id,
                         name: newUser.name,
                         lastname: newUser.lastname,
                         email: newUser.email,
