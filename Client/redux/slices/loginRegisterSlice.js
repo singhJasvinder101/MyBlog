@@ -32,7 +32,7 @@ export const loginRegisterSlice = createSlice({
     name: "Handling_Login",
     initialState: {
         userInfo: userInfoInLocalStorage
-    },
+    },  
     reducers: {
         setRedxUserState(state, action) {
             state.userInfo = {
