@@ -62,8 +62,7 @@ const getAllBlogPosts = async (req, res, next) => {
     try {
         const pageNum = Number(req.query.pageNum) || 1;
 
-        // Extract search terms from query parameter
-        const searchQuery = req.query.q || ''; // Assuming search terms are passed as 'q' parameter
+        const searchQuery = req.query.q || ''; 
         const searchTerms = searchQuery.split(',').map(term => term.trim());
         const query = {};
 
