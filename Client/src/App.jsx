@@ -20,14 +20,17 @@ function App() {
   const [isLoading, setIsLoading] = useState(true); // State to track loading
 
   useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
+    console.log(typeof window)
+    if (typeof window !== undefined) {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 3000);
+    }
   }, []);
 
   return (
     <>
-      {isLoading ? ( 
+      {isLoading ? (
         <div className="loader">
           <div className="scanner">
             <span>Loading...</span>
@@ -48,7 +51,7 @@ function App() {
                 <Route path="/user/createPost" element={<CreatePostPage setIsLoading={setIsLoading} />} />
               </Route>
             </Routes>
-          <FooterComponent />
+            <FooterComponent />
           </Router>
           {/* <PaginationComponent /> */}
         </>

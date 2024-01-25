@@ -343,21 +343,21 @@ body {
   /* margin-left: 2rem; */
 }
 
-.ql-size-huge{
+.ql-size-huge {
   font-size: 2.2rem;
   font-weight: bold;
   margin: 1rem 0;
   /* color: black */
 }
 
-.ql-size-large{
+.ql-size-large {
   font-size: 1.6rem;
   font-weight: bold;
   margin: 1rem 0;
   /* color: black; */
 }
 
-.ql-size-normal{
+.ql-size-normal {
   font-size: 1.1rem;
   line-height: 1.5;
   margin: 0.5rem 0;
@@ -732,6 +732,10 @@ body {
 
 .navbar-toggler {
   background-color: #007bffe7;
+  border: none !important;
+  color: white !important;
+  padding: 0.1rem 0.4rem;
+  border-radius: 1.7rem;
 }
 
 .text-editor {
@@ -891,34 +895,39 @@ body {
   max-width: 720px;
 }
 
-.author h3{
+.author h3 {
   font-weight: 600 !important;
   line-height: 1.2rem;
 }
-.read-mins{
+
+.read-mins {
   font-size: 0.9rem;
   line-height: 1.5rem;
 }
 
-.follow{
+.follow {
   font-size: 0.7rem;
   border: none !important;
   color: #051f2c;
   font-weight: 500;
 }
 
-:not(pre) > code[class*="language-"], pre[class*="language-"] {
+:not(pre)>code[class*="language-"],
+pre[class*="language-"] {
   margin-left: 1rem;
 }
 
-.preview img{
+.preview img {
   width: 90%;
 }
 
+
+
 @media (max-width: 1068px) {
-  body{
+  body {
     margin-bottom: 3rem;
   }
+
   .slider {
     display: flex !important;
     flex-wrap: wrap;
@@ -1039,10 +1048,12 @@ body {
     justify-content: space-evenly;
     height: 4rem;
   }
-  .bottom-sidebar-share{
+
+  .bottom-sidebar-share {
     border: none;
   }
-  .icon i{
+
+  .icon i {
     font-size: 1.2rem;
   }
 
@@ -1090,6 +1101,7 @@ body {
   .post-content .tags {
     font-size: 0.8rem;
   }
+
   .speed-dial {
     position: fixed !important;
     bottom: 3rem !important;
@@ -1098,9 +1110,10 @@ body {
 }
 
 @media (max-width: 580px) {
-  body{
+  body {
     margin-bottom: 5rem;
   }
+
   .footer {
     height: 6rem !important;
   }
@@ -1140,7 +1153,8 @@ body {
   }
 
   .right-header {
-    margin: 0 !important;
+    margin-left: auto !important;
+    padding: 1rem;
   }
 
   .post-content h2 {
@@ -1170,7 +1184,7 @@ body {
 }
 
 @media (max-width: 380px) {
-  .login-signup {
+  .signup {
     display: none;
   }
 }
@@ -1185,8 +1199,9 @@ body {
     width: 180px;
   }
 }
+
 @media screen and (min-width: 580px) and (max-width: 768px) {
-  body{
+  body {
     margin-bottom: 3.5rem;
   }
 }
@@ -1209,7 +1224,7 @@ body {
   }
 
   .navbar-brand {
-    margin-bottom: 1rem;
+    margin-bottom: 0rem;
   }
 
   .nav-top {

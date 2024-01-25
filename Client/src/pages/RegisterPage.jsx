@@ -154,7 +154,7 @@ const RegisterPage = () => {
                                 </Col>
                             </Row>
 
-                            <Button type="submit">
+                            <Button type="submit" className=' px-4 py-2 rounded-pill'>
                                 {registerUserResponseState &&
                                     registerUserResponseState.loading === true ? (
                                     <Spinner

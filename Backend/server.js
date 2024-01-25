@@ -40,7 +40,6 @@ const corsOptions = {
 //     credentials: true,
 // };
 app.use(cors(corsOptions));
-
 app.use((req, res, next) => {
     // const allowedOrigins = ['https://blogbackend-jyeb.onrender.com', 'https://tech-stuffs.netlify.app'];
     // const allowedOrigins = ['https://blog-backend-lxeq.onrender.com', 'https://tech-stuffs.netlify.app'];

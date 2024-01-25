@@ -109,7 +109,7 @@ const LoginPage = () => {
                                 </Col>
                             </Row>
 
-                            <Button type="submit" className='mt-2'>
+                            <Button type="submit" className='mt-2 px-4 py-2 rounded-pill'>
                                 {loginUserResponseState && loginUserResponseState.loading === true ? (
                                     <Spinner
                                         className='mx-2'

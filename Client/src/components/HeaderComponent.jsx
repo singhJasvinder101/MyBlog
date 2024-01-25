@@ -6,6 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { logOutUser } from "../../redux/slices/loginRegisterSlice";
 import SpeedDialComponent from "./SpeedDialComponente";
 import { BiLogOut } from "react-icons/bi";
+import { Sling as Hamburger } from 'hamburger-react'
+import { Button } from "react-bootstrap";
+
 const HeaderComponent = () => {
   const apiUrl = import.meta.env.VITE_API_URI;
 
@@ -47,7 +50,7 @@ const HeaderComponent = () => {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span className="navbar-toggler-icon"></span>
+          <Hamburger size={20} />
         </button>
 
         <div className="nav-top-links nav-top collapse navbar-collapse" id="navbarSupportedContent">
@@ -194,10 +197,10 @@ const HeaderComponent = () => {
           ) : (
             (
               <div className="login-signup mx-4">
-                <Link to="/login" className="btn btn-primary mx-2">
+                <Link to="/login" className="btn btn-primary mx-2 px-4 py-2 rounded-pill">
                   Login
                 </Link>
-                <Link to="/register" className="text-light">
+                <Link to="/register" className="text-light signup">
                   SignUp
                 </Link>
               </div>

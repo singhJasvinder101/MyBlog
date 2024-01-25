@@ -26,8 +26,8 @@ const TextEditor = () => {
     const [articleStatePublished, setArticleStatePublished] = useState(false)
     const textAreaRef = useRef(null)
     const [content, setContent] = useState('')
-    const body_html = content   
-    
+    const body_html = content
+
 
     const uploadImage = async (e) => {
         setUploading(true)
@@ -138,7 +138,7 @@ const TextEditor = () => {
         const form = e.currentTarget.elements;
         const title = form.title.value
         const purifiedDescription = DOMPurify.sanitize(content, {
-            ALLOWED_TAGS: [], 
+            ALLOWED_TAGS: [],
         });
         const descriptionString = purifiedDescription.slice(0, 90).replace(/\n/g, '');;
         const description = descriptionString
