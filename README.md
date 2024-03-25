@@ -8,7 +8,17 @@
 
 <br />
 
-![image](https://github.com/singhJasvinder101/MyBlog/assets/131908922/d094de99-992d-4f71-9706-c714fef3c561) ![image](https://github.com/singhJasvinder101/MyBlog/assets/131908922/f57af8b2-6a86-4d63-9f03-fb687964521f)  ![image](https://github.com/singhJasvinder101/MyBlog/assets/131908922/2eed89f3-a806-4369-82fa-59baaa69f376)
+<div style="display: flex; justify-content: space-between;">
+  <img src="https://github.com/singhJasvinder101/MyBlog/assets/131908922/e7b61bb4-b688-4087-b4f4-6a8f78b662b4" alt="image"> 
+</div>
+
+<br />
+<br />
+
+<div style="display: flex; justify-content: space-between;">
+  <img src="https://github.com/singhJasvinder101/MyBlog/assets/131908922/9b23979a-d1b9-4c2d-b9ee-1642f2d3e190" alt="image">
+</div>
+
 
 
 
