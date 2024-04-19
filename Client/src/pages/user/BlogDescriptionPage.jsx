@@ -37,6 +37,7 @@ import {
 } from '@tanstack/react-query';
 import TextToSpeech from './components/TextToSpeech'
 import GoogleTranslator from '../../components/GoogleTranslator'
+import * as hf from "@huggingface/inference";
 
 
 // import './blogDescription.css'
@@ -171,7 +172,7 @@ const BlogDescriptionPage = () => {
         staleTime: 1000 * 60 * 60 * 24,
     })
 
-    console.log(posts)
+    // console.log(posts)
 
     useEffect(() => {
         const handleResize = () => {
@@ -254,9 +255,10 @@ const BlogDescriptionPage = () => {
 
 
 
-    const hf = new HFInference(accessToken)
-
+    
     const summarizeTest = async (text) => {
+        // const hf = new HFInference(accessToken)
+        
         setisSummaryLoading(true)
         const summaRes = await hf.summarization({
             model: "facebook/bart-large-cnn",
