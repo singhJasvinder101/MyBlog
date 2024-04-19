@@ -23,9 +23,9 @@ import BlogForListComponent2 from '../../components/BlogForListComponent2'
 import BlogForListPageComponent from '../../components/BlogForListPageComponent'
 import Sidebar from './components/PopularArticles'
 import LoaderComponent from '../components/LoaderComponent'
-const HFInference = (
-    await import("https://cdn.jsdelivr.net/npm/@huggingface/inference@2.6.4/+esm")
-).HfInference
+// const HFInference = (
+//     await import("https://cdn.jsdelivr.net/npm/@huggingface/inference@2.6.4/+esm")
+// ).HfInference
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
@@ -258,7 +258,7 @@ const BlogDescriptionPage = () => {
     
     const summarizeTest = async (text) => {
         // const hf = new HFInference(accessToken)
-        
+
         setisSummaryLoading(true)
         const summaRes = await hf.summarization({
             model: "facebook/bart-large-cnn",
