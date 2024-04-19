@@ -18,12 +18,11 @@ import {
     LinkedinIcon,
     FacebookMessengerIcon,
 } from "react-share";
+import TextToSpeech from './TextToSpeech'
 
 
-// import './blogDescription.css'
 const apiUrl = import.meta.env.VITE_API_URI;
 const LinksPagination = ({ postId }) => {
-    // console.log(postId)
     const location = useLocation();
 
     const userInfo = useSelector(state => state.userLoggedIn.userInfo)
@@ -105,7 +104,7 @@ const LinksPagination = ({ postId }) => {
             await navigator.share({
                 title: "Tech Blog",
                 text: "Hey! Let's join the blog to explore the tech world",
-                url: shareUrl, // Replace with your URL
+                url: shareUrl, 
             });
         } catch (error) {
             console.error('Error sharing:', error);
@@ -151,6 +150,10 @@ const LinksPagination = ({ postId }) => {
                                                         </button>
                                                     </div>
                                                 )}
+                                            </div>
+                                            <div className="icon p-1 d-flex align-items-center">
+                                                {/* {console.log(postDetails.body_html)} */}
+                                                {postDetails  && <TextToSpeech text={postDetails.body_html} />}
                                             </div>
                                         </>
                                     )

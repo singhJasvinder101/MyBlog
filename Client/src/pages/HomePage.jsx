@@ -6,76 +6,80 @@ import BlogForListComponent2 from '../components/BlogForListComponent2'
 import { useLocation } from 'react-router-dom'
 import axios from 'axios'
 import LoaderComponent from './components/LoaderComponent'
+import {
+    useQuery,
+} from '@tanstack/react-query';
 
-const HomePage = () => {
+const apiUrl = import.meta.env.VITE_API_URI;
+
+const HomePage = ({ setIsLoading }) => {
     const location = useLocation();
     const searchResults = location.state?.searchResults || [];
-    const [posts, setPosts] = useState([])
-    const [isLoading, setIsLoading] = useState(true)
 
-    const apiUrl = import.meta.env.VITE_API_URI;
 
     const fetchArticles = async () => {
         try {
-            // console.log(axios.get("/api/blogs").then(data => "url verified"))
-            const { data } = await axios.get(`${apiUrl}/api/blogs`)
-            setIsLoading(false)
-            return data
+            const { data } = await axios.get(`${apiUrl}/api/blogs`);
+            // console.log(data)
+            return data.posts;
         } catch (error) {
-            console.log(error)
+            throw new Error('Failed to fetch articles');
         }
+    };
+
+
+    const { data: posts, postsStatus: status, isLoading: postsLoading, isError: postsError, error: postsErrorMessage } = useQuery({
+        queryKey: ['posts'],
+        queryFn: fetchArticles,
+        onSuccess: () => {
+            setIsLoading(false);
+        },
+        staleTime: 1000 * 60 * 60 * 24,
+    });
+
+    console.log(posts)
+
+    setIsLoading(postsLoading)
+
+    // console.log("Posts:", posts);
+
+    if (postsError) {
+        return <div className='text-center'>
+            <h1 className='font-italic'>Failed to load articles 😞</h1>
+            <p>{postsErrorMessage}</p>
+        </div>
     }
-    // console.log(apiUrl)
 
-    useEffect(() => {
-        fetchArticles().then(data => {
-            setPosts(data.posts)
-            setIsLoading(false)
-        })
-            .catch(error => console.log(error))
-    }, [])
-
-    // useEffect(() => {
-    //     setTimeout(() => {
-    //         setIsLoading(false)
-    //     }, 2000);
-    // }, [])
 
     return (
         <>
             {/* {console.log(posts)} */}
             <div className="home">
-                {isLoading ? (
-                    <>
-                        <LoaderComponent />
-                    </>
-                ) : (
-                    <>
-                        <div className="banner">
-                            <BestPostHeader />
-                        </div>
-                        <Row
-                            className='mb-2 home-cards d-flex justify-content-between align-items-center mx-3'
-                        >
-                            {/* {console.log(searchResults)} */}
-                            {
-                                posts
-                                    .filter(post => {
-                                        const excludedIds = ["64d361430b96fbb0ea77c3d6", "64d361430b96fbb0ea77c3dc", "64d361430b96fbb0ea77c406", "64d361430b96fbb0ea77c3e8"];
-                                        return !excludedIds.includes(post._id.toString());
-                                    })
-                                    .slice(0, 9).map((post, idx) => (
-                                        <BlogForListPageComponent post={post} key={idx} />
-                                    ))
-                            }
-                            {
-                                posts.slice(9, 30).map((post, idx) => (
-                                    <BlogForListComponent2 post={post} key={idx + 10} />
+                <>
+                    <div className="banner">
+                        <BestPostHeader setIsLoading={setIsLoading} />
+                    </div>
+                    <Row
+                        className='mb-2 home-cards d-flex justify-content-between align-items-center mx-3'
+                    >
+                        {/* {console.log(searchResults)} */}
+                        {posts &&
+                            posts?.filter(post => {
+                                const excludedIds = ["64d361430b96fbb0ea77c3d6", "64d361430b96fbb0ea77c3dc", "64d361430b96fbb0ea77c406", "64d361430b96fbb0ea77c3e8"];
+                                return !excludedIds.includes(post._id.toString());
+                            })
+                                .slice(0, 9).map((post, idx) => (
+                                    <BlogForListPageComponent post={post} key={idx} />
                                 ))
-                            }
-                        </Row>
-                    </>
-                )}
+                        }
+                        {posts &&
+                            posts?.slice(9, 30).map((post, idx) => (
+                                <BlogForListComponent2 post={post} key={idx + 10} />
+                            ))
+                        }
+                    </Row>
+                </>
+
             </div>
         </>
     )

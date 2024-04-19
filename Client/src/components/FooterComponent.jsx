@@ -22,9 +22,10 @@ const FooterComponent = () => {
     if (shouldNotShowFooter) {
         return null;
     }
+    
     return (
         <div style={{
-            height: '4rem',
+            height: '5rem',
             // display: shouldNotShowFooter ? 'none !important' : 'block',
         }} className='footer w-100 text-light d-flex justify-content-center align-items-center'>
             Copywrite @ 2023. All rights reserved

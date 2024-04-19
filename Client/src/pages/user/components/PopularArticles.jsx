@@ -9,7 +9,7 @@ const Sidebar = ({ popularArticles, userDetails, postId }) => {
             {/* <UserProfile userDetails={userDetails} postId={postId} /> */}
             <h4>Popular Articles</h4>
             <ul>
-                {popularArticles.map((article, index) => (
+                {popularArticles && popularArticles.map((article, index) => (
                     <li key={index}>
                         <Link to={`/post-details/${article._id}`} >
                             {article.title}

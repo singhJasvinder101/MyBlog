@@ -1,0 +1,21 @@
+
+
+.Speech {
+	width: 50px;
+}
+
+.group {
+	margin: 7px 0;
+}
+
+
+button {
+	width: 100%;
+	display: block;
+	padding: 10px 22px;
+	color: rgb(10, 10, 10);
+	font-weight: bold;
+	cursor: pointer;
+	outline: none;
+	background: rgb(227, 240, 219);
+}
