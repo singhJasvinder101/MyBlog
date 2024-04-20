@@ -8,6 +8,7 @@ import SpeedDialComponent from "./SpeedDialComponente";
 import { BiLogOut } from "react-icons/bi";
 import { Sling as Hamburger } from 'hamburger-react'
 import { Button } from "react-bootstrap";
+import { FaBell } from "react-icons/fa";
 
 const HeaderComponent = () => {
   const apiUrl = import.meta.env.VITE_API_URI;
@@ -144,7 +145,7 @@ const HeaderComponent = () => {
               {/* best thing */}
               <div className="dropdown">
                 <a
-                  className="nav-link ghanti dropdown-toggle position-relative mr-1 text-muted"
+                  className="nav-link ghanti dropdown-toggle position-relative mr-1"
                   href="#"
                   id="navbarDropdownMenuLink"
                   role="button"
@@ -152,7 +153,7 @@ const HeaderComponent = () => {
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  <i className="fas fa-bell" style={{ fontSize: "1.2rem" }}></i>
+                  <FaBell fontSize={"1.3rem"}/>
                   <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-light">1</span>
                 </a>
                 <ul
@@ -177,7 +178,7 @@ const HeaderComponent = () => {
                   <img
                     src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
                     className="rounded-circle"
-                    height="25"
+                    height="27"
                     alt="Black and White Portrait of a Man"
                     loading="lazy"
                   />

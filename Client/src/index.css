@@ -105,6 +105,10 @@ iframe {
   margin-right: 4rem;
 }
 
+.css-19kzrtu{
+  padding: 0 !important;
+}
+
 .bottom-sidebar button{
   background-color: transparent;
 }
@@ -267,13 +271,13 @@ html {
 body {
   display: flex;
   flex-direction: column;
-  margin-bottom: 3rem;
 }
 
 .footer {
   position: absolute;
   bottom: 0;
   left: 0;
+  top: 99.2%;
   width: 100%;
   /* flex-wrap: wrap; */
   background-color: #0e3458;
@@ -977,6 +981,9 @@ pre[class*="language-"] {
   body {
     margin-bottom: 3rem;
   }
+  #google_translate_element{
+    display: none !important;
+  }
 
   .slider {
     display: flex !important;
@@ -1204,7 +1211,7 @@ pre[class*="language-"] {
 
   .right-header {
     margin-left: auto !important;
-    padding: 1rem;
+    padding: 1rem 0;
   }
 
   .post-content h2 {
@@ -1361,6 +1368,8 @@ pre[class*="language-"] {
   background-color: white !important;
   margin-top: 3rem;
   justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 
 .spinner {
@@ -1401,16 +1410,30 @@ pre[class*="language-"] {
   font-size: 25px;
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
-  height: 40px;
-  padding: 10px 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  border-radius: 8px;
   background-color: white !important;
-  height: 96.5vh !important;
-  width: 97.2vw !important;
-  z-index: 100  ;
+  z-index: 100000;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  justify-content: center;
+}
+.loader1 {
+  color: #4a4a4a;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 25px;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: white !important;
+  z-index: 100000;
+  height: 100%;
+  width: 100%;
   justify-content: center;
 }
 

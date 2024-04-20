@@ -37,11 +37,9 @@ const HomePage = ({ setIsLoading }) => {
         staleTime: 1000 * 60 * 60 * 24,
     });
 
-    console.log(posts)
 
     setIsLoading(postsLoading)
 
-    // console.log("Posts:", posts);
 
     if (postsError) {
         return <div className='text-center'>
@@ -53,16 +51,14 @@ const HomePage = ({ setIsLoading }) => {
 
     return (
         <>
-            {/* {console.log(posts)} */}
             <div className="home">
                 <>
                     <div className="banner">
                         <BestPostHeader setIsLoading={setIsLoading} />
                     </div>
                     <Row
-                        className='mb-2 home-cards d-flex justify-content-between align-items-center mx-3'
+                        className='home-cards d-flex justify-content-between align-items-center mx-3'
                     >
-                        {/* {console.log(searchResults)} */}
                         {posts &&
                             posts?.filter(post => {
                                 const excludedIds = ["64d361430b96fbb0ea77c3d6", "64d361430b96fbb0ea77c3dc", "64d361430b96fbb0ea77c406", "64d361430b96fbb0ea77c3e8"];

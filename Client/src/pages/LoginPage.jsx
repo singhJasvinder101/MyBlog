@@ -37,20 +37,17 @@ const LoginPage = () => {
         e.stopPropagation();
         const form = e.currentTarget.elements;
 
-        const email = form.email.value   // targeting by name then getting value
+        const email = form.email.value  
         const password = form.password.value
         const donotlogout = form.donotlogout.checked
-        // console.log(donotlogout)
 
         if (e.currentTarget.checkValidity() === true && email && password) {
-            // console.log("good")
             setLoginUserResponseState({ loading: true })
             userLoginApiRequest(email, password, donotlogout)
                 .then(res => {
                     setLoginUserResponseState({
                         success: res.success, loading: false, error: ""
                     })
-                    // console.log(res)
                     if (res.success) {
                         dispatch(setRedxUserState(res.userLoggedIn))
                         window.location.assign('/')
@@ -61,6 +58,7 @@ const LoginPage = () => {
                     setLoginUserResponseState({
                         error: err.response.data.message ? err.response.data.message : err.response.data
                     })
+                    console.log(err)
                 })
             setValidated(true);
         }

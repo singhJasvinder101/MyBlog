@@ -19,6 +19,7 @@ import {
     FacebookMessengerIcon,
 } from "react-share";
 import TextToSpeech from './TextToSpeech'
+import { IoShareSocialOutline } from "react-icons/io5";
 
 
 const apiUrl = import.meta.env.VITE_API_URI;
@@ -146,7 +147,7 @@ const LinksPagination = ({ postId }) => {
                                                 {isSharingSupported && (
                                                     <div className="icon d-flex mx-2 align-items-center py-2">
                                                         <button onClick={handleShare} className="bottom-sidebar-share">
-                                                            <i className="ri-share-forward-line text-muted"></i>
+                                                            <IoShareSocialOutline fontSize={'1.3rem'} />
                                                         </button>
                                                     </div>
                                                 )}

@@ -4,7 +4,7 @@ const LoaderComponent = () => {
     return (
         <div className="spinnerContainer">
             <div className="spinner"></div>
-            <div className="loader">
+            <div className="loader1">
                 <p>loading</p>
                 <div className="words">
                     <span className="word">posts</span>
