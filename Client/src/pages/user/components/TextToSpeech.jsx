@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { HiOutlineSpeakerWave } from "react-icons/hi2";
 import { HiOutlineSpeakerXMark } from "react-icons/hi2";
-
+import { convert } from 'html-to-text';
 
 const TextToSpeech = ({ text }) => {
     const [isPlaying, setIsPlaying] = useState(false);
-
+    // text = convert(text);
 
     useEffect(() => {
         // When component mounts, cancel any ongoing speech synthesis

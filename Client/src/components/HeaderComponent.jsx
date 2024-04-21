@@ -64,7 +64,7 @@ const HeaderComponent = () => {
                 className={`nav-link ${location.pathname === "/technology" ? "active-link" : ""}`}
                 to="/blogs/technology"
               >
-                Technology
+                TECHNOLOGY
               </Link>
             </li>
             <li className="nav-item">
@@ -80,7 +80,7 @@ const HeaderComponent = () => {
                 className={`nav-link ${location.pathname === "/technews" ? "active-link" : ""}`}
                 to="/blogs/news"
               >
-                Tech News
+                TECH NEWS
               </Link>
             </li>
             <li className="nav-item">
@@ -88,7 +88,7 @@ const HeaderComponent = () => {
                 className={`nav-link ${location.pathname === "/datascience" ? "active-link" : ""}`}
                 to="/blogs/datascience"
               >
-                Data Science
+                DATA SCIENCE
               </Link>
             </li>
             <li className="nav-item">
@@ -96,7 +96,7 @@ const HeaderComponent = () => {
                 className={`nav-link ${location.pathname === "/security" ? "active-link" : ""}`}
                 to="/blogs/security"
               >
-                Security
+                SECURITY
               </Link>
             </li>
           </ul>
@@ -144,7 +144,7 @@ const HeaderComponent = () => {
             <div className="d-flex align-items-center">
               {/* best thing */}
               <div className="dropdown">
-                <a
+                {/* <a
                   className="nav-link ghanti dropdown-toggle position-relative mr-1"
                   href="#"
                   id="navbarDropdownMenuLink"
@@ -155,7 +155,7 @@ const HeaderComponent = () => {
                 >
                   <FaBell fontSize={"1.3rem"}/>
                   <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-light">1</span>
-                </a>
+                </a> */}
                 <ul
                   className="dropdown-menu dropdown-menu-end"
                   aria-labelledby="navbarDropdownMenuLink"

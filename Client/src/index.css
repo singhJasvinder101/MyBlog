@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital@1&family=Montserrat:wght@800&family=Noto+Sans:wght@500&family=Open+Sans:wght@500&family=Roboto+Condensed&family=Roboto:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital@1&family=Martel+Sans:wght@600&family=Montserrat:wght@700;800&family=Noto+Sans:wght@500&family=Open+Sans:wght@500&family=Roboto+Condensed&family=Roboto:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital@1&family=Martel+Sans:wght@600&family=Montserrat:wght@700;800&family=Noto+Sans:wght@500&family=Nunito:wght@600&family=Open+Sans:wght@500&family=Poppins&family=Roboto+Condensed&family=Roboto:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,200..900&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Sedan:ital@0;1&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
 
 * {
   margin: 0;
@@ -62,7 +63,6 @@ body {
 }
 
 .navbar-nav .nav-link:hover {
-  background-color: rgba(128, 128, 128, 0.445);
   color: white !important;
   /* font-weight: 500; */
 }
@@ -93,6 +93,23 @@ iframe {
   display: none !important;
 }
 
+.follow{
+  background-color: transparent;
+}
+
+.ghanti{
+  color: grey;
+}
+
+.best-post-content > p{
+  font-style: italic;
+}
+
+.MuiBox-root .css-19wx5ef{
+  width: 26% !important;
+}
+
+
 .VIpgJd-ZVi9od-ORHb-OEVmcd .skiptranslate {
   display: none !important;
   position: absolute !important;
@@ -109,13 +126,15 @@ iframe {
   padding: 0 !important;
 }
 
+
+
 .bottom-sidebar button{
   background-color: transparent;
 }
 
 .navbar-nav a {
-  font-family: "Roboto";
-  font-size: 1.06rem;
+  font-family: "Lato", serif !important;
+  font-size: 1rem;
   color: rgba(255, 255, 255, 0.945) !important;
   letter-spacing: 0.1rem;
   margin: 0 0.2rem;
@@ -123,7 +142,6 @@ iframe {
 
 
 .active-link {
-  background-color: rgba(128, 128, 128, 0.445);
   color: white !important;
 }
 
@@ -146,12 +164,10 @@ iframe {
 }
 
 .navbar-nav .nav-item.active .nav-link {
-  background-color: grey;
   color: black;
 }
 
 .navbar-nav .nav-item:active {
-  background-color: grey;
   color: black;
 }
 
@@ -984,6 +1000,17 @@ pre[class*="language-"] {
   #google_translate_element{
     display: none !important;
   }
+  
+
+  .MuiTabs-root .css-1ujnqem-MuiTabs-root{
+    overflow: auto;
+  }
+
+  .MuiBox-root .css-19wx5ef{
+    width: 58% !important;
+    margin-left: auto;
+    margin-top: 2rem !important;
+  }
 
   .slider {
     display: flex !important;
@@ -1169,6 +1196,12 @@ pre[class*="language-"] {
 @media (max-width: 580px) {
   body {
     margin-bottom: 5rem;
+  }
+
+  .ls{
+    flex-direction: column;
+    align-items:flex-start !important;
+    width: 100% !important;
   }
 
   .footer {

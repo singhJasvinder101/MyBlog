@@ -36,7 +36,7 @@ import {
     useQuery,
 } from '@tanstack/react-query';
 import TextToSpeech from './components/TextToSpeech'
-import GoogleTranslator from '../../components/GoogleTranslator'
+// import GoogleTranslator from '../../components/Translator'
 import * as hf from "@huggingface/inference";
 
 
@@ -255,7 +255,7 @@ const BlogDescriptionPage = () => {
 
 
 
-    
+
     const summarizeTest = async (text) => {
         // const hf = new HFInference(accessToken)
 
@@ -267,7 +267,7 @@ const BlogDescriptionPage = () => {
                 max_length: 300
             }
         })
-        console.log(summaRes)
+        // console.log(summaRes)
         setSummaryText(summaRes)
         setisSummaryLoading(false)
         return summaRes
@@ -292,7 +292,7 @@ const BlogDescriptionPage = () => {
                 <LoaderComponent />
             ) : posts && (
                 <>
-                    <GoogleTranslator />
+                    {/* <GoogleTranslator /> */}
                     <Box sx={{ width: '100%', typography: 'body1' }}>
                         <div className='post-description-page'>
                             <div className='posts-page d-flex justify-content-evenly mt-4 description-container'>
@@ -350,45 +350,47 @@ const BlogDescriptionPage = () => {
                                                                     )))
                                                             }
                                                         </div>
-                                                        <div className="author-details d-flex align-items-center my-4">
-                                                            <div className='ml-3 author'>
-                                                                <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" alt="" className="w-12 h-12 cursor-pointer mr-2 rounded-circle" />
-                                                            </div>
-                                                            <div className="read-mins post-date d-flex flex-column justify-content-center">
-                                                                <div className=''>
-                                                                    <p className='d-inline ml-1'>{postDetails.author}</p>
-                                                                    {followUserResponseState.loading ? (
-                                                                        <button style={{ margin: 0, height: '18px', padding: 0 }} className="card__btn card__btn-solid m-0">
-                                                                            {/* {console.log(postOwnerDetails.followedBy && postOwnerDetails.followedBy.includes(userId))} */}
-                                                                            <Spinner
-                                                                                style={{ margin: 0 }}
-                                                                                className='mx-2 py-0 m-0'
-                                                                                as="span"
-                                                                                animation="border"
-                                                                                size="sm"
-                                                                                role="status"
-                                                                                aria-hidden="true" />
-                                                                        </button>
-                                                                    ) : postOwnerDetails?.followedBy?.includes(userId) ? (
-                                                                        <button onClick={() => handleFollowUser(postDetails.author)} className='follow px-3 mx-0'> FOLLOWING</button>
-                                                                    ) : (
-                                                                        <button onClick={() => handleFollowUser(postDetails.author)} className='follow px-3 mx-0'> FOLLOW</button>
-                                                                    )}
+                                                        <div className="author-details ls d-flex align-items-center justify-content-between my-4">
+                                                            <div className="d-flex">
+                                                                <div className='ml-3 author'>
+                                                                    <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" alt="" className="w-12 h-12 cursor-pointer mr-2 rounded-circle" />
                                                                 </div>
-                                                                <span className='d-flex flex-wrap mx-0 read-mins'>
-                                                                    <span className='px-2'>{postDetails.body_html && calculateReadingTime(postDetails.body_html)} mins read</span>
-                                                                    <span className='px-2'>{dateFormat(postDetails.createdAt, "fullDate")}</span>
-                                                                </span>
+                                                                <div className="read-mins post-date d-flex flex-column justify-content-center">
+                                                                    <div className=''>
+                                                                        <p className='d-inline ml-1'>{postDetails.author}</p>
+                                                                        {followUserResponseState.loading ? (
+                                                                            <button style={{ margin: 0, height: '18px', padding: 0 }} className="card__btn card__btn-solid m-0">
+                                                                                {/* {console.log(postOwnerDetails.followedBy && postOwnerDetails.followedBy.includes(userId))} */}
+                                                                                <Spinner
+                                                                                    style={{ margin: 0 }}
+                                                                                    className='mx-2 py-0 m-0'
+                                                                                    as="span"
+                                                                                    animation="border"
+                                                                                    size="sm"
+                                                                                    role="status"
+                                                                                    aria-hidden="true" />
+                                                                            </button>
+                                                                        ) : postOwnerDetails?.followedBy?.includes(userId) ? (
+                                                                            <button onClick={() => handleFollowUser(postDetails.author)} className='follow px-3 mx-0'> FOLLOWING</button>
+                                                                        ) : (
+                                                                            <button onClick={() => handleFollowUser(postDetails.author)} className='follow px-3 mx-0'> FOLLOW</button>
+                                                                        )}
+                                                                    </div>
+                                                                    <span className='d-flex flex-wrap mx-0 read-mins'>
+                                                                        <span className='px-2'>{postDetails.body_html && calculateReadingTime(postDetails.body_html)} mins read</span>
+                                                                        <span className='px-2'>{dateFormat(postDetails.createdAt, "fullDate")}</span>
+                                                                    </span>
+                                                                </div>
                                                             </div>
+                                                            <Box sx={{ margin: 'auto', width: '90%' }}>
+                                                                <TabContext value={tabValue}>
+                                                                    <TabList onChange={handleTabChange} aria-label="lab API tabs example">
+                                                                        <Tab label="Original" value="1" />
+                                                                        <Tab label="Summary" onClick={() => summarizeTest(postDetails.body_html)} value="2" />
+                                                                    </TabList>
+                                                                </TabContext>
+                                                            </Box>
                                                         </div>
-                                                        <Box sx={{ borderBottom: 1, margin: 'auto', width: '90%', borderColor: 'divider' }}>
-                                                            <TabContext value={tabValue}>
-                                                                <TabList onChange={handleTabChange} aria-label="lab API tabs example">
-                                                                    <Tab label="Original" value="1" />
-                                                                    <Tab label="Summary" onClick={() => summarizeTest(postDetails.body_html)} value="2" />
-                                                                </TabList>
-                                                            </TabContext>
-                                                        </Box>
                                                         <TabContext value={tabValue}>
                                                             <h1 className='my-4'>{postDetails.title}</h1>
                                                             <TabPanel value="1">
