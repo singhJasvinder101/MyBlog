@@ -11,7 +11,10 @@ app.get('/', (req, res) => {
 })
 
 app.get("/logout", (req, res) => {
-    return res.clearCookie("auth_token").send("access token cleared");
+    res.clearCookie("auth_token", {
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+        secure: true
+    }).send("access token cleared");
 })
 
 app.get("/get-token", (req, res) => {
