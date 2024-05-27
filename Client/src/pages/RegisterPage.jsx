@@ -5,9 +5,12 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch, useSelector } from "react-redux"
 import { setRedxUserState } from '../../redux/slices/loginRegisterSlice';
+import {FaEye , FaEyeSlash} from 'react-icons/fa6'
+
 const RegisterPage = () => {
     const apiUrl = import.meta.env.VITE_API_URI;
-
+    const [showPassword,setShowPassword]=useState(false)
+    const [showPasswordRepeat,setShowPasswordRepeat]=useState(false)
     const [validated, setValidated] = useState(false);
     const [registerUserResponseState, setRegisterUserResponseState] = useState({
         success: "",
@@ -120,10 +123,10 @@ const RegisterPage = () => {
                                 </InputGroup>
                             </Form.Group>
 
-                            <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Group className="mb-3 pass" controlId="formBasicPassword">
                                 <Form.Label>Password</Form.Label>
                                 <Form.Control
-                                    type="password"
+                                    type={showPassword?"text":"password"}
                                     placeholder="password"
                                     name="password"
                                     minLength={3}
@@ -131,20 +134,24 @@ const RegisterPage = () => {
                                     isInvalid={!passwordsMatchState}
                                     required
                                 />
+                                {showPassword?<FaEye  className={`${passwordsMatchState?"eye-register":"eye-register1"}`} onClick={()=>setShowPassword(false)}/>:<FaEyeSlash   className={`${passwordsMatchState?"eye-register":"eye-register1"}`} onClick={()=>setShowPassword(true)}/>}
+
                                 <Form.Control.Feedback type="invalid">Both Passwords must match</Form.Control.Feedback>
                                 <Form.Text className='text-muted'>password should have at least 3 characters</Form.Text>
                             </Form.Group>
 
-                            <Form.Group className="mb-3" controlId="formBasicPasswordRepeat">
+                            <Form.Group className="mb-3 pass" controlId="formBasicPasswordRepeat">
                                 <Form.Label>Repeat Password</Form.Label>
                                 <Form.Control
-                                    type="password"
+                                    type={showPasswordRepeat?"text":"password"}
                                     name="confirmPassword"
                                     placeholder="Repeat Password"
                                     onChange={onChange}
                                     isInvalid={!passwordsMatchState}
                                     required
                                 />
+                                {showPasswordRepeat?<FaEye className={`${passwordsMatchState?"eye-register-repeat":"eye-register-repeat1"}`} onClick={()=>setShowPasswordRepeat(false)}/>:<FaEyeSlash  className={`${passwordsMatchState?"eye-register-repeat":"eye-register-repeat1"}`} onClick={()=>setShowPasswordRepeat(true)}/>}
+
                                 <Form.Control.Feedback type="invalid">Both passwords must match</Form.Control.Feedback>
                             </Form.Group>
 
