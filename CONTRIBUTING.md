@@ -98,6 +98,3 @@ To get started with contributing to TechBytes, follow these steps:
 <br>
 
 # **Thank you for contributing 💗** 
-```
-
-Feel free to adjust the repository name and any other specifics as needed. This should provide clear and structured guidance for contributors to your project.
