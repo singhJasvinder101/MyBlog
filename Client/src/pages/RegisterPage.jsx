@@ -38,7 +38,10 @@ const RegisterPage = () => {
         const email = form.email.value
         const password = form.password.value
         const confirmPassword = form.confirmPassword.value
-
+        if(!lastname||!email||!password||!confirmPassword||!name){
+            setValidated(true);
+            return
+        }
         if (e.currentTarget.checkValidity() === true &&
             name &&
             lastname &&
@@ -108,7 +111,7 @@ const RegisterPage = () => {
                                     type="text"
                                     placeholder="Last name"
                                     name="lastname" />
-                                <Form.Control.Feedback>Please enter a valid name</Form.Control.Feedback>
+                                <Form.Control.Feedback type="invalid">Please enter a valid name</Form.Control.Feedback>
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -125,6 +128,8 @@ const RegisterPage = () => {
 
                             <Form.Group className="mb-3 pass" controlId="formBasicPassword">
                                 <Form.Label>Password</Form.Label>
+                                <div className="position-relative">
+
                                 <Form.Control
                                     type={showPassword?"text":"password"}
                                     placeholder="password"
@@ -138,10 +143,13 @@ const RegisterPage = () => {
 
                                 <Form.Control.Feedback type="invalid">Both Passwords must match</Form.Control.Feedback>
                                 <Form.Text className='text-muted'>password should have at least 3 characters</Form.Text>
+                           </div>
                             </Form.Group>
 
                             <Form.Group className="mb-3 pass" controlId="formBasicPasswordRepeat">
                                 <Form.Label>Repeat Password</Form.Label>
+                                <div className="position-relative">
+
                                 <Form.Control
                                     type={showPasswordRepeat?"text":"password"}
                                     name="confirmPassword"
@@ -153,6 +161,7 @@ const RegisterPage = () => {
                                 {showPasswordRepeat?<FaEye className={`${passwordsMatchState?"eye-register-repeat":"eye-register-repeat1"}`} onClick={()=>setShowPasswordRepeat(false)}/>:<FaEyeSlash  className={`${passwordsMatchState?"eye-register-repeat":"eye-register-repeat1"}`} onClick={()=>setShowPasswordRepeat(true)}/>}
 
                                 <Form.Control.Feedback type="invalid">Both passwords must match</Form.Control.Feedback>
+                            </div>
                             </Form.Group>
 
                             <Row className="pb-2">

@@ -38,11 +38,13 @@ const LoginPage = () => {
         e.preventDefault();
         e.stopPropagation();
         const form = e.currentTarget.elements;
-
         const email = form.email.value  
         const password = form.password.value
         const donotlogout = form.donotlogout.checked
-
+        if(!email||!password){
+            setValidated(true);
+            return
+        }
         if (e.currentTarget.checkValidity() === true && email && password) {
             setLoginUserResponseState({ loading: true })
             userLoginApiRequest(email, password, donotlogout)
@@ -62,8 +64,8 @@ const LoginPage = () => {
                     })
                     console.log(err)
                 })
-            setValidated(true);
-        }
+                setValidated(true);
+            }
     }
 
     return (
