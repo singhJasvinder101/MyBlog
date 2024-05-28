@@ -46,7 +46,6 @@ const TextEditor = () => {
         setUploading(false)
         setUploadedImagePublicId(data.public_id);
         setImageUrl(data.url)
-        // console.log(data);
     };
 
 
@@ -64,7 +63,6 @@ const TextEditor = () => {
     }
 
     const user = useSelector(state => state.userLoggedIn.userInfo)
-    // console.log(user)
 
     const blogPostApiRequest = async (title, description, body_html, tags, images, author) => {
         setLoaderState(true)
@@ -80,8 +78,6 @@ const TextEditor = () => {
 
 
     const handleProcedureContentChange = (newContent) => {
-        // console.log("content---->", newContent);
-
         const highlightedContent = newContent.replace(
             /<blockquote>([\s\S]*?)<\/blockquote>/g,
             (match, p1) => {
@@ -147,14 +143,11 @@ const TextEditor = () => {
         const author = user.name + user.lastname
         blogPostApiRequest(title, description, body_html, tags, images, author)
             .then(res => {
-                // console.log(res)
                 window.location.href = "/"
             })
             .catch(err => console.log(err))
-        // console.log(title, description, body_html, tags, images, author)
     }
 
-    // console.log(tags)
 
     return (
         <div className='create-post-page'>

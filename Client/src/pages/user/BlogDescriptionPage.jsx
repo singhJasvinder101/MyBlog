@@ -36,11 +36,7 @@ import {
     useQuery,
 } from '@tanstack/react-query';
 import TextToSpeech from './components/TextToSpeech'
-// import GoogleTranslator from '../../components/Translator'
 import * as hf from "@huggingface/inference";
-
-
-// import './blogDescription.css'
 const apiUrl = import.meta.env.VITE_API_URI;
 
 const BlogDescriptionPage = () => {
@@ -267,7 +263,6 @@ const BlogDescriptionPage = () => {
                 max_length: 300
             }
         })
-        // console.log(summaRes)
         setSummaryText(summaRes)
         setisSummaryLoading(false)
         return summaRes

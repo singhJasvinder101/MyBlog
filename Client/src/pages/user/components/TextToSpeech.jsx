@@ -8,7 +8,6 @@ const TextToSpeech = ({ text }) => {
     // text = convert(text);
 
     useEffect(() => {
-        // When component mounts, cancel any ongoing speech synthesis
         const synth = window.speechSynthesis;
         synth.cancel();
         setIsPlaying(false);
