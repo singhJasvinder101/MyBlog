@@ -41,7 +41,7 @@ const LoginPage = () => {
         const email = form.email.value  
         const password = form.password.value
         const donotlogout = form.donotlogout.checked
-        if(!email||!password){
+        if(!e.currentTarget.checkValidity()){
             setValidated(true);
             return
         }

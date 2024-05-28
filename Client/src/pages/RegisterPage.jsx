@@ -38,7 +38,7 @@ const RegisterPage = () => {
         const email = form.email.value
         const password = form.password.value
         const confirmPassword = form.confirmPassword.value
-        if(!lastname||!email||!password||!confirmPassword||!name){
+        if(e.currentTarget.checkValidity()){
             setValidated(true);
             return
         }
