@@ -19,10 +19,12 @@ app.use(cookieParser())
 app.use(fileUpload())
 
 
-// const allowedOrigins = ['https://blogbackend-jyeb.onrender.com', 'https://tech-stuffs.netlify.app'];
-// const allowedOrigins = ['https://rich-blue-scorpion-fez.cyclic.app', 'https://tech-stuffs.netlify.app']; // cyclic backend
-const allowedOrigins = ['https://blog-backend-chi-three.vercel.app', 'https://tech-stuffs.netlify.app'];
-// const allowedOrigins = ['http://localhost:3000', 'http://192.168.99.198:5173', 'http://localhost:5173'];
+const allowedOrigins = [
+    process.env.BACKEND_URL,
+    'http://192.168.99.198:5173',
+    process.env.CLIENT_URL,
+    'https://deploy-preview-*.netlify.app'
+];
 const corsOptions = {
     origin: function (origin, callback) {
         if (allowedOrigins.includes(origin) || !origin) {
@@ -36,11 +38,6 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use((req, res, next) => {
-    // const allowedOrigins = ['https://blogbackend-jyeb.onrender.com', 'https://tech-stuffs.netlify.app'];
-    // const allowedOrigins = ['https://rich-blue-scorpion-fez.cyclic.app', 'https://tech-stuffs.netlify.app'];
-    const allowedOrigins = ['https://blog-backend-chi-three.vercel.app', 'https://tech-stuffs.netlify.app'];
-    // const allowedOrigins = ['http://localhost:3000', 'http://192.168.99.198:5173', 'http://localhost:5173'];
-
     const origin = req.headers.origin;
     if (allowedOrigins.includes(origin)) {
         res.header('Access-Control-Allow-Origin', origin);

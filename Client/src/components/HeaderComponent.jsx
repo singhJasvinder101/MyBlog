@@ -132,7 +132,7 @@ const HeaderComponent = () => {
               <Link
                 className="nav-link position-relative"
                 style={{ fontSize: '1rem' }}
-                to="/admin/orders">
+                to="/admin">
                 Admin
                 <span
                   className="position-absolute top-5 start-100 translate-middle p-2 bg-success border border-light rounded-circle"
