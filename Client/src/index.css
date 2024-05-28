@@ -1469,13 +1469,18 @@ pre[class*="language-"] {
   color: black;
   font-size: 1.5rem;
 }
-.eye{
+.eye {
   position: absolute;
-  right: 10px;
-  bottom: 7px;
+  top: 20px;
+  right: 30px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 2;
   color: black;
   font-size: 1.5rem;
 }
+
+
 .loader {
   color: #4a4a4a;
   font-family: "Poppins", sans-serif;

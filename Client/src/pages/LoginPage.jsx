@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Form, Button, Container, Row, Col, InputGroup, Spinner, Alert } from 'react-bootstrap';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -85,16 +85,18 @@ const LoginPage = () => {
                                 </InputGroup>
                             </Form.Group>
 
-                            <Form.Group className="mb-3 pass" controlId="formBasicPassword">
+                            <Form.Group className="mb-3 relative" controlId="formBasicPassword">
                                 <Form.Label>Password</Form.Label>
+                                <div className="position-relative">
+
                                 <Form.Control
                                     name="password"
                                     type={showPassword?"text":"password"}
                                     placeholder="password"
-                                    required /> 
+                                    required />
                                     {showPassword?<FaEye className='eye' onClick={()=>setShowPassword(false)}/>:<FaEyeSlash  className='eye' onClick={()=>setShowPassword(true)}/>}
-                                <Form.Control.Feedback type="invalid">Please enter a valid password</Form.Control.Feedback>
-                            
+                                <Form.Control.Feedback  type="invalid">Please enter a valid password</Form.Control.Feedback>
+                            </div>
                             </Form.Group>
 
                             <Form.Group className="mb-3 mt-3" controlId="formBasicCheckbox">
