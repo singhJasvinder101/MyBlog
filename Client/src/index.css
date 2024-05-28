@@ -1445,7 +1445,9 @@ pre[class*="language-"] {
   right: 25px;
   bottom: 30px;
   color: black;
+  cursor: pointer;
   font-size: 1.5rem;
+  cursor: pointer;
 }
 
 .eye-register-repeat{
@@ -1454,6 +1456,7 @@ pre[class*="language-"] {
   bottom: 7px;
   color: black;
   font-size: 1.5rem;
+  cursor: pointer;
 }
 .eye-register1{
   position: absolute;
@@ -1461,6 +1464,7 @@ pre[class*="language-"] {
   bottom: 57px;
   color: black;
   font-size: 1.5rem;
+  cursor: pointer;
 }
 .eye-register-repeat1{
   position: absolute;
@@ -1468,6 +1472,7 @@ pre[class*="language-"] {
   bottom: 31px;
   color: black;
   font-size: 1.5rem;
+  cursor: pointer;
 }
 .eye {
   position: absolute;
