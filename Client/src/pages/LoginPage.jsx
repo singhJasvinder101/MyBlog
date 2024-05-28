@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Form, Button, Container, Row, Col, InputGroup, Spinner, Alert } from 'react-bootstrap';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux"
 import { setRedxUserState } from '../../redux/slices/loginRegisterSlice';
+import {FaEye , FaEyeSlash} from 'react-icons/fa6'
 import axios from "axios"
 axios.defaults.withCredentials = true;
 
 const userLoginApiRequest = async (email, password, donotlogout) => {
     const apiUrl = import.meta.env.VITE_API_URI;
-
     const { data } = await axios.post(`${apiUrl}/api/users/login`,
         { email, password, donotlogout }, {
             withCredentials: true,
@@ -24,6 +24,8 @@ const userLoginApiRequest = async (email, password, donotlogout) => {
 
 const LoginPage = () => {
     const [validated, setValidated] = useState(false);
+    const [showPassword,setShowPassword]=useState(false)
+
     const [loginUserResponseState, setLoginUserResponseState] = useState({
         success: "",
         error: "",
@@ -83,14 +85,18 @@ const LoginPage = () => {
                                 </InputGroup>
                             </Form.Group>
 
-                            <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Group className="mb-3 relative" controlId="formBasicPassword">
                                 <Form.Label>Password</Form.Label>
+                                <div className="position-relative">
+
                                 <Form.Control
                                     name="password"
-                                    type="password"
+                                    type={showPassword?"text":"password"}
                                     placeholder="password"
                                     required />
-                                <Form.Control.Feedback type="invalid">Please enter a valid password</Form.Control.Feedback>
+                                    {showPassword?<FaEye className='eye' onClick={()=>setShowPassword(false)}/>:<FaEyeSlash  className='eye' onClick={()=>setShowPassword(true)}/>}
+                                <Form.Control.Feedback  type="invalid">Please enter a valid password</Form.Control.Feedback>
+                            </div>
                             </Form.Group>
 
                             <Form.Group className="mb-3 mt-3" controlId="formBasicCheckbox">
@@ -129,6 +135,7 @@ const LoginPage = () => {
                     </Col>
                 </Row>
             </Container>
+
         </div>
     )
 }
