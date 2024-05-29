@@ -12,6 +12,8 @@ const RegisterPage = () => {
     const [showPassword,setShowPassword]=useState(false)
     const [showPasswordRepeat,setShowPasswordRepeat]=useState(false)
     const [validated, setValidated] = useState(false);
+    const [passwordValidated,setPasswordValidated]=useState(true)
+    const [passMessage,setPassMessage]=useState("Both Passwords Must Match")
     const [registerUserResponseState, setRegisterUserResponseState] = useState({
         success: "",
         error: "",
@@ -38,6 +40,23 @@ const RegisterPage = () => {
         const email = form.email.value
         const password = form.password.value
         const confirmPassword = form.confirmPassword.value
+
+
+
+        if (!/[A-Z]/.test(password) || 
+        !/[0-9]/.test(password) || 
+        password.length < 8 || 
+        !/[!@#$%^&*()]/.test(password)) {
+            setPasswordValidated(false)
+            setPassMessage("Please Enter Valid Password")
+            setValidated(true)
+            return
+        }  else {
+            setPasswordValidated(true)
+            setPassMessage("Both Passwords Must Match")
+            setValidated(true)
+        }
+      
 
         if (e.currentTarget.checkValidity() === true &&
             name &&
@@ -108,7 +127,7 @@ const RegisterPage = () => {
                                     type="text"
                                     placeholder="Last name"
                                     name="lastname" />
-                                <Form.Control.Feedback>Please enter a valid name</Form.Control.Feedback>
+                                <Form.Control.Feedback type="invalid">Please enter a valid name</Form.Control.Feedback>
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -125,23 +144,28 @@ const RegisterPage = () => {
 
                             <Form.Group className="mb-3 pass" controlId="formBasicPassword">
                                 <Form.Label>Password</Form.Label>
+                                <div className="position-relative">
+
                                 <Form.Control
                                     type={showPassword?"text":"password"}
                                     placeholder="password"
                                     name="password"
                                     minLength={3}
+                                    
                                     onChange={onChange}
-                                    isInvalid={!passwordsMatchState}
+                                    isInvalid={!passwordsMatchState||!passwordValidated}
                                     required
                                 />
                                 {showPassword?<FaEye  className={`${passwordsMatchState?"eye-register":"eye-register1"}`} onClick={()=>setShowPassword(false)}/>:<FaEyeSlash   className={`${passwordsMatchState?"eye-register":"eye-register1"}`} onClick={()=>setShowPassword(true)}/>}
 
-                                <Form.Control.Feedback type="invalid">Both Passwords must match</Form.Control.Feedback>
-                                <Form.Text className='text-muted'>password should have at least 3 characters</Form.Text>
+                                <Form.Control.Feedback type="invalid">{passMessage}</Form.Control.Feedback>
+                           </div>
                             </Form.Group>
 
                             <Form.Group className="mb-3 pass" controlId="formBasicPasswordRepeat">
                                 <Form.Label>Repeat Password</Form.Label>
+                                <div className="position-relative">
+
                                 <Form.Control
                                     type={showPasswordRepeat?"text":"password"}
                                     name="confirmPassword"
@@ -152,7 +176,8 @@ const RegisterPage = () => {
                                 />
                                 {showPasswordRepeat?<FaEye className={`${passwordsMatchState?"eye-register-repeat":"eye-register-repeat1"}`} onClick={()=>setShowPasswordRepeat(false)}/>:<FaEyeSlash  className={`${passwordsMatchState?"eye-register-repeat":"eye-register-repeat1"}`} onClick={()=>setShowPasswordRepeat(true)}/>}
 
-                                <Form.Control.Feedback type="invalid">Both passwords must match</Form.Control.Feedback>
+                                <Form.Control.Feedback type="invalid">{passMessage}</Form.Control.Feedback>
+                            </div>
                             </Form.Group>
 
                             <Row className="pb-2">

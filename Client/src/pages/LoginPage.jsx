@@ -25,6 +25,8 @@ const userLoginApiRequest = async (email, password, donotlogout) => {
 const LoginPage = () => {
     const [validated, setValidated] = useState(false);
     const [showPassword,setShowPassword]=useState(false)
+    const [passwordValidated,setPasswordValidated]=useState(false)
+    const [emailValidated,setEmailValidated]=useState(true)
 
     const [loginUserResponseState, setLoginUserResponseState] = useState({
         success: "",
@@ -38,12 +40,23 @@ const LoginPage = () => {
         e.preventDefault();
         e.stopPropagation();
         const form = e.currentTarget.elements;
-
+        
         const email = form.email.value  
         const password = form.password.value
-        const donotlogout = form.donotlogout.checked
-
-        if (e.currentTarget.checkValidity() === true && email && password) {
+        const donotlogout = form.donotlogout.checked        
+        // Check for password conditions
+        if (!/[A-Z]/.test(password) || 
+        !/[0-9]/.test(password) || 
+        password.length < 8 || 
+        !/[!@#$%^&*()]/.test(password)) {
+            setPasswordValidated(true)
+            setValidated(true)
+            return
+        }  else {
+            setPasswordValidated(false)
+            setValidated(true)
+        }
+        if (e.currentTarget.checkValidity() === true && email && password ) {
             setLoginUserResponseState({ loading: true })
             userLoginApiRequest(email, password, donotlogout)
                 .then(res => {
@@ -62,8 +75,8 @@ const LoginPage = () => {
                     })
                     console.log(err)
                 })
-            setValidated(true);
-        }
+                setValidated(true);
+            }
     }
 
     return (
@@ -80,7 +93,8 @@ const LoginPage = () => {
                                         name="email"
                                         type="email"
                                         placeholder="Email Address"
-                                        required />
+                                        required 
+                                       />
                                     <Form.Control.Feedback type="invalid">Please enter a valid email address</Form.Control.Feedback>
                                 </InputGroup>
                             </Form.Group>
@@ -93,6 +107,7 @@ const LoginPage = () => {
                                     name="password"
                                     type={showPassword?"text":"password"}
                                     placeholder="password"
+                                    isInvalid={passwordValidated}
                                     required />
                                     {showPassword?<FaEye className='eye' onClick={()=>setShowPassword(false)}/>:<FaEyeSlash  className='eye' onClick={()=>setShowPassword(true)}/>}
                                 <Form.Control.Feedback  type="invalid">Please enter a valid password</Form.Control.Feedback>
