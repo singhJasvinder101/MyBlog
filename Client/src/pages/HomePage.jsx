@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import { Col, Row } from 'react-bootstrap'
-import BlogForListPageComponent from '../components/BlogForListPageComponent'
-import BestPostHeader from '../components/BestPostHeader'
-import BlogForListComponent2 from '../components/BlogForListComponent2'
-import { useLocation } from 'react-router-dom'
-import axios from 'axios'
-import LoaderComponent from './components/LoaderComponent'
-import {
-    useQuery,
-} from '@tanstack/react-query';
+import React, { useEffect, useState } from 'react';
+import { Col, Row } from 'react-bootstrap';
+import BlogForListPageComponent from '../components/BlogForListPageComponent';
+import BestPostHeader from '../components/BestPostHeader';
+import BlogForListComponent2 from '../components/BlogForListComponent2';
+import { useLocation } from 'react-router-dom';
+import axios from 'axios';
+import LoaderComponent from './components/LoaderComponent';
+import { useQuery } from '@tanstack/react-query';
+import ScrollToTopButton from './ScrollToTopButton'; 
 
 const apiUrl = import.meta.env.VITE_API_URI;
 
@@ -16,19 +15,16 @@ const HomePage = ({ setIsLoading }) => {
     const location = useLocation();
     const searchResults = location.state?.searchResults || [];
 
-
     const fetchArticles = async () => {
         try {
             const { data } = await axios.get(`${apiUrl}/api/blogs`);
-            // console.log(data)
             return data.posts;
         } catch (error) {
             throw new Error('Failed to fetch articles');
         }
     };
 
-
-    const { data: posts, postsStatus: status, isLoading: postsLoading, isError: postsError, error: postsErrorMessage } = useQuery({
+    const { data: posts, status: postsStatus, isLoading: postsLoading, isError: postsError, error: postsErrorMessage } = useQuery({
         queryKey: ['posts'],
         queryFn: fetchArticles,
         onSuccess: () => {
@@ -37,48 +33,42 @@ const HomePage = ({ setIsLoading }) => {
         staleTime: 1000 * 60 * 60 * 24,
     });
 
-
-    setIsLoading(postsLoading)
-
+    setIsLoading(postsLoading);
 
     if (postsError) {
-        return <div className='text-center'>
-            <h1 className='font-italic'>Failed to load articles 😞</h1>
-            <p>{postsErrorMessage}</p>
-        </div>
+        return (
+            <div className='text-center'>
+                <h1 className='font-italic'>Failed to load articles 😞</h1>
+                <p>{postsErrorMessage}</p>
+            </div>
+        );
     }
-
 
     return (
         <>
             <div className="home">
-                <>
-                    <div className="banner">
-                        <BestPostHeader setIsLoading={setIsLoading} />
-                    </div>
-                    <Row
-                        className='home-cards d-flex justify-content-between align-items-center mx-3'
-                    >
-                        {posts &&
-                            posts?.filter(post => {
-                                const excludedIds = ["64d361430b96fbb0ea77c3d6", "64d361430b96fbb0ea77c3dc", "64d361430b96fbb0ea77c406", "64d361430b96fbb0ea77c3e8"];
-                                return !excludedIds.includes(post._id.toString());
-                            })
-                                .slice(0, 9).map((post, idx) => (
-                                    <BlogForListPageComponent post={post} key={idx} />
-                                ))
-                        }
-                        {posts &&
-                            posts?.slice(9, 30).map((post, idx) => (
-                                <BlogForListComponent2 post={post} key={idx + 10} />
-                            ))
-                        }
-                    </Row>
-                </>
-
+                <div className="banner">
+                    <BestPostHeader setIsLoading={setIsLoading} />
+                </div>
+                <Row className='home-cards d-flex justify-content-between align-items-center mx-3'>
+                    {posts &&
+                        posts.filter(post => {
+                            const excludedIds = ["64d361430b96fbb0ea77c3d6", "64d361430b96fbb0ea77c3dc", "64d361430b96fbb0ea77c406", "64d361430b96fbb0ea77c3e8"];
+                            return !excludedIds.includes(post._id.toString());
+                        })
+                            .slice(0, 9).map((post, idx) => (
+                                <BlogForListPageComponent post={post} key={idx} />
+                            ))}
+                    {posts &&
+                        posts.slice(9, 30).map((post, idx) => (
+                            <BlogForListComponent2 post={post} key={idx + 10} />
+                        ))}
+                </Row>
             </div>
+            <ScrollToTopButton /> 
         </>
-    )
-}
+    );
+};
 
-export default HomePage
+export default HomePage;
+
