@@ -325,7 +325,11 @@ body {
   /* border-color: -webkit-linear-gradient(to right, #f12711, #f5af19); */
   /* border-color: 2px solid linear-gradient(to right, #f12711, #f5af19); */
 }
-
+.card:hover{
+  scale: 1.03;
+  transition: scale ease-in-out 0.3s;
+  box-shadow: 0px 0px 15px white;
+}
 .card-subheading {
   font-family: 'Lato', sans-serif;
 }
