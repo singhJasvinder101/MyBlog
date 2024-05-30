@@ -21,8 +21,8 @@ app.use(fileUpload())
 
 // const allowedOrigins = ['https://blogbackend-jyeb.onrender.com', 'https://tech-stuffs.netlify.app'];
 // const allowedOrigins = ['https://rich-blue-scorpion-fez.cyclic.app', 'https://tech-stuffs.netlify.app']; // cyclic backend
-// const allowedOrigins = ['https://blog-backend-chi-three.vercel.app', 'https://tech-stuffs.netlify.app'];
-const allowedOrigins = ['http://localhost:3000', 'http://192.168.99.198:5173', 'http://localhost:5173'];
+const allowedOrigins = ['https://blog-backend-chi-three.vercel.app', 'https://tech-stuffs.netlify.app'];
+// const allowedOrigins = ['http://localhost:3000', 'http://192.168.99.198:5173', 'http://localhost:5173'];
 const corsOptions = {
     origin: function (origin, callback) {
         if (allowedOrigins.includes(origin) || !origin) {
