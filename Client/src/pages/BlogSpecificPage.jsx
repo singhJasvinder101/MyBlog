@@ -1,40 +1,40 @@
-import React, { useEffect, useState } from 'react'
-import BlogForListComponent2 from '../components/BlogForListComponent2'
-import { useParams } from 'react-router-dom'
-import axios from 'axios'
-import { Col, Row } from 'react-bootstrap'
-import PaginationComponent from '../components/PaginationComponent'
+import React, { useEffect, useState } from 'react';
+import BlogForListComponent2 from '../components/BlogForListComponent2';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import { Col, Row } from 'react-bootstrap';
+import PaginationComponent from '../components/PaginationComponent';
+import ScrollToTopButton from './ScrollToTopButton'; 
 
 const BlogSpecificPage = () => {
-    let { tag } = useParams()
-    const [tagSpecificPosts, setTagSpecificPosts] = useState([])
+    let { tag } = useParams();
+    const [tagSpecificPosts, setTagSpecificPosts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [totalpaginationLinks, settotalpaginationLinks] = useState(1)
-    const [loading, setLoading] = useState(false)
+    const [totalpaginationLinks, settotalpaginationLinks] = useState(1);
+    const [loading, setLoading] = useState(false);
 
     const apiUrl = import.meta.env.VITE_API_URI;
     axios.defaults.withCredentials = true;
 
     const searchTagData = async (tag, currentPage) => {
-        // console.log(tag)
         const { data } = await axios.get(`${apiUrl}/api/blogs?q=${tag}&pageNum=${currentPage}`, {
             withCredentials: true,
-        })
-        return data
-    }
+        });
+        return data;
+    };
 
     useEffect(() => {
         setLoading(true);
         searchTagData(tag, currentPage)
             .then(data => {
-                setTagSpecificPosts(data.posts)
-                settotalpaginationLinks(data.paginationLinksNumber)
-                setCurrentPage(data.pageNum)
+                setTagSpecificPosts(data.posts);
+                settotalpaginationLinks(data.paginationLinksNumber);
+                setCurrentPage(data.pageNum);
             })
             .finally(() => {
                 setLoading(false);
             });
-    }, [tag, currentPage])
+    }, [tag, currentPage]);
 
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
@@ -42,7 +42,6 @@ const BlogSpecificPage = () => {
 
     return (
         <div className='blog-page'>
-            {/* {console.log(tagSpecificPosts)} */}
             <div className="blog-specific">
                 <div className="blog-bg"></div>
                 <div className="blog-heading">
@@ -56,8 +55,6 @@ const BlogSpecificPage = () => {
                     ))}
                 </Row>
             </div>
-            {/* {console.log(totalpaginationLinks)} */}
-
             {totalpaginationLinks > 1 ? (
                 <PaginationComponent currentPage={currentPage}
                     paginationLinksNumber={totalpaginationLinks}
@@ -65,8 +62,10 @@ const BlogSpecificPage = () => {
                     loading={loading}
                 />
             ) : null}
+            <ScrollToTopButton /> 
         </div>
-    )
-}
+    );
+};
 
-export default BlogSpecificPage
+export default BlogSpecificPage;
+
