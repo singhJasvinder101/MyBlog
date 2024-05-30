@@ -12,6 +12,8 @@ const RegisterPage = () => {
     const [showPassword,setShowPassword]=useState(false)
     const [showPasswordRepeat,setShowPasswordRepeat]=useState(false)
     const [validated, setValidated] = useState(false);
+    const [nameValidated,setNameValidated]=useState(true)
+
     const [passwordValidated,setPasswordValidated]=useState(true)
     const [passMessage,setPassMessage]=useState("Both Passwords Must Match")
     const [registerUserResponseState, setRegisterUserResponseState] = useState({
@@ -41,7 +43,14 @@ const RegisterPage = () => {
         const password = form.password.value
         const confirmPassword = form.confirmPassword.value
 
-
+        if(name.length<5){
+            setNameValidated(false)
+            setValidated(true)
+            return
+        }else {
+            setNameValidated(true)
+            setValidated(true)
+        }
 
         if (!/[A-Z]/.test(password) || 
         !/[0-9]/.test(password) || 
@@ -116,6 +125,7 @@ const RegisterPage = () => {
                                     required
                                     type="text"
                                     placeholder="First Name"
+                                    isInvalid={!nameValidated}
                                     name="name" />
                                 <Form.Control.Feedback type="invalid">Please enter a valid name</Form.Control.Feedback>
                             </Form.Group>
