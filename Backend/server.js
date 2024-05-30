@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 4000
 const apiRoutes = require("./routes/ApiRoutes")
 require("dotenv").config()
 var helmet = require('helmet')
@@ -21,8 +21,8 @@ app.use(fileUpload())
 
 // const allowedOrigins = ['https://blogbackend-jyeb.onrender.com', 'https://tech-stuffs.netlify.app'];
 // const allowedOrigins = ['https://rich-blue-scorpion-fez.cyclic.app', 'https://tech-stuffs.netlify.app']; // cyclic backend
-const allowedOrigins = ['https://blog-backend-chi-three.vercel.app', 'https://tech-stuffs.netlify.app'];
-// const allowedOrigins = ['http://localhost:3000', 'http://192.168.99.198:5173', 'http://localhost:5173'];
+// const allowedOrigins = ['https://blog-backend-chi-three.vercel.app', 'https://tech-stuffs.netlify.app'];
+const allowedOrigins = ['http://localhost:3000', 'http://192.168.99.198:5173', 'http://localhost:5173'];
 const corsOptions = {
     origin: function (origin, callback) {
         if (allowedOrigins.includes(origin) || !origin) {
@@ -38,8 +38,8 @@ app.use(cors(corsOptions));
 app.use((req, res, next) => {
     // const allowedOrigins = ['https://blogbackend-jyeb.onrender.com', 'https://tech-stuffs.netlify.app'];
     // const allowedOrigins = ['https://rich-blue-scorpion-fez.cyclic.app', 'https://tech-stuffs.netlify.app'];
-    const allowedOrigins = ['https://blog-backend-chi-three.vercel.app', 'https://tech-stuffs.netlify.app'];
-    // const allowedOrigins = ['http://localhost:3000', 'http://192.168.99.198:5173', 'http://localhost:5173'];
+    // const allowedOrigins = ['https://blog-backend-chi-three.vercel.app', 'https://tech-stuffs.netlify.app'];
+    const allowedOrigins = ['http://localhost:3000', 'http://192.168.99.198:5173', 'http://localhost:5173'];
 
     const origin = req.headers.origin;
     if (allowedOrigins.includes(origin)) {

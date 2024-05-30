@@ -8,11 +8,13 @@ const {
     adminDeletePost,
     adminUpdatePost,
     adminUpload,
-    userCreatePost
+    userCreatePost,
+    WriteWithAI
 } = require("../controllers/blogPostController");
 
 router.get('/', getAllBlogPosts);
 router.get('/get-one/:id', getPostByID);
+router.post("/ai", WriteWithAI)
 
 // middleware to get access to resources to admin only
 router.use(verifyIsLoggedIn)
@@ -25,5 +27,6 @@ router.post("/admin", adminCreatePost)
 router.delete("/admin/:postId", adminDeletePost)
 router.patch("/admin/:postId", adminUpdatePost)
 router.post("/admin/upload", adminUpload)
+
 
 module.exports = router
