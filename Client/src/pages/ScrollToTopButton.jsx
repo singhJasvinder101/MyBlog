@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
-import { FaArrowUp } from 'react-icons/fa'; 
+import { FaArrowUp } from 'react-icons/fa';
 
 const ScrollToTopButton = () => {
     const [showButton, setShowButton] = useState(false);
@@ -30,13 +30,14 @@ const ScrollToTopButton = () => {
                 onClick={scrollToTop}
                 className="position-fixed"
                 style={{
-                    bottom: '1rem',
+                    bottom: '4rem',
                     right: '1rem',
                     backgroundColor: '#007bff',
                     color: 'white',
                     padding: '0.5rem 1rem',
                     borderRadius: '50%',
                     boxShadow: '0 0.5rem 1rem rgba(0, 0, 0, 0.15)',
+                    zIndex: 1000,
                 }}
                 onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0056b3'}
                 onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#007bff'}
