@@ -328,7 +328,7 @@ body {
 .card:hover{
   scale: 1.03;
   transition: scale ease-in-out 0.3s;
-  box-shadow: 0px 0px 15px white;
+  box-shadow: 0px 0px 45px #6198ff;
 }
 .card-subheading {
   font-family: 'Lato', sans-serif;
