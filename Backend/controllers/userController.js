@@ -7,9 +7,78 @@ const Blog = require('../models/blogModel')
 const registerUser = async (req, res, next) => {
     try {
         const { name, lastname, email, password } = req.body
-        if (!name && !lastname && !email && !password) {
+        if (!name || !lastname || !email || !password) {
             return res.status(400).send("All inputs are required")
         }
+        let emailpart1=""
+        let emailpart2=""
+        let emailpart3=""
+        let i=0
+        while(i<email.length){
+            if(email[i]=="@"){
+                i++
+                break
+            }
+            emailpart1+=email[i]
+            i++
+        }
+        while(i<email.length){
+            if(email[i]=="."){
+                i++
+                break
+            }
+            emailpart2+=email[i]
+            i++
+        }
+        while(i<email.length){
+           
+            emailpart3+=email[i]
+            i++
+        }
+if(emailpart1.length==0){
+    return res.status(400).send('Invalid Email')
+
+}
+   for(let i=0;i<emailpart1.length;i++){
+    if(!/[a-zA-Z0-9._\-!#$%^&*+={}|]/.test(emailpart1[i])){
+
+        return res.status(400).send('Invalid Email')
+    }
+   }
+
+if(emailpart2.length==0){
+    return res.status(400).send('Invalid Email')
+
+}
+    for(let i=0;i<emailpart2.length;i++){
+        if(!/[a-zA-Z0-9]/.test(emailpart2[i])){
+    
+            return res.status(400).send('Invalid Email')
+        }
+       }
+       if(emailpart3.length==0){
+        return res.status(400).send('Invalid Email')
+    
+    }
+        for(let i=0;i<emailpart3.length;i++){
+            if(!/[a-zA-Z0-9]/.test(emailpart3[i])){
+        
+                return res.status(400).send('Invalid Email')
+            }
+           }  
+           //for name      
+        if(name.length<5){
+            return res.status(400).send('Invalid Name')
+        }
+        //for password
+        if(!/[A-Z]/.test(password) || 
+        !/[0-9]/.test(password) || 
+        password.length < 8 || 
+        !/[!@#$%^&*()]/.test(password)){
+            return res.status(400).send('Invalid Password')
+
+        }
+      
         const existingUser = await User.findOne({ email });
         if (existingUser) {
             return res.status(400).send("user already exists")
