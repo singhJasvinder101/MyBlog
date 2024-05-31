@@ -45,21 +45,16 @@ const corsOptions = {
     credentials: true,
 };
 
-// app.use(cors(corsOptions));
-// app.use((req, res, next) => {
-//     const origin = req.headers.origin;
-//     if (allowedOrigins.includes(origin)) {
-//         res.header('Access-Control-Allow-Origin', origin);
-//     }
-//     res.header('Access-Control-Allow-Credentials', 'true');
-//     app.options('*', cors(corsOptions));
-//     next();
-// });
-
-app.use(cors({
-    origin:'http://localhost:5173',
-    credentials:true
-}));
+app.use(cors(corsOptions));
+app.use((req, res, next) => {
+    const origin = req.headers.origin;
+    if (allowedOrigins.includes(origin)) {
+        res.header('Access-Control-Allow-Origin', origin);
+    }
+    res.header('Access-Control-Allow-Credentials', 'true');
+    app.options('*', cors(corsOptions));
+    next();
+});
 
 
 app.use(helmet({

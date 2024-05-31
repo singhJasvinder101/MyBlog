@@ -1,38 +1,18 @@
-// const connectDB = require("../config/db");
-// const fetchData = require("./BlogPosts");
-// const Blog = require("../models/blogModel");
-// require('dotenv').config()
-// connectDB();
-
-// // console.log(process.env.MONGO_URI)
-
-// const importData = async () => {
-
-//     try {
-//         // await Blog.collection.deleteMany({})
-//         const blogposts = await fetchData();
-//         await Blog.insertMany(blogposts);
-//         console.log('Data seeding completed.'); 
-//     } catch (error) {
-//         console.error('Error while seeding:', error);
-//         process.exit(1);
-//     }
-// };
-
-// importData();
-
 const connectDB = require("../config/db");
 const fetchData = require("./BlogPosts");
 const Blog = require("../models/blogModel");
-require('dotenv').config();
+require('dotenv').config()
+connectDB();
 
-connectDB(); // Ensure this function is correctly implemented to connect to MongoDB
+// console.log(process.env.MONGO_URI)
 
 const importData = async () => {
+
     try {
+        // await Blog.collection.deleteMany({})
         const blogposts = await fetchData();
         await Blog.insertMany(blogposts);
-        console.log('Data seeding completed.');
+        console.log('Data seeding completed.'); 
     } catch (error) {
         console.error('Error while seeding:', error);
         process.exit(1);

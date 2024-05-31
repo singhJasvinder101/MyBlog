@@ -4,7 +4,7 @@ const imageValidate = require("../utils/imageValidate")
 const axios = require('axios');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 require('dotenv').config()
-const adminCreatePost = async (req, res, next) => {
+const adminCreatePost = async (req, res, next) => {z
     try {
         const post = new Blog()
         const { title, description, body_html, tags, author, images } = req.body
