@@ -13,6 +13,7 @@ import ProtectedRoutesComponent from './components/ProtectedRoutesComponent'
 import SpeedDialComponent from './components/SpeedDialComponente'
 import CreatePostPage from './pages/CreatePostPage'
 import {  useState } from 'react'
+import NotFoundPage from './pages/404Page'
 
 
 
@@ -31,8 +32,10 @@ function App() {
       <>
         <SpeedDialComponent />
         <Router>
+     
           <HeaderComponent />
           <Routes>
+          <Route path="*" element={<NotFoundPage />} />
             <Route exact path="/" element={<HomePage setIsLoading={setIsLoading} />} />
             <Route path="/login" element={<LoginPage setIsLoading={setIsLoading} />} />
             <Route path="/register" element={<RegisterPage setIsLoading={setIsLoading} />} />
