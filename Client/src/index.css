@@ -1436,6 +1436,56 @@ pre[class*="language-"] {
   }
 }
 
+.pass{
+  position: relative;
+}
+
+.eye-register{
+  position: absolute;
+  right: 30px;
+  top: 8px;
+  color: black;
+  cursor: pointer;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.eye-register-repeat{
+  position: absolute;
+  right: 30px;
+  top: 8px;
+  color: black;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.eye-register1{
+  position: absolute;
+  right: 30px;
+  top: 8px;
+  color: black;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.eye-register-repeat1{
+  position: absolute;
+  right: 30px;
+  top: 8px;
+  color: black;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.eye {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 2;
+  color: black;
+  font-size: 1.5rem;
+}
+
+
 .loader {
   color: #4a4a4a;
   font-family: "Poppins", sans-serif;

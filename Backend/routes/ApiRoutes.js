@@ -4,8 +4,7 @@ const blogRoutes = require('./blogRoutes')
 const userRoutes = require('./userRoutes')
 const jwt = require('jsonwebtoken')
 
-// before going to next api routes we will check the cookie and and for logout 
-// delete cookie
+
 app.get('/', (req, res) => {
     res.status(200).send("this is api route")
 })

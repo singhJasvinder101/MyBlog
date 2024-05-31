@@ -18,7 +18,6 @@ import {  useState } from 'react'
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
-  // console.log(isLoading)
 
   return (
     <>

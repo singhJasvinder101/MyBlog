@@ -26,7 +26,6 @@ const FooterComponent = () => {
     return (
         <div style={{
             height: '5rem',
-            // display: shouldNotShowFooter ? 'none !important' : 'block',
         }} className='footer w-100 text-light d-flex justify-content-center align-items-center'>
             Copywrite @ 2024. All rights reserved
             <span

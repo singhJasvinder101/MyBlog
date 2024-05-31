@@ -83,8 +83,6 @@ const BlogDescriptionPage = () => {
         })
     }, [postId, isLiked, isComment, isCommentLiked])
 
-    // console.log(postDetails.tags)
-    // console.log(isLiked)
 
     const handleLike = async () => {
         const { data } = await axios.post(`${apiUrl}/api/users/like/${postId}`, {}, {
@@ -162,13 +160,12 @@ const BlogDescriptionPage = () => {
     }
 
     const { data: { posts } = {}, isLoading: postsLoading, error: postsError } = useQuery({
-        // const { data: posts, isLoading: postsLoading, error: postsError } = useQuery({
         queryKey: ['posts2'],
         queryFn: fetchArticles,
         staleTime: 1000 * 60 * 60 * 24,
     })
 
-    // console.log(posts)
+
 
     useEffect(() => {
         const handleResize = () => {

@@ -5,7 +5,6 @@ import { convert } from 'html-to-text';
 
 const TextToSpeech = ({ text }) => {
     const [isPlaying, setIsPlaying] = useState(false);
-    // text = convert(text);
 
     useEffect(() => {
         const synth = window.speechSynthesis;
@@ -17,9 +16,7 @@ const TextToSpeech = ({ text }) => {
     
     const handlePlay = () => {
         const synth = window.speechSynthesis;
-        
-        // mainly 2 types of speeches are possinble if first time speech
-        // other which should be resumed now from paused state
+
         if (!synth.speaking) {
             const speech = new SpeechSynthesisUtterance();
             speech.text = text;

@@ -20,7 +20,6 @@ const HomePage = ({ setIsLoading }) => {
     const fetchArticles = async () => {
         try {
             const { data } = await axios.get(`${apiUrl}/api/blogs`);
-            // console.log(data)
             return data.posts;
         } catch (error) {
             throw new Error('Failed to fetch articles');
