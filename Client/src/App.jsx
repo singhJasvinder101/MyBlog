@@ -12,16 +12,22 @@ import BlogSpecificPage from './pages/BlogSpecificPage'
 import ProtectedRoutesComponent from './components/ProtectedRoutesComponent'
 import SpeedDialComponent from './components/SpeedDialComponente'
 import CreatePostPage from './pages/CreatePostPage'
-import {  useState } from 'react'
+import { createContext, useState } from 'react'
 
-
+export const ThemeContext = createContext(null);
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
   // console.log(isLoading)
 
+  const [theme,setTheme] = useState("dark");
+
+  const toggleTheme = () => {
+    setTheme((curr) => (curr === "light" ? "dark" : "light"))
+  }
+
   return (
-    <>
+    <ThemeContext.Provider value={{theme, toggleTheme}}>
       {isLoading && (
         <div className="loader">
           <div className="scanner">
@@ -29,7 +35,7 @@ function App() {
           </div>
         </div>
       )}
-      <>
+      <div className='app' id={theme}>
         <SpeedDialComponent />
         <Router>
           <HeaderComponent />
@@ -37,17 +43,17 @@ function App() {
             <Route exact path="/" element={<HomePage setIsLoading={setIsLoading} />} />
             <Route path="/login" element={<LoginPage setIsLoading={setIsLoading} />} />
             <Route path="/register" element={<RegisterPage setIsLoading={setIsLoading} />} />
-            <Route element={<ProtectedRoutesComponent />}>
+            {/* <Route element={<ProtectedRoutesComponent />}> */}
               <Route path="/post-details/:postId" element={<BlogDescriptionPage setIsLoading={setIsLoading} />} />
               <Route path="/blogs/:tag" element={<BlogSpecificPage setIsLoading={setIsLoading} />} />
               <Route path="/user/createPost" element={<CreatePostPage setIsLoading={setIsLoading} />} />
-            </Route>
+            {/* </Route> */}
           </Routes>
           <FooterComponent />
         </Router>
         {/* <PaginationComponent /> */}
-      </>
-    </>
+      </div>
+      </ThemeContext.Provider>
   );
 }
 

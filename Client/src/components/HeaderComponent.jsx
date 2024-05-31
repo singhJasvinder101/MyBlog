@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom"
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
@@ -9,6 +9,8 @@ import { BiLogOut } from "react-icons/bi";
 import { Sling as Hamburger } from 'hamburger-react'
 import { Button } from "react-bootstrap";
 import { FaBell } from "react-icons/fa";
+import { Switch } from 'antd';
+import { ThemeContext } from "../App";
 
 const HeaderComponent = () => {
   const apiUrl = import.meta.env.VITE_API_URI;
@@ -38,6 +40,14 @@ const HeaderComponent = () => {
       searchInputRef.current.focus();
     }
   };
+
+  const { theme, toggleTheme } = useContext(ThemeContext);
+
+  const handleThemeChange = () => {
+    toggleTheme(); 
+    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+  };
+
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -197,6 +207,7 @@ const HeaderComponent = () => {
             </div>
           ) : (
             (
+              <div className="flex">
               <div className="login-signup mx-4">
                 <Link to="/login" className="btn btn-primary mx-2 px-4 py-2 rounded-pill">
                   Login
@@ -204,6 +215,14 @@ const HeaderComponent = () => {
                 <Link to="/register" className="text-light signup">
                   SignUp
                 </Link>
+              </div>
+              <div className="h-full mt-1"><Switch 
+        style={{ backgroundColor: theme === "dark" ? "#000000" : "" }} 
+        onChange={handleThemeChange} 
+        checked={theme === "dark"} 
+        checkedChildren="Dark Mode" 
+        unCheckedChildren="Light Mode" 
+      /></div>
               </div>
             )
           )}

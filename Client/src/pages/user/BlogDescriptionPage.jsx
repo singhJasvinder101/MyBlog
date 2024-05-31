@@ -287,7 +287,7 @@ const BlogDescriptionPage = () => {
 
 
     return (
-        <div className='w-100'>
+        <div className='w-100 blog-describe'>
             {isLoading ? (
                 <LoaderComponent />
             ) : posts && (

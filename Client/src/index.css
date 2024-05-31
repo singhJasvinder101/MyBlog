@@ -15,6 +15,27 @@ body {
   top: 0px !important;
 }
 
+#light .navbar {
+  background-color: white !important;
+}
+
+#light .nav-link {
+  color: black !important;
+}
+
+#light .footer {
+  background-color: white !important;
+  color: black !important;
+}
+
+#light .text-light.signup {
+  color: black !important;
+}
+
+#light .form-label {
+  color: rgb(215, 215, 215) !important;
+}
+
 
 @media (max-width: 768px) {
   .navbar-nav {
