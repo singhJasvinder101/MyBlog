@@ -68,21 +68,21 @@ body {
 }
 
 /* html description padding */
-.css-13xfq8m-MuiTabPanel-root{
+.css-13xfq8m-MuiTabPanel-root {
   padding: 0 !important;
 }
 
-.css-1h9z7r5-MuiButtonBase-root-MuiTab-root{
+.css-1h9z7r5-MuiButtonBase-root-MuiTab-root {
   min-width: 55px !important;
 }
 
 /* text sizes width */
-.MuiBox-root .css-mmst5v{ 
+.MuiBox-root .css-mmst5v {
   width: 27rem;
 }
 
 /* text to speech button */
-.tts{
+.tts {
   border: none;
   font-size: 1.4rem;
   background-color: transparent;
@@ -93,19 +93,19 @@ iframe {
   display: none !important;
 }
 
-.follow{
+.follow {
   background-color: transparent;
 }
 
-.ghanti{
+.ghanti {
   color: grey;
 }
 
-.best-post-content > p{
+.best-post-content>p {
   font-style: italic;
 }
 
-.MuiBox-root .css-19wx5ef{
+.MuiBox-root .css-19wx5ef {
   width: 26% !important;
 }
 
@@ -116,19 +116,19 @@ iframe {
   top: -10rem !important;
 }
 
-#google_translate_element{
+#google_translate_element {
   display: flex;
   justify-content: right;
   margin-right: 4rem;
 }
 
-.css-19kzrtu{
+.css-19kzrtu {
   padding: 0 !important;
 }
 
 
 
-.bottom-sidebar button{
+.bottom-sidebar button {
   background-color: transparent;
 }
 
@@ -188,7 +188,7 @@ iframe {
   background-color: #007bff;
   box-shadow: 1.5px 1.5px 3px #0e0e0e, -1.5px -1.5px 3px rgb(95 94 94 / 25%), inset 0px 0px 0px #0e0e0e, inset 0px -0px 0px #5f5e5e;
   border-radius: 50px;
-  color: white!important;  
+  color: white !important;
   cursor: pointer;
 }
 
@@ -325,11 +325,13 @@ body {
   /* border-color: -webkit-linear-gradient(to right, #f12711, #f5af19); */
   /* border-color: 2px solid linear-gradient(to right, #f12711, #f5af19); */
 }
-.card:hover{
+
+.card:hover {
   scale: 1.03;
   transition: scale ease-in-out 0.3s;
   box-shadow: 0px 0px 45px #6198ff;
 }
+
 .card-subheading {
   font-family: 'Lato', sans-serif;
 }
@@ -576,6 +578,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  text-align: center;
 }
 
 .blog-heading {
@@ -1001,16 +1004,17 @@ pre[class*="language-"] {
   body {
     margin-bottom: 3rem;
   }
-  #google_translate_element{
+
+  #google_translate_element {
     display: none !important;
   }
-  
 
-  .MuiTabs-root .css-1ujnqem-MuiTabs-root{
+
+  .MuiTabs-root .css-1ujnqem-MuiTabs-root {
     overflow: auto;
   }
 
-  .MuiBox-root .css-19wx5ef{
+  .MuiBox-root .css-19wx5ef {
     width: 58% !important;
     margin-left: auto;
     margin-top: 2rem !important;
@@ -1202,9 +1206,9 @@ pre[class*="language-"] {
     margin-bottom: 5rem;
   }
 
-  .ls{
+  .ls {
     flex-direction: column;
-    align-items:flex-start !important;
+    align-items: flex-start !important;
     width: 100% !important;
   }
 
@@ -1224,7 +1228,38 @@ pre[class*="language-"] {
 
   .blog-list-2 {
     width: 100% !important;
+    border-radius: 20px;
+    background-color: #D7CCC8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+
+    .list-card {
+      background-color: #fff;
+      max-width: 800px;
+      box-shadow: 2px 2px 5px #9E9E9E, -1px -1px 5px #9E9E9E;
+      border-radius: 3px;
+      display: grid;
+      grid-template-column: repeat(5, 1fr);
+    }
+
+    .list-img-container {
+      width: 230px;
+      height: 100%;
+      grid-column: 2;
+      background-color: #c1b7b4;
+      background-size: cover;
+      background-position: center center;
+    }
+
+    .list-card-content{
+      grid-column: 3 / 5;
+  padding: 10px 30px;
+  border-left: 1px solid #ccc;
+    }
   }
+
 
   h2 {
     font-size: 1.8rem;
@@ -1440,11 +1475,11 @@ pre[class*="language-"] {
   }
 }
 
-.pass{
+.pass {
   position: relative;
 }
 
-.eye-register{
+.eye-register {
   position: absolute;
   right: 30px;
   top: 8px;
@@ -1454,7 +1489,7 @@ pre[class*="language-"] {
   cursor: pointer;
 }
 
-.eye-register-repeat{
+.eye-register-repeat {
   position: absolute;
   right: 30px;
   top: 8px;
@@ -1462,7 +1497,8 @@ pre[class*="language-"] {
   font-size: 1.5rem;
   cursor: pointer;
 }
-.eye-register1{
+
+.eye-register1 {
   position: absolute;
   right: 30px;
   top: 8px;
@@ -1470,7 +1506,8 @@ pre[class*="language-"] {
   font-size: 1.5rem;
   cursor: pointer;
 }
-.eye-register-repeat1{
+
+.eye-register-repeat1 {
   position: absolute;
   right: 30px;
   top: 8px;
@@ -1478,6 +1515,7 @@ pre[class*="language-"] {
   font-size: 1.5rem;
   cursor: pointer;
 }
+
 .eye {
   position: absolute;
   top: 20px;
@@ -1507,6 +1545,7 @@ pre[class*="language-"] {
   position: absolute;
   justify-content: center;
 }
+
 .loader1 {
   color: #4a4a4a;
   font-family: "Poppins", sans-serif;

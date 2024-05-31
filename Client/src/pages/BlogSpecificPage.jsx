@@ -1,39 +1,48 @@
-import React, { useEffect, useState } from 'react'
-import BlogForListComponent2 from '../components/BlogForListComponent2'
-import { useParams } from 'react-router-dom'
-import axios from 'axios'
-import { Col, Row } from 'react-bootstrap'
-import PaginationComponent from '../components/PaginationComponent'
+import React, { useEffect, useState } from 'react';
+import BlogForListComponent2 from '../components/BlogForListComponent2';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import { Col, Row } from 'react-bootstrap';
+import PaginationComponent from '../components/PaginationComponent';
 
 const BlogSpecificPage = () => {
-    let { tag } = useParams()
-    const [tagSpecificPosts, setTagSpecificPosts] = useState([])
+    let { tag } = useParams();
+    const [tagSpecificPosts, setTagSpecificPosts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [totalpaginationLinks, settotalpaginationLinks] = useState(1)
-    const [loading, setLoading] = useState(false)
+    const [totalPaginationLinks, setTotalPaginationLinks] = useState(1);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     const apiUrl = import.meta.env.VITE_API_URI;
     axios.defaults.withCredentials = true;
 
     const searchTagData = async (tag, currentPage) => {
-        const { data } = await axios.get(`${apiUrl}/api/blogs?q=${tag}&pageNum=${currentPage}`, {
-            withCredentials: true,
-        })
-        return data
-    }
+        try {
+            const { data } = await axios.get(`/api/blogs`, {
+                params: { q: tag, pageNum: currentPage },
+                withCredentials: true,
+            });
+            return data;
+        } catch (error) {
+            setError(error);
+            console.error("Error fetching data:", error);
+        }
+    };
 
     useEffect(() => {
         setLoading(true);
         searchTagData(tag, currentPage)
             .then(data => {
-                setTagSpecificPosts(data.posts)
-                settotalpaginationLinks(data.paginationLinksNumber)
-                setCurrentPage(data.pageNum)
+                if (data) {
+                    setTagSpecificPosts(data.posts);
+                    setTotalPaginationLinks(data.paginationLinksNumber);
+                    setCurrentPage(data.pageNum);
+                }
             })
             .finally(() => {
                 setLoading(false);
             });
-    }, [tag, currentPage])
+    }, [tag, currentPage]);
 
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
@@ -41,11 +50,11 @@ const BlogSpecificPage = () => {
 
     return (
         <div className='blog-page'>
-            {/* {console.log(tagSpecificPosts)} */}
+            {error && <div className="alert alert-danger">Error: {error.message}</div>}
             <div className="blog-specific">
                 <div className="blog-bg"></div>
                 <div className="blog-heading">
-                    Blogs
+                    {tag.charAt(0).toUpperCase() + tag.slice(1)} Blogs
                 </div>
             </div>
             <div className="container-fluid">
@@ -55,17 +64,16 @@ const BlogSpecificPage = () => {
                     ))}
                 </Row>
             </div>
-            {/* {console.log(totalpaginationLinks)} */}
-
-            {totalpaginationLinks > 1 ? (
-                <PaginationComponent currentPage={currentPage}
-                    paginationLinksNumber={totalpaginationLinks}
+            {totalPaginationLinks > 1 && (
+                <PaginationComponent 
+                    currentPage={currentPage}
+                    paginationLinksNumber={totalPaginationLinks}
                     onPageChange={handlePageChange}
                     loading={loading}
                 />
-            ) : null}
+            )}
         </div>
-    )
-}
+    );
+};
 
-export default BlogSpecificPage
+export default BlogSpecificPage;
