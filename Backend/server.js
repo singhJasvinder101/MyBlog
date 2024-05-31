@@ -21,14 +21,23 @@ app.use(fileUpload())
 
 const allowedOrigins = [
     process.env.BACKEND_URL,
-    'http://192.168.99.198:5173',
     process.env.CLIENT_URL,
+    'http://192.168.99.198:5173',
     'https://deploy-preview-*.netlify.app'
 ];
 const corsOptions = {
     origin: function (origin, callback) {
-        if (allowedOrigins.includes(origin) || !origin) {
-            callback(null, true);
+        if (!origin) {
+            return callback(null, true);
+        }
+
+        const allowed = allowedOrigins.some(pattern => {
+            const regex = new RegExp(`^${pattern.replace('*', '.*')}$`);
+            return regex.test(origin);
+        }); 
+
+        if (allowed) {
+            return callback(null, true);
         } else {
             callback(new Error('Not allowed by CORS'));
         }
