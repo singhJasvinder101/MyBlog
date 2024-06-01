@@ -60,7 +60,12 @@ const HeaderComponent = () => {
           </Link>
           <ul className="navbar-nav align-items-center">
             <li className="nav-item">
-              <Link style={{ 'color': '#a7acb3' }}
+              <Link style={({ isActive }) =>
+              isActive ? {
+                color: '#ffcc5c', borderBottom: '3px solid #ffcc5c'
+              }
+              : { color: '#a7acb3' }
+            }
                 className={`nav-link ${location.pathname === "/technology" ? "active-link" : ""}`}
                 to="/blogs/technology"
               >
@@ -68,7 +73,12 @@ const HeaderComponent = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link style={{ 'color': '#a7acb3' }}
+              <Link style={({ isActive }) => 
+              isActive ? {
+                color: '#ffcc5c', borderBottom: '3px solid #ffcc5c'
+              }
+              : { color: '#a7acb3' }
+              }
                 className={`nav-link ${location.pathname === "/ai" ? "active-link" : ""}`}
                 to="/blogs/ai"
               >
@@ -76,7 +86,12 @@ const HeaderComponent = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link style={{ 'color': '#a7acb3' }}
+              <Link style={({ isActive }) => 
+              isActive ? {
+                color: '#ffcc5c', borderBottom: '3px solid #ffcc5c'
+              }
+              : { color: '#a7acb3' }
+              }
                 className={`nav-link ${location.pathname === "/technews" ? "active-link" : ""}`}
                 to="/blogs/news"
               >
@@ -84,7 +99,12 @@ const HeaderComponent = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link style={{ 'color': '#a7acb3' }}
+              <Link style={({ isActive }) => 
+              isActive ? {
+                color: '#ffcc5c', borderBottom: '3px solid #ffcc5c'
+              }
+              : { color: '#a7acb3' }
+              }
                 className={`nav-link ${location.pathname === "/datascience" ? "active-link" : ""}`}
                 to="/blogs/datascience"
               >
@@ -92,7 +112,12 @@ const HeaderComponent = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link style={{ 'color': '#a7acb3' }}
+              <Link style={({ isActive }) => 
+              isActive ? {
+                color: '#ffcc5c', borderBottom: '3px solid #ffcc5c'
+              }
+              : { color: '#a7acb3' }
+              }
                 className={`nav-link ${location.pathname === "/security" ? "active-link" : ""}`}
                 to="/blogs/security"
               >
