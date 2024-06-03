@@ -1,4 +1,3 @@
-<div align="center">
 
 # Tech-Stuffs
 
@@ -6,20 +5,18 @@ Welcome to Tech Stuffs! This is a project aimed at providing useful tech-related
 
 ## Table of Contents
 - [Introduction](#introduction)
-- [Tech Stack](#TechStack)
+- [Tech Stack](#tech-stack)
 - [Features](#features)
 - [Getting Started](#getting-started)
 - [Installation](#installation)
 - [Contributing](#contributing)
-- [Documentation](#-documentation)
+- [Documentation](#documentation)
 
 
-🚀 Introduction
+## 🚀Introduction
 
 Tech Stuffs is a web platform where you can access a variety of tech-related content, including articles, tutorials, and resources. Our goal is to empower individuals with knowledge and tools to thrive in the ever-evolving tech industry.
 
-
-![image](https://github.com/singhJasvinder101/MyBlog/assets/131908922/db8f53ab-262b-4fab-bb46-3494a3530e93)
 
 <br />
 
@@ -46,30 +43,20 @@ Tech Stuffs is a web platform where you can access a variety of tech-related con
 </table>
 </div>
 
-![image](https://github.com/singhJasvinder101/MyBlog/assets/131908922/2a791c01-e6cd-4196-af8f-4a1e8d8feee0)
 
 <br />
 
-<div style="display: flex; justify-content: space-between;">
-  <img src="https://github.com/singhJasvinder101/MyBlog/assets/131908922/e7b61bb4-b688-4087-b4f4-6a8f78b662b4" alt="image"> 
-</div>
-
-<br />
-<br />
-
-<div style="display: flex; justify-content: space-between;">
-  <img src="https://github.com/singhJasvinder101/MyBlog/assets/131908922/9b23979a-d1b9-4c2d-b9ee-1642f2d3e190" alt="image">
-</div>
 
 <div align="center">
 
-## 💻 Tech Stack
+## 💻Tech Stack
 
 ![React](https://img.shields.io/badge/React-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![Redux](https://img.shields.io/badge/Redux-%23764ABC?style=for-the-badge&logo=redux&logoColor=white)
 ![CSS](https://img.shields.io/badge/CSS-%231572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](https://twitter.com/)
+![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+![MongoDB](https://img.shields.io/badge/Bootstrap-%23764ABC?style=for-the-badge&logo=mongodb&logoColor=white)
 </div>
 
 
@@ -106,6 +93,9 @@ npm install
 ```
 npm start
 ```
+
+
+
 ## 🤝Contributing
 
 If you'd like to contribute to MyBlog, please follow these steps:
@@ -119,7 +109,7 @@ If you'd like to contribute to MyBlog, please follow these steps:
 Note: Make sure you always create a updated PR.
 
 #### Contibuting Guidelines 
-  We believe in the power of collaboration. If you have ideas to improve College.ai, feel free to contribute! Check out our [Contribution Guidelines]https://github.com/SurajSanap/College.ai-main/blob/main/CONTRIBUTION.md to get started.
+  We believe in the power of collaboration. If you have ideas to improve College.ai, feel free to contribute! Check out our [CONTRIBUTING.md](https://github.com/singhJasvinder101/tech-stuffs/blob/main/CONTRIBUTING.md) to get started.
 
 ### 📄Documentation
 
@@ -143,7 +133,8 @@ Happy coding!
 <div align = "center">
  <h3>Thank you for contributing to our repository</h3>
 
-![Contributors]https://github.com/singhJasvinder101/MyBlog/graphs/contributors
+![Contributors](https://contrib.rocks/image?repo=singhJasvinder101/MyBlog)
+
 ### Show some ❤️ by starring this awesome repository!
 
 </div>
