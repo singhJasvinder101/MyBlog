@@ -70,7 +70,6 @@ const getAllBlogPosts = async (req, res, next) => {
 
 
         if (searchTerms.length === 1) {
-            // If only one search term is provided, searching in both post content and tags
             const searchTerm = searchTerms[0];
             query.$or = [
                 { title: { $regex: searchTerm, $options: "i" } },

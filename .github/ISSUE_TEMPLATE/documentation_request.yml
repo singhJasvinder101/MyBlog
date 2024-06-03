@@ -2,7 +2,7 @@ name: Documentation request
 description: Request changes or additions to documentation
 title: "[DOC] "
 labels: [documentation]
-assignees: ''
+assignees: []
 
 body:
   - type: markdown
@@ -16,6 +16,8 @@ body:
       label: Documentation Section
       description: Specify the section of the documentation that needs improvement.
       placeholder: Section name...
+    validations:
+      required: true
 
   - type: textarea
     id: current_state
@@ -23,6 +25,8 @@ body:
       label: Current State
       description: Describe the current state of the documentation.
       placeholder: Describe the current state...
+    validations:
+      required: true
 
   - type: textarea
     id: improvement_suggestion
@@ -30,6 +34,8 @@ body:
       label: Improvement Suggestion
       description: Describe the improvements or additions you suggest.
       placeholder: Suggest improvements...
+    validations:
+      required: true
 
   - type: textarea
     id: additional_context

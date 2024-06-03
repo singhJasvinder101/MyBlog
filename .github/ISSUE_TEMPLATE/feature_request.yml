@@ -2,7 +2,7 @@ name: Feature request
 description: Suggest a new feature or enhancement
 title: "[FEATURE] "
 labels: [enhancement]
-assignees: ''
+assignees: []
 
 body:
   - type: markdown
@@ -16,6 +16,8 @@ body:
       label: Feature Description
       description: A clear and concise description of the feature you are requesting.
       placeholder: Describe the feature...
+    validations:
+      required: true
 
   - type: textarea
     id: use_case
@@ -23,6 +25,8 @@ body:
       label: Use Case
       description: Describe the use case or problem this feature would address.
       placeholder: Explain the use case...
+    validations:
+      required: true
 
   - type: input
     id: potential_solution
@@ -30,6 +34,8 @@ body:
       label: Potential Solution
       description: Describe any solutions you've considered.
       placeholder: Describe potential solutions...
+    validations:
+      required: true
 
   - type: textarea
     id: additional_context

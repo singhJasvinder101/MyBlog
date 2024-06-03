@@ -24,7 +24,7 @@ const TextEditor = () => {
     const [imageUrl, setImageUrl] = useState("https://res.cloudinary.com/practicaldev/image/fetch/s--gIvrKWQi--/c_imagga_scale,f_auto,fl_progressive,h_500,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/5rbe6wwa5mcc2q4me43s.png");
     const [loaderState, setLoaderState] = useState(false);
     const [articleStatePublished, setArticleStatePublished] = useState(false);
-    const [generateWithAiLoading,setGenerateWithAiLoading]=useState(false);
+    const [generateWithAiLoading, setGenerateWithAiLoading] = useState(false);
     const textAreaRef = useRef(null);
     const [content, setContent] = useState('');
     const body_html = content;
@@ -155,16 +155,16 @@ const TextEditor = () => {
     };
 
 
-    const GenerateWithAi=async()=>{
+    const GenerateWithAi = async () => {
         try {
             const title = document.getElementById('title').value;
             setGenerateWithAiLoading(true)
-            const response=await axios.post(`${apiUrl}/api/blogs/ai`,{
-                prompt:title
+            const response = await axios.post(`${apiUrl}/api/blogs/ai`, {
+                prompt: title
             })
 
-            
-            if(response.status === 200){
+
+            if (response.status === 200) {
                 console.log(response.data)
                 setContent(response.data)
                 setGenerateWithAiLoading(false)
@@ -197,7 +197,7 @@ const TextEditor = () => {
                     </div>
 
                     <div className="cover-image-input text-left">
-                        <label style={{display:'inline-flex',alignItems:'center'}} title='add photo of 100:42 ratio' className="input-text" >
+                        <label style={{ display: 'inline-flex', alignItems: 'center' }} title='add photo of 100:42 ratio' className="input-text" >
                             Select your cover image {uploading ? <Spinner /> : null}
                         </label>
                         <input
@@ -210,7 +210,7 @@ const TextEditor = () => {
                         <button type="button" onClick={triggerFileInput} className="btn btn-secondary mx-2">Select Image</button>
                         <button type="button" onClick={handleUploadClick} className="btn btn-primary mx-2">Upload Image</button>
                     </div>
-                    
+
 
                     {uploadedImagePublicId ? (
                         <CloudinaryContext cloudName="dfdmyewjs" className='my-3'>
@@ -220,21 +220,21 @@ const TextEditor = () => {
                         <Image className='d-block my-3 posted-img' height='20%' width="100%" crop="scale" src='https://res.cloudinary.com/practicaldev/image/fetch/s--gIvrKWQi--/c_imagga_scale,f_auto,fl_progressive,h_500,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/5rbe6wwa5mcc2q4me43s.png' />
                     )}
                 </div>
-               
+
                 <div className="text-editor container">
-                <button type="button" onClick={GenerateWithAi} className="btn btn-primary my-2 ">{
-                    generateWithAiLoading ? (
-                        <Spinner
-                            className='mx-2'
-                            as="span"
-                            animation="border"
-                            size="sm"
-                            role="status"
-                            aria-hidden="true"
-                        />
-                    ) : "Generate with AI"
-                    
-}</button>
+                    {/* <button type="button" onClick={GenerateWithAi} className="btn btn-primary my-2 ">{
+                        generateWithAiLoading ? (
+                            <Spinner
+                                className='mx-2'
+                                as="span"
+                                animation="border"
+                                size="sm"
+                                role="status"
+                                aria-hidden="true"
+                            />
+                        ) : "Generate with AI"
+
+                    }</button> */}
                     <ReactQuill
                         className='code-content'
                         theme="snow"

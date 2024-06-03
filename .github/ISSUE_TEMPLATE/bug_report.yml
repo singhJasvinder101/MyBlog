@@ -2,7 +2,7 @@ name: Bug report
 description: Report a bug to help us improve
 title: "[BUG] "
 labels: [bug]
-assignees: ''
+assignees: []
 
 body:
   - type: markdown
@@ -16,6 +16,8 @@ body:
       label: Bug Description
       description: A clear and concise description of what the bug is.
       placeholder: Describe the bug...
+    validations:
+      required: true
 
   - type: textarea
     id: steps_to_reproduce
@@ -27,6 +29,8 @@ body:
         2. Click on '....'
         3. Scroll down to '....'
         4. See error
+    validations:
+      required: true
 
   - type: input
     id: expected_behavior
@@ -34,6 +38,8 @@ body:
       label: Expected Behavior
       description: Describe what you expected to happen.
       placeholder: Describe the expected behavior...
+    validations:
+      required: true
 
   - type: textarea
     id: screenshots

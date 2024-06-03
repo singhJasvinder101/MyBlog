@@ -21,8 +21,6 @@ const verifyIsLoggedIn = (req, res, next) => {
 
 const verifyIsAdmin = async(req,res,next)=>{
     try{
-        // next()
-        // return  // to ignore the down code  todo: remove later
         if(req.user && req.user.isAdmin) {
             next()
         } else {

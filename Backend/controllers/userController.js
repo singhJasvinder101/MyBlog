@@ -7,40 +7,54 @@ const Blog = require('../models/blogModel')
 const registerUser = async (req, res, next) => {
     try {
         const { name, lastname, email, password } = req.body
-        if (!name && !lastname && !email && !password) {
-            return res.status(400).send("All inputs are required")
+        if (!name || !lastname || !email || !password) {
+            return res.status(400).send("All inputs are required");
         }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            return res.status(400).send('Invalid Email');
+        }
+
+        if (name.length < 5) {
+            return res.status(400).send('Invalid Name');
+        }
+
+        const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()]).{8,}$/;
+        if (!passwordRegex.test(password)) {
+            return res.status(400).send('Invalid Password');
+        }
+
         const existingUser = await User.findOne({ email });
         if (existingUser) {
             return res.status(400).send("user already exists")
-        } else {
-            const hashedPassword = hashingPassword(req.body.password)
-            const newUser = await User.create({
-                name: req.body.name,
-                lastname: req.body.lastname,
-                email: req.body.email.toLowerCase(),
-                password: hashedPassword,
-                isAdmin: req.body.isAdmin
-            })
-            return res.cookie("auth_token", generatingAuthToken(
-                newUser._id, newUser.name, newUser.lastname, newUser.email, newUser.password, newUser.isAdmin
-            ), {
-                httpOnly: true,
-                secure: process.env.NODE_ENV === "production",
-                sameSite: process.env.NODE_ENV === "production" ? "none" : "strict"
-            })
-                .status(201).json({
-                    success: "user created",
-                    userCreated: {
-                        _id: newUser._id,
-                        name: newUser.name,
-                        lastname: newUser.lastname,
-                        email: newUser.email,
-                        password: newUser.password,
-                        isAdmin: newUser.isAdmin
-                    }
-                })
         }
+        const hashedPassword = hashingPassword(req.body.password)
+        const newUser = await User.create({
+            name: req.body.name,
+            lastname: req.body.lastname,
+            email: req.body.email.toLowerCase(),
+            password: hashedPassword,
+            isAdmin: req.body.isAdmin
+        })
+        return res.cookie("auth_token", generatingAuthToken(
+            newUser._id, newUser.name, newUser.lastname, newUser.email, newUser.password, newUser.isAdmin
+        ), {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: process.env.NODE_ENV === "production" ? "none" : "strict"
+        })
+            .status(201).json({
+                success: "user created",
+                userCreated: {
+                    _id: newUser._id,
+                    name: newUser.name,
+                    lastname: newUser.lastname,
+                    email: newUser.email,
+                    password: newUser.password,
+                    isAdmin: newUser.isAdmin
+                }
+            })
     } catch (error) {
         next(error)
     }
@@ -50,9 +64,21 @@ const registerUser = async (req, res, next) => {
 const loginUser = async (req, res, next) => {
     try {
         const { email, password, donotlogout } = req.body
-        if (!(email && password)) {
-            return res.status(400).send("All input fields are required")
+        if (!email || !password) {
+            return res.status(400).send("All input fields are required");
         }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            return res.status(400).send('Invalid Email');
+        }
+
+        const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()]).{8,}$/;
+        if (!passwordRegex.test(password)) {
+            return res.status(400).send('Invalid Password');
+        }
+
+
         const userExists = await User.findOne({ email })
         if (userExists && comparePassword(password, userExists.password)) {
             const cookieParams = {
@@ -78,7 +104,6 @@ const loginUser = async (req, res, next) => {
                     }
                 })
         } else {
-            console.log("hello")
             return res.status(401).send("wrong credentials")
         }
     } catch (error) {
