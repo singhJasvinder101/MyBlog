@@ -13,12 +13,13 @@ import ProtectedRoutesComponent from './components/ProtectedRoutesComponent'
 import SpeedDialComponent from './components/SpeedDialComponente'
 import CreatePostPage from './pages/CreatePostPage'
 import { createContext, useState } from 'react'
+import {  useState } from 'react'
+import NotFoundPage from './pages/404Page'
 
 export const ThemeContext = createContext(null);
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
-  // console.log(isLoading)
 
   const [theme,setTheme] = useState("dark");
 
@@ -38,8 +39,10 @@ function App() {
       <div className='app' id={theme}>
         <SpeedDialComponent />
         <Router>
+     
           <HeaderComponent />
           <Routes>
+          <Route path="*" element={<NotFoundPage />} />
             <Route exact path="/" element={<HomePage setIsLoading={setIsLoading} />} />
             <Route path="/login" element={<LoginPage setIsLoading={setIsLoading} />} />
             <Route path="/register" element={<RegisterPage setIsLoading={setIsLoading} />} />

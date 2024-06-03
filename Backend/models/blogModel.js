@@ -22,14 +22,14 @@ const blogSchema = new Schema({
     },
     postLikes: {
         type: Number,
-        default: 0, // default value 0 to avoid errors while increment or decrement
+        default: 0, 
     },
     likedBy: [{
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'User',
     }],
     tags: {
-        type: [String], // Tags represented as an array of strings
+        type: [String], 
         required: true,
     },
     reviewsNumber: {
@@ -47,7 +47,6 @@ const blogSchema = new Schema({
     timestamps: true,
 });
 
-// blogSchema.index({ tags: 'text', title: 'text', description: 'text' }, { name: 'tagsIndex' });
 blogSchema.index({ title: 'text', description: 'text', category: 'text' }, { name: 'textIndex' });
 
 

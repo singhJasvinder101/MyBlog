@@ -16,7 +16,6 @@ const BlogSpecificPage = () => {
     axios.defaults.withCredentials = true;
 
     const searchTagData = async (tag, currentPage) => {
-        // console.log(tag)
         const { data } = await axios.get(`${apiUrl}/api/blogs?q=${tag}&pageNum=${currentPage}`, {
             withCredentials: true,
         })

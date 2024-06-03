@@ -2,6 +2,8 @@ const Blog = require("../models/blogModel");
 const User = require("../models/userModel");
 const imageValidate = require("../utils/imageValidate")
 const axios = require('axios');
+const { GoogleGenerativeAI } = require('@google/generative-ai');
+require('dotenv').config()
 const adminCreatePost = async (req, res, next) => {
     try {
         const post = new Blog()
@@ -279,6 +281,51 @@ const getfollowers = async (req, res, next) => {
 }
 
 
+
+
+
+const googleAI = new GoogleGenerativeAI(process.env.GEMINI_API);
+const geminiConfig = {
+    temperature: 0.9,
+    topP: 1,
+    topK: 1,
+    maxOutputTokens: 4096,
+  };
+
+const geminiModel = googleAI.getGenerativeModel({
+    model: 'gemini-pro',
+    geminiConfig,
+  });
+
+
+  const WriteWithAI = async (req, res) => {
+    try {
+        const prompt = req.body.prompt;
+        const detailedPrompt = `
+            You are a creative writer. Your task is to write a compelling and engaging description based on the given title.
+            Title: ${prompt}
+            
+            Please include the following elements in your description:
+            1. A captivating opening sentence that grabs the reader's attention.
+            2. A brief summary of the main idea or theme.
+            3. Key highlights or interesting points that make the title unique.
+            4. An intriguing closing sentence that leaves the reader wanting more.
+            
+            Write the description of 1000 words in a professional yet engaging tone.
+        `;
+
+        const result = await geminiModel.generateContent(detailedPrompt);
+        const response = result.response;
+
+        res.send(response.text());
+    } catch (error) {
+        console.log('response error', error);
+        res.send('error');
+    }
+};
+
+
+
 module.exports = {
     adminCreatePost,
     getPostByID,
@@ -288,5 +335,6 @@ module.exports = {
     adminUpload,
     userCreatePost,
     followUser,
-    getfollowers
+    getfollowers,
+    WriteWithAI
 }

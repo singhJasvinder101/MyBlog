@@ -24,6 +24,7 @@ const TextEditor = () => {
     const [imageUrl, setImageUrl] = useState("https://res.cloudinary.com/practicaldev/image/fetch/s--gIvrKWQi--/c_imagga_scale,f_auto,fl_progressive,h_500,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/5rbe6wwa5mcc2q4me43s.png");
     const [loaderState, setLoaderState] = useState(false);
     const [articleStatePublished, setArticleStatePublished] = useState(false);
+    const [generateWithAiLoading,setGenerateWithAiLoading]=useState(false);
     const textAreaRef = useRef(null);
     const [content, setContent] = useState('');
     const body_html = content;
@@ -153,12 +154,33 @@ const TextEditor = () => {
             .catch(err => console.log(err));
     };
 
+
+    const GenerateWithAi=async()=>{
+        try {
+            const title = document.getElementById('title').value;
+            setGenerateWithAiLoading(true)
+            const response=await axios.post(`${apiUrl}/api/blogs/ai`,{
+                prompt:title
+            })
+
+            
+            if(response.status === 200){
+                console.log(response.data)
+                setContent(response.data)
+                setGenerateWithAiLoading(false)
+            }
+        } catch (error) {
+            console.log(error)
+            setGenerateWithAiLoading(false)
+        }
+    }
+
     return (
         <div className='create-post-page'>
             <form onSubmit={handleSubmit}>
                 <div className="post-container pt-4 container text-center">
                     <h1 className='my-5 d-block'>Add Your Posts 🙌🏼</h1>
-                    <input name='title' type="text" className='post-title-input text-center' placeholder='Post title...' required />
+                    <input name='title' type="text" id='title' className='post-title-input text-center' placeholder='Post title...' required />
                     <input
                         id='tags'
                         className='tags-input my-4 px-4 py-2'
@@ -188,6 +210,7 @@ const TextEditor = () => {
                         <button type="button" onClick={triggerFileInput} className="btn btn-secondary mx-2">Select Image</button>
                         <button type="button" onClick={handleUploadClick} className="btn btn-primary mx-2">Upload Image</button>
                     </div>
+                    
 
                     {uploadedImagePublicId ? (
                         <CloudinaryContext cloudName="dfdmyewjs" className='my-3'>
@@ -197,13 +220,28 @@ const TextEditor = () => {
                         <Image className='d-block my-3 posted-img' height='20%' width="100%" crop="scale" src='https://res.cloudinary.com/practicaldev/image/fetch/s--gIvrKWQi--/c_imagga_scale,f_auto,fl_progressive,h_500,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/5rbe6wwa5mcc2q4me43s.png' />
                     )}
                 </div>
+               
                 <div className="text-editor container">
+                <button type="button" onClick={GenerateWithAi} className="btn btn-primary my-2 ">{
+                    generateWithAiLoading ? (
+                        <Spinner
+                            className='mx-2'
+                            as="span"
+                            animation="border"
+                            size="sm"
+                            role="status"
+                            aria-hidden="true"
+                        />
+                    ) : "Generate with AI"
+                    
+}</button>
                     <ReactQuill
                         className='code-content'
                         theme="snow"
                         modules={modules}
                         formats={formats}
                         placeholder="write your content ...."
+                        value={content}
                         onChange={handleProcedureContentChange}
                         style={{ height: "220px" }}
                     />

@@ -41,7 +41,6 @@ const LinksPagination = ({ postId }) => {
             const { data } = await axios.get(`${apiUrl}/api/blogs/get-one/${postId}`, {
                 withCredentials: true,
             });
-            // console.log(data)
             return data;
         } catch (error) {
             console.log("Error fetching post details:", error);
@@ -68,9 +67,6 @@ const LinksPagination = ({ postId }) => {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
-
-    // console.log(postDetails)
-    // console.log(isLiked)
 
     const handleLike = async () => {
         const { data } = await axios.post(`${apiUrl}/api/users/like/${postId}`, {}, {

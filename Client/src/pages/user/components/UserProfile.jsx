@@ -28,22 +28,18 @@ const UserProfile = ({ userDetails, postId }) => {
             return null;
         }
     }
-    // console.log(userDetails.author)
 
     useEffect(() => {
         fetchOwnerDetails().then(data => {
             setTimeout(() => {
                 setPostOwnerDetails(data.user)
                 setCurrentFollowers(data.user.followedBy.length)
-                // console.log(data)
             }, 100);
         }).catch(err => {
             console.log(err)
         })
     }, [isFollowed, postId, author]);
 
-    // console.log(postOwnerDetails)
-    // console.log(currentFollowers)
 
     const handleFollowUser = async (username) => {
         setFollowUserResponseState({ loading: true })

@@ -32,7 +32,6 @@ const FooterLinksComponent = () => {
                                     </span>
                                 )
                                 }
-                                {/* {console.log(userInfo)} */}
                                 {postDetails.postLikes}
                             </div>
                             <div className="icon d-flex flex-column align-items-center py-2">
