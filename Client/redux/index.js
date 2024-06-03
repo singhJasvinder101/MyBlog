@@ -6,6 +6,5 @@ const store = configureStore({
         userLoggedIn: loginRegisterSlice
     }
 })
-// console.log(store)
 
 export default store

@@ -9,7 +9,6 @@ const reviewSchema = new Schema({
     commentLikes: {
         type: Number,
         default: 0, 
-        // required: true
     },
     likedBy: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
     user: {

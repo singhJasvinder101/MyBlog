@@ -46,7 +46,6 @@ const registerUser = async (req, res, next) => {
     }
 }
 
-// now login also done just authentication and authorization of private pages left middleware used
 
 const loginUser = async (req, res, next) => {
     try {
@@ -64,7 +63,6 @@ const loginUser = async (req, res, next) => {
             if (donotlogout) {
                 cookieParams = { ...cookieParams, maxAge: 1000 * 60 * 60 * 24 * 7 }
             }
-            // console.log("hello")
             return res.cookie('auth_token', generatingAuthToken(
                 userExists._id, userExists.name, userExists.lastname, userExists.email, userExists.password, userExists.isAdmin
             ), cookieParams)
@@ -126,15 +124,12 @@ const getUserProfile = async (req, res, next) => {
 const writeReview = async (req, res, next) => {
     try {
         const { comment } = req.body
-        // validate request
         if (!(comment)) {
             return res.status(400).send("All inputs are required")
         }
-        // creating review id for saving blogs posts collection
         const ObjectId = require("mongodb").ObjectId;
         let reviewId = new ObjectId();
 
-        // for creating review document
         await Review.create([
             {
                 _id: reviewId,
@@ -151,7 +146,6 @@ const writeReview = async (req, res, next) => {
             return res.status(400).send("already reviewed")
         }
 
-        // for just saving the reviewId in post
         blogPost.reviews.push(reviewId)
         blogPost.reviewsNumber = blogPost.reviews.length
 
@@ -160,7 +154,6 @@ const writeReview = async (req, res, next) => {
             success: true,
             message: "review created"
         })
-        // res.send(blogPost)
 
     } catch (error) {
         next(error)
@@ -196,8 +189,7 @@ const likePost = async (req, res, next) => {
 };
 
 
-// i need to modify the review model bcoz i need to track if the user already liked 
-// comment or not 
+
 const likeComment = async (req, res, next) => {
     try {
         if (!req.user._id) {

@@ -118,7 +118,7 @@ const LoginPage = () => {
                                 <Form.Check
                                     name='donotlogout'
                                     type='checkbox'
-                                    label='Do not logout' />
+                                    label='Remember Me' />
                             </Form.Group>
 
 

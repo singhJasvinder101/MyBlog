@@ -4,10 +4,6 @@ import React, { useState, useEffect } from 'react'
 const PaginationComponent = ({ currentPage, paginationLinksNumber, onPageChange }) => {
   const pageSize = 5
 
-  // so use loading and set loading as prop or state
-  // until the products load if only pagination is shown then its not visually appealing so 
-  // it must also removed when there is loading 
-
   const handlePreviousClick = async () => {
     onPageChange(currentPage - 1)
   }

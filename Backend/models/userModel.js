@@ -19,15 +19,12 @@ const userSchema = new Schema({
     },
     about: {
         type: String,
-        // required: true,
     },
     location: {
         type: String,
-        // required: true,
     },
     work: {
         type: String,
-        // required: true,
     },
     followers: {
         type: Number,
