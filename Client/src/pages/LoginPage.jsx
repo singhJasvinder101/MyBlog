@@ -86,7 +86,7 @@ const LoginPage = () => {
                     <Col md={6}>
                         <h2 className="text-center pt-5">Login</h2>
                         <Form noValidate validated={validated} onSubmit={handleSubmit}>
-                            <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Group className="mb-3 auth-input" controlId="formBasicEmail">
                                 <Form.Label>Email Address</Form.Label>
                                 <InputGroup hasValidation>
                                     <Form.Control
@@ -99,7 +99,7 @@ const LoginPage = () => {
                                 </InputGroup>
                             </Form.Group>
 
-                            <Form.Group className="mb-3 relative" controlId="formBasicPassword">
+                            <Form.Group className="mb-3 relative auth-input" controlId="formBasicPassword">
                                 <Form.Label>Password</Form.Label>
                                 <div className="position-relative">
 

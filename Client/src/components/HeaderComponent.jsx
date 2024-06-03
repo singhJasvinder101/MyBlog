@@ -209,7 +209,7 @@ const HeaderComponent = () => {
             (
               <div className="flex">
               <div className="login-signup mx-4">
-                <Link to="/login" className="btn btn-primary mx-2 px-4 py-2 rounded-pill">
+                <Link to="/login" className="btn btn-primary mx-2 px-4 py-2 rounded-pill login">
                   Login
                 </Link>
                 <Link to="/register" className="text-light signup">
@@ -220,8 +220,8 @@ const HeaderComponent = () => {
         style={{ backgroundColor: theme === "dark" ? "#000000" : "" }} 
         onChange={handleThemeChange} 
         checked={theme === "dark"} 
-        checkedChildren="Dark Mode" 
-        unCheckedChildren="Light Mode" 
+        checkedChildren="Dark" 
+        unCheckedChildren="Light" 
       /></div>
               </div>
             )

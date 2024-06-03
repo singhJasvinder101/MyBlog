@@ -16,7 +16,13 @@ body {
 }
 
 #light .navbar {
-  background-color: white !important;
+  background-color: orange !important;
+}
+
+#light .login {
+  background-color: rgb(255, 149, 0);
+  border: 2px solid black;
+  color: black;
 }
 
 #light .nav-link {
@@ -24,8 +30,12 @@ body {
 }
 
 #light .footer {
-  background-color: white !important;
+  background-color: orange !important;
   color: black !important;
+}
+
+#light .input1 {
+  background-color: rgb(255, 149, 0);
 }
 
 #light .text-light.signup {
@@ -34,6 +44,26 @@ body {
 
 #light .form-label {
   color: rgb(215, 215, 215) !important;
+}
+
+#light .form-control {
+  background: transparent;
+}
+
+#light .navbar-brand {
+  color: rgb(221, 70, 0) !important;
+}
+
+#light .blog-bg {
+  background: rgb(253, 180, 71);
+}
+
+#light .blog-heading {
+  color: black;
+}
+
+#light .blog-page::before {
+  background: rgb(246, 192, 112);
 }
 
 
@@ -298,6 +328,10 @@ iframe {
   background-size: cover;
   object-fit: cover;
   min-height: calc(100vh - 4rem);
+}
+
+#light .login-bg, #light .register-bg {
+  filter: invert(100%);
 }
 
 html {
@@ -578,7 +612,7 @@ body {
 }
 
 .blog-bg {
-  background-image: url('/images/blurry-gradient-haikei.svg') !important;
+  background-image: url('/images/blurry-gradient-haikei.svg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
