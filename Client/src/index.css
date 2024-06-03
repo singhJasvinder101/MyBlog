@@ -293,7 +293,6 @@ body {
   position: absolute;
   bottom: 0;
   left: 0;
-  top: 99.2%;
   width: 100%;
   /* flex-wrap: wrap; */
   background-color: #0e3458;
@@ -538,6 +537,20 @@ body {
   transition: border-bottom 0.2s ease-in-out;
   -webkit-tap-highlight-color: transparent;
   font-size: 1rem;
+}
+
+.highlight {
+  background-color: black;
+  color: white;
+  padding: 0 0.5rem;
+  margin: 1rem 1rem;
+  overflow: auto;
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none;  /* For Internet Explorer and Edge */
+}
+
+.highlight::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
 }
 
 .post-content a:hover {

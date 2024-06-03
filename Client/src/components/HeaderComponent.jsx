@@ -41,7 +41,7 @@ const HeaderComponent = () => {
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
         <button
-          className="navbar-toggler"
+          className="navbar-toggler mx-4"
           type="button"
           data-toggle="collapse"
           data-target="#navbarSupportedContent"
@@ -102,28 +102,6 @@ const HeaderComponent = () => {
 
         <div className="right-header nav-top d-flex align-items-center justify-content-center">
 
-          <div className="search-container">
-            <input
-              ref={searchInputRef}
-              placeholder="Search by tag e.g. ai"
-              required=""
-              className="input1"
-              name="text"
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              onKeyPress={handleKeyPress}
-              autoComplete="off"
-            />
-            <div className="icon">
-              <svg viewBox="0 0 512 512" className="ionicon" xmlns="http://www.w3.org/2000/svg">
-                <title>Search</title>
-                <path strokeWidth="32" strokeMiterlimit="10" stroke="white" fill="none" d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z"></path>
-                <path d="M338.29 338.29L448 448" strokeWidth="32" strokeMiterlimit="10" strokeLinecap="round" stroke="white" fill="none"></path>
-              </svg>
-            </div>
-          </div>
-
 
           {userInfo.isAdmin ? (
             <li className="nav-item">
@@ -140,7 +118,29 @@ const HeaderComponent = () => {
             </li>
           ) : userInfo.name && !userInfo.isAdmin ? (
             <div className="d-flex align-items-center">
-              {/* best thing */}
+
+                <div className="search-container">
+                  <input
+                    ref={searchInputRef}
+                    placeholder="Search by tag e.g. ai"
+                    required=""
+                    className="input1"
+                    name="text"
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onKeyPress={handleKeyPress}
+                    autoComplete="off"
+                  />
+                  <div className="icon">
+                    <svg viewBox="0 0 512 512" className="ionicon" xmlns="http://www.w3.org/2000/svg">
+                      <title>Search</title>
+                      <path strokeWidth="32" strokeMiterlimit="10" stroke="white" fill="none" d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z"></path>
+                      <path d="M338.29 338.29L448 448" strokeWidth="32" strokeMiterlimit="10" strokeLinecap="round" stroke="white" fill="none"></path>
+                    </svg>
+                  </div>
+                </div>
+
               <div className="dropdown">
                 {/* <a
                   className="nav-link ghanti dropdown-toggle position-relative mr-1"
@@ -165,7 +165,7 @@ const HeaderComponent = () => {
               </div>
               <div className="dropdown">
                 <a
-                  className="nav-link dropdown-toggle d-flex align-items-center"
+                  className="nav-link px-3 dropdown-toggle d-flex align-items-center"
                   href="#"
                   id="navbarDropdownMenuAvatar"
                   role="button"
