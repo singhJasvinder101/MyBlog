@@ -11,7 +11,7 @@ import {
     LinkedinShareButton,
     FacebookIcon,
     WhatsappIcon,
-    TwitterIcon,
+    XIcon,
     LinkedinIcon,
 } from "react-share";
 import { useQuery } from "@tanstack/react-query";
@@ -75,7 +75,7 @@ function BestPostHeader({ setIsLoading }) {
                                         url={shareUrl}
                                         title="hey!! let's join this tech blog for daily tech stuffs"
                                     >
-                                        <TwitterIcon size={35} round={true} />
+                                        <XIcon size={35} round={true} />
                                     </TwitterShareButton>
                                 </div>
                             </div>
