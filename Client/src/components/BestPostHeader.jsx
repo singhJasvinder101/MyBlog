@@ -10,10 +10,10 @@ import {
     TwitterShareButton,
     LinkedinShareButton,
     FacebookIcon,
-    WhatsappIcon,
-    XIcon,
+    WhatsappIcon,    
     LinkedinIcon,
 } from "react-share";
+import { FaXTwitter } from 'react-icons/fa6';
 import { useQuery } from "@tanstack/react-query";
 function BestPostHeader({ setIsLoading }) {
     const apiUrl = import.meta.env.VITE_API_URI;
@@ -75,7 +75,7 @@ function BestPostHeader({ setIsLoading }) {
                                         url={shareUrl}
                                         title="hey!! let's join this tech blog for daily tech stuffs"
                                     >
-                                        <XIcon size={35} round={true} />
+                                        <FaXTwitter size={35} round={true} />
                                     </TwitterShareButton>
                                 </div>
                             </div>
