@@ -27,7 +27,7 @@ const FooterComponent = () => {
         <div style={{
             height: '5rem',
         }} className='footer w-100 text-light d-flex justify-content-center align-items-center'>
-            Copywrite @ 2024. All rights reserved
+            Copyright @ 2024. All rights reserved
             <span
                 className='pb-1'
                 style={{
