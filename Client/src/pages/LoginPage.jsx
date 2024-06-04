@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { setRedxUserState } from '../../redux/slices/loginRegisterSlice';
 import {FaEye , FaEyeSlash} from 'react-icons/fa6'
 import axios from "axios"
+import SignInButton from '../components/Signinwithgoogle';
+import { auth } from '../components/firebase';
 axios.defaults.withCredentials = true;
 
 const userLoginApiRequest = async (email, password, donotlogout) => {
@@ -113,6 +115,8 @@ const LoginPage = () => {
                                 <Form.Control.Feedback  type="invalid">Please enter a valid password</Form.Control.Feedback>
                             </div>
                             </Form.Group>
+                            <h6 className="text-center">Or</h6>
+                            <SignInButton/>
 
                             <Form.Group className="mb-3 mt-3" controlId="formBasicCheckbox">
                                 <Form.Check

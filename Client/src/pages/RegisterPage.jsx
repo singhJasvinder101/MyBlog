@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useDispatch, useSelector } from "react-redux"
 import { setRedxUserState } from '../../redux/slices/loginRegisterSlice';
 import {FaEye , FaEyeSlash} from 'react-icons/fa6'
+import RegisterButton from '../components/Registerwithgoogle';
 
 const RegisterPage = () => {
     const apiUrl = import.meta.env.VITE_API_URI;
@@ -179,12 +180,16 @@ const RegisterPage = () => {
                                 <Form.Control.Feedback type="invalid">{passMessage}</Form.Control.Feedback>
                             </div>
                             </Form.Group>
+                            
 
                             <Row className="pb-2">
                                 <Col>
                                     Do you already have an account? <Link to="/login">Login</Link>
                                 </Col>
                             </Row>
+
+                            <h6 className="text-center">Or</h6>
+                            <RegisterButton/>
 
                             <Button type="submit" className=' px-4 py-2 rounded-pill'>
                                 {registerUserResponseState &&

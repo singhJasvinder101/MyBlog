@@ -1,0 +1,25 @@
+.custom-button {
+    display: flex;
+    border-radius: 12px;
+    padding: 12px;
+  
+    border: 1px solid black;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.custom-button:active {
+    transform: scale(0.98);
+    transition-duration: 0.075s;
+}
+
+.custom-button:hover {
+    transform: scale(1.01);
+}
+
+.button-icon {
+    height: 24px;
+    width: 24px;
+}
