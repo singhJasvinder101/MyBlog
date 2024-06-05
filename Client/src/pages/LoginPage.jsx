@@ -4,16 +4,18 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux"
 import { setRedxUserState } from '../../redux/slices/loginRegisterSlice';
-import {FaEye , FaEyeSlash} from 'react-icons/fa6'
+import { FaEye, FaEyeSlash } from 'react-icons/fa6'
 import axios from "axios"
+import SignInButton from '../components/Signinwithgoogle';
+import { auth } from '../components/firebase';
 axios.defaults.withCredentials = true;
 
 const userLoginApiRequest = async (email, password, donotlogout) => {
     const apiUrl = import.meta.env.VITE_API_URI;
     const { data } = await axios.post(`${apiUrl}/api/users/login`,
         { email, password, donotlogout }, {
-            withCredentials: true,
-        })
+        withCredentials: true,
+    })
     if (data.userLoggedIn.donotlogout) {
         localStorage.setItem("userInfo", JSON.stringify(data.userLoggedIn))
     } else {
@@ -24,9 +26,9 @@ const userLoginApiRequest = async (email, password, donotlogout) => {
 
 const LoginPage = () => {
     const [validated, setValidated] = useState(false);
-    const [showPassword,setShowPassword]=useState(false)
-    const [passwordValidated,setPasswordValidated]=useState(false)
-    const [emailValidated,setEmailValidated]=useState(true)
+    const [showPassword, setShowPassword] = useState(false)
+    const [passwordValidated, setPasswordValidated] = useState(false)
+    const [emailValidated, setEmailValidated] = useState(true)
 
     const [loginUserResponseState, setLoginUserResponseState] = useState({
         success: "",
@@ -40,23 +42,23 @@ const LoginPage = () => {
         e.preventDefault();
         e.stopPropagation();
         const form = e.currentTarget.elements;
-        
-        const email = form.email.value  
+
+        const email = form.email.value
         const password = form.password.value
-        const donotlogout = form.donotlogout.checked        
+        const donotlogout = form.donotlogout.checked
         // Check for password conditions
-        if (!/[A-Z]/.test(password) || 
-        !/[0-9]/.test(password) || 
-        password.length < 8 || 
-        !/[!@#$%^&*()]/.test(password)) {
+        if (!/[A-Z]/.test(password) ||
+            !/[0-9]/.test(password) ||
+            password.length < 8 ||
+            !/[!@#$%^&*()]/.test(password)) {
             setPasswordValidated(true)
             setValidated(true)
             return
-        }  else {
+        } else {
             setPasswordValidated(false)
             setValidated(true)
         }
-        if (e.currentTarget.checkValidity() === true && email && password ) {
+        if (e.currentTarget.checkValidity() === true && email && password) {
             setLoginUserResponseState({ loading: true })
             userLoginApiRequest(email, password, donotlogout)
                 .then(res => {
@@ -75,8 +77,8 @@ const LoginPage = () => {
                     })
                     console.log(err)
                 })
-                setValidated(true);
-            }
+            setValidated(true);
+        }
     }
 
     return (
@@ -84,7 +86,7 @@ const LoginPage = () => {
             <Container className="pb-4">
                 <Row className="justify-content-center">
                     <Col md={6}>
-                        <h2 className="text-center pt-5">Login</h2>
+                        <h2 className="Pacifico text-center pt-5 blue">Login</h2>
                         <Form noValidate validated={validated} onSubmit={handleSubmit}>
                             <Form.Group className="mb-3" controlId="formBasicEmail">
                                 <Form.Label>Email Address</Form.Label>
@@ -93,8 +95,8 @@ const LoginPage = () => {
                                         name="email"
                                         type="email"
                                         placeholder="Email Address"
-                                        required 
-                                       />
+                                        required
+                                    />
                                     <Form.Control.Feedback type="invalid">Please enter a valid email address</Form.Control.Feedback>
                                 </InputGroup>
                             </Form.Group>
@@ -103,32 +105,36 @@ const LoginPage = () => {
                                 <Form.Label>Password</Form.Label>
                                 <div className="position-relative">
 
-                                <Form.Control
-                                    name="password"
-                                    type={showPassword?"text":"password"}
-                                    placeholder="password"
-                                    isInvalid={passwordValidated}
-                                    required />
-                                    {showPassword?<FaEye className='eye' onClick={()=>setShowPassword(false)}/>:<FaEyeSlash  className='eye' onClick={()=>setShowPassword(true)}/>}
-                                <Form.Control.Feedback  type="invalid">Please enter a valid password</Form.Control.Feedback>
-                            </div>
+                                    <Form.Control
+                                        name="password"
+                                        type={showPassword ? "text" : "password"}
+                                        placeholder="password"
+                                        isInvalid={passwordValidated}
+                                        required />
+                                    {showPassword ? <FaEye className='eye' onClick={() => setShowPassword(false)} /> : <FaEyeSlash className='eye' onClick={() => setShowPassword(true)} />}
+                                    <Form.Control.Feedback type="invalid">Please enter a valid password</Form.Control.Feedback>
+                                </div>
                             </Form.Group>
-
                             <Form.Group className="mb-3 mt-3" controlId="formBasicCheckbox">
                                 <Form.Check
                                     name='donotlogout'
                                     type='checkbox'
                                     label='Remember Me' />
                             </Form.Group>
+                            
+                            <h6 className="text-center">Or</h6>
+
+                            <SignInButton />
+
 
 
                             <Row className="pb-2">
                                 <Col>
-                                    Don't you have an account? <Link to="/register">Register</Link> {/* Corrected typo */}
+                                    Don't you have an account? <Link className='' to="/register">Register</Link> 
                                 </Col>
                             </Row>
 
-                            <Button type="submit" className='mt-2 px-4 py-2 rounded-pill'>
+                            <Button type="submit" className='custom-button mt-2 px-4 py-2 rounded-pill'>
                                 {loginUserResponseState && loginUserResponseState.loading === true ? (
                                     <Spinner
                                         className='mx-2'
