@@ -8,15 +8,11 @@ function Profile() {
   const fetchUserData = async () => {
     auth.onAuthStateChanged(async (user) => {
       console.log(user);
-
-      const docRef = doc(db, "Users", user.uid);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        setUserDetails(docSnap.data());
-        console.log(docSnap.data());
-      } else {
-        console.log("User is not logged in");
-      }
+      setUserDetails({
+        ...user,
+        name: user.displayName.split(' ')[0],
+        lastname: user.displayName.split(' ')[1]
+      })
     });
   };
   useEffect(() => {
@@ -43,10 +39,10 @@ function Profile() {
               style={{ borderRadius: "50%" }}
             />
           </div>
-          <h3>Welcome {userDetails.firstName}</h3>
+          <h3>Welcome {userDetails.name}</h3>
           <div>
             <p>Email: {userDetails.email}</p>
-            <p>First Name: {userDetails.firstName}</p>
+            <p>First Name: {userDetails.name}</p>
             {/* <p>Last Name: {userDetails.lastName}</p> */}
           </div>
           <button className="btn btn-primary" onClick={handleLogout}>

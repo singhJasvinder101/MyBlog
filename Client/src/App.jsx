@@ -15,6 +15,7 @@ import CreatePostPage from './pages/CreatePostPage'
 import {  useState } from 'react'
 import NotFoundPage from './pages/404Page'
 import Profile from './pages/Profile'
+import { ToastContainer } from 'react-bootstrap'
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
       )}
       <>
         <SpeedDialComponent />
+        <ToastContainer />
         <Router>
      
           <HeaderComponent />

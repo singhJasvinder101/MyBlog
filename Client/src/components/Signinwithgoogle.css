@@ -2,12 +2,13 @@
     display: flex;
     border-radius: 12px;
     padding: 12px;
-  
+    width: 100%;
     border: 1px solid black;
     align-items: center;
     justify-content: center;
     gap: 8px;
     transition: transform 0.2s ease-in-out;
+    margin-bottom: 1rem;
 }
 
 .custom-button:active {
