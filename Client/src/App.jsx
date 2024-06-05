@@ -11,8 +11,6 @@ import BlogSpecificPage from './pages/BlogSpecificPage';
 import ProtectedRoutesComponent from './components/ProtectedRoutesComponent';
 import CreatePostPage from './pages/CreatePostPage';
 import NotFoundPage from './pages/404Page';
-import ForgotPassword from './pages/forgot-password';
-import ResetPassword from './pages/reset-password';
 import { useState } from 'react';
 
 function App() {
@@ -36,8 +34,6 @@ function App() {
             <Route exact path="/" element={<HomePage setIsLoading={setIsLoading} />} />
             <Route path="/login" element={<LoginPage setIsLoading={setIsLoading} />} />
             <Route path="/register" element={<RegisterPage setIsLoading={setIsLoading} />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/reset-password-form/:id" element={<ResetPassword />} />
             <Route element={<ProtectedRoutesComponent />}>
               <Route path="/post-details/:postId" element={<BlogDescriptionPage setIsLoading={setIsLoading} />} />
               <Route path="/blogs/:tag" element={<BlogSpecificPage setIsLoading={setIsLoading} />} />

@@ -2,7 +2,6 @@ const express = require("express");
 const app = express.Router();
 const blogRoutes = require('./blogRoutes');
 const userRoutes = require('./userRoutes');
-const passwordRoutes = require('./password');
 const jwt = require('jsonwebtoken');
 
 app.get('/', (req, res) => {
@@ -28,6 +27,5 @@ app.get("/get-token", (req, res) => {
 
 app.use('/blogs', blogRoutes);
 app.use('/users', userRoutes);
-app.use('/password', passwordRoutes);
 
 module.exports = app;
