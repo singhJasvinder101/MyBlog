@@ -126,8 +126,11 @@ const LoginPage = () => {
                                 <Col>
                                     Don't you have an account? <Link to="/register">Register</Link> {/* Corrected typo */}
                                 </Col>
+                                <Link to="/forgot-password">
+                                        <b>Forgot Password</b>
+                                    </Link>
                             </Row>
-
+                         
                             <Button type="submit" className='mt-2 px-4 py-2 rounded-pill'>
                                 {loginUserResponseState && loginUserResponseState.loading === true ? (
                                     <Spinner

@@ -1,40 +1,42 @@
-const express = require('express')
-const app = express()
-const port = process.env.PORT || 3000
-const apiRoutes = require("./routes/ApiRoutes")
-require("dotenv").config()
-var helmet = require('helmet')
-// config
-const mongoDB = require("./config/db")
-mongoDB()
-
-const cookieParser = require("cookie-parser")
-const fileUpload = require("express-fileupload")
+const express = require('express');
+const app = express();
+const port = process.env.PORT || 3000;
+const apiRoutes = require("./routes/ApiRoutes");
+require("dotenv").config();
+const helmet = require('helmet');
+const mongoDB = require("./config/db");
+const cookieParser = require("cookie-parser");
+const fileUpload = require("express-fileupload");
 const cors = require('cors');
-const session = require("express-session");
 
-// middleware to recognize the body by express
-app.use(express.json())
-app.use(cookieParser())
-app.use(fileUpload())
+// Initialize MongoDB connection
+mongoDB();
 
+// Middleware to parse JSON bodies
+app.use(express.json());
+app.use(cookieParser());
+app.use(fileUpload());
 
+// Allowed origins for CORS
 const allowedOrigins = [
     process.env.BACKEND_URL,
     process.env.CLIENT_URL,
-    'http://192.168.99.198:5173',
+    'http://localhost:3000',
+    'http://localhost:5173',
     'https://deploy-preview-*.netlify.app'
 ];
+
+// CORS options configuration
 const corsOptions = {
     origin: function (origin, callback) {
         if (!origin) {
             return callback(null, true);
         }
-
         const allowed = allowedOrigins.some(pattern => {
             const regex = new RegExp(`^${pattern.replace('*', '.*')}$`);
             return regex.test(origin);
-        }); 
+            
+        });
 
         if (allowed) {
             return callback(null, true);
@@ -45,53 +47,52 @@ const corsOptions = {
     credentials: true,
 };
 
+// Use CORS middleware
 app.use(cors(corsOptions));
-app.use((req, res, next) => {
-    const origin = req.headers.origin;
-    if (allowedOrigins.includes(origin)) {
-        res.header('Access-Control-Allow-Origin', origin);
-    }
-    res.header('Access-Control-Allow-Credentials', 'true');
-    app.options('*', cors(corsOptions));
-    next();
-});
 
+// Handle CORS preflight requests
+app.options('*', cors(corsOptions));
 
+// Apply security-related headers using Helmet
 app.use(helmet({
     contentSecurityPolicy: false,
     crossOriginEmbedderPolicy: false
-}))
+}));
 
+// Root route
 app.get('/', (req, res) => {
-    res.setHeader("Access-Control-Allow-Credentials", "true")
-    res.send("Api running....")
-})
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.send("API running....");
+});
 
-app.use('/api', apiRoutes)
+// Use the API routes
+app.use('/api', apiRoutes);
 
+// Error handling middleware
 app.use((error, req, res, next) => {
     if (process.env.NODE_ENV === 'development') {
-        console.log(error)
+        console.log(error);
     } else {
-        next(error)
+        next(error);
     }
-})
+});
 
 app.use((error, req, res, next) => {
     if (process.env.NODE_ENV === "development") {
         res.status(500).json({
             message: error.message,
             stack: error.stack
-        })
+        });
     } else {
         res.status(500).json({
             message: error.message
-        })
+        });
     }
-})
+});
 
-
+// Start the server
 app.listen(port, () => {
-    console.log(`started at http://localhost:${port}`)
+    console.log(`Server started at http://localhost:${port}`);
+});
 
-})
+module.exports = app;
