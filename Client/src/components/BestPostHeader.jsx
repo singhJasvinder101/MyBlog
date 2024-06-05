@@ -60,6 +60,7 @@ function BestPostHeader({ setIsLoading }) {
                                         url={shareUrl}
                                         title={postDetails.title}
                                         summary={postDetails.description && postDetails.description.slice(0, 30)}
+                                        target="_blank"
                                     >
                                         <LinkedinIcon size={35} round={true} />
                                     </LinkedinShareButton>
@@ -67,6 +68,7 @@ function BestPostHeader({ setIsLoading }) {
                                         className="mx-1"
                                         url={shareUrl}
                                         title="hey!! let's join this tech blog for daily tech stuffs"
+                                        target="_blank"
                                     >
                                         <WhatsappIcon size={35} round={true} />
                                     </WhatsappShareButton>
@@ -74,6 +76,7 @@ function BestPostHeader({ setIsLoading }) {
                                         className="mx-1"
                                         url={shareUrl}
                                         title="hey!! let's join this tech blog for daily tech stuffs"
+                                        target="_blank"
                                     >
                                         <TwitterIcon size={35} round={true} />
                                     </TwitterShareButton>
