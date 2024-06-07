@@ -12,6 +12,8 @@ const ProtectedRoutesComponent = () => {
     const apiUrl = import.meta.env.VITE_API_URI;
     const dispatch = useDispatch()
 
+    const googleAuth = JSON.parse(localStorage.getItem("userInfo"));
+
     useEffect(() => {
         const check_token = async () => {
             try {
@@ -22,6 +24,7 @@ const ProtectedRoutesComponent = () => {
                 // console.log(data)
                 // const data = userInfo
                 // if (data.name) {
+                console.log(data.token)
                 if (data.token) {
                     setIsAuth(true)
                 } else {
@@ -30,16 +33,16 @@ const ProtectedRoutesComponent = () => {
                 }
             } catch (error) {
                 console.log(error);
-                setIsAuth(false);
-                dispatch(logOutUser())
             }
         }
+        console.log(isAuth)
+
         setTimeout(() => {
             check_token()
+            setIsAuth(googleAuth.providerId === "firebase")
         }, 1000);
     }, [isAuth]);
 
-    if (isAuth === undefined) return <LoginPage />;
     if (!isAuth) {
         navigate('/login');
         return null;
