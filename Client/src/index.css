@@ -15,6 +15,15 @@ body {
   top: 0px !important;
 }
 
+.Pacifico{
+  font-family: "Pacifico", serif;
+  color: #007bff;
+}
+
+.custom{
+  color: #0E3458;
+
+}
 
 @media (max-width: 768px) {
   .navbar-nav {
