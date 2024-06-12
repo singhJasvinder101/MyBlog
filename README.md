@@ -72,7 +72,9 @@ Tech Stuffs is a web platform where you can access a variety of tech-related con
 ### Prerequisites
 
 Ensure that `Node.js` and `MongoDB` are installed on your machine.
-Add your own configurations for environment variables used to environment file. 
+
+Add your own configurations for environment variables used to environment file.
+
 Run `seeder.js` file at seeder folder to get the blogs for development environment. 
 
 ## 🛠️ Installation
@@ -89,24 +91,24 @@ cd client
 ```
 npm install
 ```
-2. Navigate to the project's backend directory:
+4. Navigate to the project's backend directory:
 ```
 cd.. 
 cd backend
 ```
-3. Install dependencies
+5. Install dependencies
 ```
 npm install
 ```
 
-4. Start the development server at backend directory:
+6. Start the development server at backend directory:
 ```
 npm run both
 ```
 
 
 
-## 🤝Contributing
+## 🤝 Contributing
 
 If you'd like to contribute to MyBlog, please follow these steps:
 
