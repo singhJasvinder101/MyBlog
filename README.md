@@ -13,7 +13,7 @@ Welcome to Tech Stuffs! This is a project aimed at providing useful tech-related
 - [Documentation](#documentation)
 
 
-## 🚀Introduction
+## 🚀 Introduction
 
 Tech Stuffs is a web platform where you can access a variety of tech-related content, including articles, tutorials, and resources. Our goal is to empower individuals with knowledge and tools to thrive in the ever-evolving tech industry.
 
@@ -49,7 +49,7 @@ Tech Stuffs is a web platform where you can access a variety of tech-related con
 
 <div align="center">
 
-## 💻Tech Stack
+## 💻 Tech Stack
 
 ![React](https://img.shields.io/badge/React-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![Redux](https://img.shields.io/badge/Redux-%23764ABC?style=for-the-badge&logo=redux&logoColor=white)
@@ -60,7 +60,7 @@ Tech Stuffs is a web platform where you can access a variety of tech-related con
 </div>
 
 
-## 🔥Features
+## 🔥 Features
 - **Articles**: Browse through a curated collection of articles covering various topics such as programming languages, software           development methodologies, cybersecurity, and more.
 - **Tutorials**: Learn new skills with step-by-step tutorials on popular technologies and frameworks.
 - **Resources**: Access a comprehensive list of tools, libraries, and online courses to enhance your learning journey.
@@ -72,26 +72,36 @@ Tech Stuffs is a web platform where you can access a variety of tech-related con
 ### Prerequisites
 
 Ensure that `Node.js` and `MongoDB` are installed on your machine.
+Add your own configurations for environment variables used to environment file. 
+Run `seeder.js` file at seeder folder to get the blogs for development environment. 
 
-## 🛠️Installation
+## 🛠️ Installation
 
 1. Clone the repository
 ```bash
 git clone https://github.com/your-username/tech-stuffs.git
 ```
-
-2. Navigate to the project directory:
+2. Navigate to the project's client directory:
 ```
-cd tech-stuffs
+cd client
+```
+3. Install dependencies
+```
+npm install
+```
+2. Navigate to the project's backend directory:
+```
+cd.. 
+cd backend
 ```
 3. Install dependencies
 ```
 npm install
 ```
 
-4. Start the development server:
+4. Start the development server at backend directory:
 ```
-npm start
+npm run both
 ```
 
 
@@ -109,7 +119,7 @@ If you'd like to contribute to MyBlog, please follow these steps:
 Note: Make sure you always create a updated PR.
 
 #### Contibuting Guidelines 
-  We believe in the power of collaboration. If you have ideas to improve College.ai, feel free to contribute! Check out our [CONTRIBUTING.md](https://github.com/singhJasvinder101/tech-stuffs/blob/main/CONTRIBUTING.md) to get started.
+  We believe in the power of collaboration. If you have ideas to improve College.ai, feel free to contribute! Check out our [CONTRIBUTING.md](https://github.com/singhJasvinder101/MyBlog/blob/main/CONTRIBUTING.md) to get started.
 
 ### 📄Documentation
 
