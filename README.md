@@ -1,7 +1,7 @@
 
-# Tech-Stuffs
+# TechBytes
 
-Welcome to Tech Stuffs! This is a project aimed at providing useful tech-related information and resources. Whether you're a beginner or an expert in the tech field, you'll find something valuable here.
+Welcome to TechBytes! This is a project aimed at providing useful tech-related information and resources. Whether you're a beginner or an expert in the tech field, you'll find something valuable here.
 
 ## Table of Contents
 - [Introduction](#introduction)
@@ -15,7 +15,7 @@ Welcome to Tech Stuffs! This is a project aimed at providing useful tech-related
 
 ## 🚀 Introduction
 
-Tech Stuffs is a web platform where you can access a variety of tech-related content, including articles, tutorials, and resources. Our goal is to empower individuals with knowledge and tools to thrive in the ever-evolving tech industry.
+TechBytes is a web platform where you can access a variety of tech-related content, including articles, tutorials, and resources. Our goal is to empower individuals with knowledge and tools to thrive in the ever-evolving tech industry.
 
 
 <br />
@@ -56,7 +56,7 @@ Tech Stuffs is a web platform where you can access a variety of tech-related con
 ![CSS](https://img.shields.io/badge/CSS-%231572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
 ![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
-![MongoDB](https://img.shields.io/badge/Bootstrap-%23764ABC?style=for-the-badge&logo=mongodb&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-%23764ABC?style=for-the-badge&logo=mongodb&logoColor=white)
 </div>
 
 
@@ -81,7 +81,7 @@ Run `seeder.js` file at seeder folder to get the blogs for development environme
 
 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/tech-stuffs.git
+git clone https://github.com/singhJasvinder101/MyBlog.git
 ```
 2. Navigate to the project's client directory:
 ```
@@ -125,7 +125,7 @@ Note: Make sure you always create a updated PR.
 
 ### 📄Documentation
 
-Explore our comprehensive documentation in the [LEARN.md]file, which serves as a detailed guide to understanding and contributing to TechStuffs. This document covers various aspects of the project, including setup instructions, architecture overview, and contribution guidelines. We recommend referring to this documentation to gain a deeper insight into UniCollab and make meaningful contributions to its development.
+Explore our comprehensive documentation in the [LEARN.md]file, which serves as a detailed guide to understanding and contributing to TechBytes. This document covers various aspects of the project, including setup instructions, architecture overview, and contribution guidelines. We recommend referring to this documentation to gain a deeper insight into UniCollab and make meaningful contributions to its development.
 
 ## Message From PA
 
@@ -150,7 +150,7 @@ Happy coding!
 ### Show some ❤️ by starring this awesome repository!
 
 </div>
-<p align="right">{<a href="#top">Back to top</a>}</p
+<p align="right"><a href="#top">Back To Top</a></p
 
 
 
