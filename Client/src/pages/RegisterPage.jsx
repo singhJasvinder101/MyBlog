@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col, InputGroup, Spinner, Alert } from 'react-bootstrap';
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from 'react-redux';
 import { setRedxUserState } from '../../redux/slices/loginRegisterSlice';
-import { FaEye, FaEyeSlash } from 'react-icons/fa6';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const RegisterPage = () => {
     const apiUrl = import.meta.env.VITE_API_URI;
@@ -13,19 +14,15 @@ const RegisterPage = () => {
     const [showPasswordRepeat, setShowPasswordRepeat] = useState(false);
     const [validated, setValidated] = useState(false);
     const [passwordValidated, setPasswordValidated] = useState(true);
-    const [passMessage, setPassMessage] = useState("Both Passwords Must Match");
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [lastToastMessage, setLastToastMessage] = useState('');
     const [registerUserResponseState, setRegisterUserResponseState] = useState({
         success: "",
         error: "",
         loading: false,
     });
     const [passwordsMatchState, setPasswordsMatchState] = useState(true);
-    const [passwordCriteria, setPasswordCriteria] = useState({
-        length: false,
-        uppercase: false,
-        number: false,
-        specialChar: false
-    });
     const dispatch = useDispatch();
 
     const userRegisterApiRequest = async (name, lastname, email, password) => {
@@ -47,26 +44,11 @@ const RegisterPage = () => {
         const password = form.password.value;
         const confirmPassword = form.confirmPassword.value;
 
-        if (password.length < 8 ||
-            !/[A-Z]/.test(password) ||
-            !/[0-9]/.test(password) ||
-            !/[!@#$%^&*()]/.test(password)) {
-            setPasswordValidated(false);
-            setPassMessage("Please Enter Valid Password");
-            setValidated(true);
-            return;
-        } else {
-            setPasswordValidated(true);
-            setPassMessage("Both Passwords Must Match");
-            setValidated(true);
-        }
+        let isValid = validatePassword(password);
 
-        if (e.currentTarget.checkValidity() === true &&
-            name &&
-            lastname &&
-            email &&
-            password === confirmPassword
-        ) {
+        setPasswordValidated(isValid);
+
+        if (isValid && password === confirmPassword) {
             setRegisterUserResponseState({ loading: true });
             userRegisterApiRequest(name, lastname, email, password).then(res => {
                 setRegisterUserResponseState({
@@ -84,29 +66,65 @@ const RegisterPage = () => {
                 setRegisterUserResponseState({
                     error: err.response.data.message ? err.response.data.message : err.response.data
                 });
+                showToast(err.response.data.message ? err.response.data.message : err.response.data);
             });
 
+        } else {
+            if (password !== confirmPassword) {
+                showToast("Passwords do not match");
+            }
         }
-        setValidated(true);
 
+        setValidated(true);
     };
 
-    const onChange = () => {
-        const password = document.querySelector('input[name=password]');
-        const confirmPassword = document.querySelector('input[name=confirmPassword]');
-
-        setPasswordCriteria({
-            length: password.value.length >= 8,
-            uppercase: /[A-Z]/.test(password.value),
-            number: /[0-9]/.test(password.value),
-            specialChar: /[!@#$%^&*()]/.test(password.value)
-        });
-
-        if (confirmPassword.value === password.value) {
-            setPasswordsMatchState(true);
-        } else {
-            setPasswordsMatchState(false);
+    const validatePassword = (password) => {
+        if (password.length < 8) {
+            showToast("Password must be at least 8 characters long");
+            return false;
         }
+
+        if (!/[A-Z]/.test(password)) {
+            showToast("Password must contain at least one uppercase letter");
+            return false;
+        }
+
+        if (!/[a-z]/.test(password)) {
+            showToast("Password must contain at least one lowercase letter");
+            return false;
+        }
+
+        if (!/[0-9]/.test(password)) {
+            showToast("Password must contain at least one digit");
+            return false;
+        }
+
+        if (!/[!@#$%^&*()]/.test(password)) {
+            showToast("Password must contain at least one special character");
+            return false;
+        }
+
+        return true;
+    };
+
+    const showToast = (message) => {
+        if (message !== lastToastMessage) {
+            setLastToastMessage(message);
+            toast.error(message);
+        }
+    };
+
+    const onChangePassword = (e) => {
+        const newPassword = e.target.value;
+        setPassword(newPassword);
+        setPasswordValidated(validatePassword(newPassword));
+        setPasswordsMatchState(newPassword === confirmPassword);
+    };
+
+    const onChangeConfirmPassword = (e) => {
+        const newConfirmPassword = e.target.value;
+        setConfirmPassword(newConfirmPassword);
+        setPasswordsMatchState(newConfirmPassword === password);
     };
 
     return (
@@ -152,44 +170,36 @@ const RegisterPage = () => {
                             <Form.Group className="mb-3 pass" controlId="formBasicPassword">
                                 <Form.Label>Password</Form.Label>
                                 <div className="position-relative">
-
                                     <Form.Control
                                         type={showPassword ? "text" : "password"}
                                         placeholder="password"
                                         name="password"
-                                        minLength={3}
-
-                                        onChange={onChange}
+                                        value={password}
+                                        minLength={8}
+                                        onChange={onChangePassword}
                                         isInvalid={!passwordValidated}
+                                        isValid={passwordValidated && password.length > 0}
                                         required
                                     />
                                     {showPassword ? <FaEye className="eye-register" onClick={() => setShowPassword(false)} /> : <FaEyeSlash className="eye-register" onClick={() => setShowPassword(true)} />}
-
-                                    <Form.Control.Feedback type="invalid">{passwordValidated ? "" : passMessage}</Form.Control.Feedback>
+                                    <Form.Control.Feedback type="invalid">Invalid password</Form.Control.Feedback>
                                 </div>
-                                <ul style={{ fontSize: '0.85rem', marginTop: '0.5rem' }}>
-                                    <li style={{ color: passwordCriteria.length ? 'green' : 'red' }}>At least 8 characters</li>
-                                    <li style={{ color: passwordCriteria.uppercase ? 'green' : 'red' }}>At least one uppercase letter</li>
-                                    <li style={{ color: passwordCriteria.number ? 'green' : 'red' }}>At least one number</li>
-                                    <li style={{ color: passwordCriteria.specialChar ? 'green' : 'red' }}>At least one special character</li>
-                                </ul>
                             </Form.Group>
 
                             <Form.Group className="mb-3 pass" controlId="formBasicPasswordRepeat">
                                 <Form.Label>Repeat Password</Form.Label>
                                 <div className="position-relative">
-
                                     <Form.Control
                                         type={showPasswordRepeat ? "text" : "password"}
                                         name="confirmPassword"
                                         placeholder="Repeat Password"
-                                        onChange={onChange}
+                                        value={confirmPassword}
+                                        onChange={onChangeConfirmPassword}
                                         isInvalid={!passwordsMatchState}
                                         required
                                     />
                                     {showPasswordRepeat ? <FaEye className={`${passwordsMatchState ? "eye-register-repeat" : "eye-register-repeat1"}`} onClick={() => setShowPasswordRepeat(false)} /> : <FaEyeSlash className={`${passwordsMatchState ? "eye-register-repeat" : "eye-register-repeat1"}`} onClick={() => setShowPasswordRepeat(true)} />}
-
-                                    <Form.Control.Feedback type="invalid">{passwordsMatchState ? "" : passMessage}</Form.Control.Feedback>
+                                    <Form.Control.Feedback type="invalid">Passwords do not match</Form.Control.Feedback>
                                 </div>
                             </Form.Group>
 
@@ -202,16 +212,16 @@ const RegisterPage = () => {
                             <Button type="submit" className='px-4 py-2 rounded-pill' style={{ border: '2px solid' }}>
                                 {registerUserResponseState &&
                                     registerUserResponseState.loading === true ? (
-                                    <Spinner
-                                        as="span"
-                                        className='mx-2'
-                                        animation="border"
-                                        size="sm"
-                                        role="status"
-                                        aria-hidden="true" />
-                                ) : (
-                                    ""
-                                )}
+                                        <Spinner
+                                            as="span"
+                                            className='mx-2'
+                                            animation="border"
+                                            size="sm"
+                                            role="status"
+                                            aria-hidden="true" />
+                                    ) : (
+                                        ""
+                                    )}
                                 Submit
                             </Button>
 
@@ -233,6 +243,8 @@ const RegisterPage = () => {
                     </Col>
                 </Row>
             </Container>
+
+            <ToastContainer position="top-right" autoClose={3000} hideProgressBar newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
         </div>
     );
 };
