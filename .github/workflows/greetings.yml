@@ -15,4 +15,4 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           issue-message: "👋 Welcome to MyBlog! Feel free to explore and contribute."
-          pr-message: "🎉 Congratulations on your first pull request in TechBytes!"
+          pr-message: "🎉 Congratulations on your first pull request in MyBlog!"
