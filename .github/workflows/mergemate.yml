@@ -37,7 +37,7 @@ jobs:
       - name: Review PR
         run: python -m mergemate.scripts.github.pr_review
         env:
-          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
   handle_comment:
@@ -66,5 +66,5 @@ jobs:
       - name: Handle Comment
         run: python -m mergemate.scripts.github.comment_handler
         env:
-          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
