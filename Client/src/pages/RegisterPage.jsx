@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { setRedxUserState } from '../../redux/slices/loginRegisterSlice';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Updated import for FaEye and FaEyeSlash icons
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import RegisterButton from '../components/Registerwithgoogle'; // Added import for RegisterButton
 
 const RegisterPage = () => {
     const apiUrl = import.meta.env.VITE_API_URI;
@@ -128,11 +129,11 @@ const RegisterPage = () => {
     };
 
     return (
-        <div className='register-bg pb-5'>
+        <div className='register-bg pb-5 mb-5'>
             <Container className="text-light">
                 <Row className="pt-4 justify-content-center">
                     <Col md={6}>
-                        <h2 className="text-center">Register</h2>
+                        <h2 className="text-center Pacifico">Register</h2>
 
                         <Form noValidate validated={validated} onSubmit={handleSubmit}>
                             <Form.Group className="mb-3" controlId="validationCustom01">
@@ -203,13 +204,16 @@ const RegisterPage = () => {
                                 </div>
                             </Form.Group>
 
+                            <h6 className="text-center">Or</h6>
+                            <RegisterButton />
+
                             <Row className="pb-2">
                                 <Col>
                                     Do you already have an account? <Link to="/login">Login</Link>
                                 </Col>
                             </Row>
 
-                            <Button type="submit" className='px-4 py-2 rounded-pill' style={{ border: '2px solid' }}>
+                            <Button type="submit" className='custom-button px-4 py-2 rounded-pill'>
                                 {registerUserResponseState &&
                                     registerUserResponseState.loading === true ? (
                                         <Spinner
@@ -224,6 +228,12 @@ const RegisterPage = () => {
                                     )}
                                 Submit
                             </Button>
+
+                            <Row className="pb-2">
+                                <Col>
+                                    Do you already have an account? <Link className='custom' to="/login">Login</Link>
+                                </Col>
+                            </Row>
 
                             <Alert show={
                                 registerUserResponseState &&
