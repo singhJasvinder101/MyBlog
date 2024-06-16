@@ -6,20 +6,25 @@ on:
 
 jobs:
   comment:
-    permissions:
-      contents: read
-      issues: write
     runs-on: ubuntu-latest
+
+    permissions:
+      pull-requests: write
+      contents: write
+      issues: write
 
     steps:
       - name: Comment on PR Closure
-        uses: actions/github-script@v5
+        uses: actions/github-script@v4
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const { owner, repo, number } = context.issue;
             const commentAuthor = context.payload.pull_request.user.login;
-            const commentBody = `Thank you  @${commentAuthor} , for your valuable time and contribution in our MyBlog 💗. \n It’s our MyBlog, so Let’s build this MyBlog altogether !!🤝\n  Hoping to see you soon with another PR again 😇 \n Wishing you all the best for your journey into Open Source🚀
-            `;
-            await github.issues.createComment({ owner, repo, issue_number: number, body: commentBody });
-            console.log(`Commented on the closed PR: ${commentBody}.`); 
+            const commentBody = `Thank you @${commentAuthor}, for your valuable time and contribution to our MyBlog! 💗\n\nIt’s our MyBlog, so let’s build this MyBlog together!! 🤝\n\nHoping to see more of your contributions soon. 😇\n\nWishing you all the best on your journey into Open Source! 🚀`;
+            try {
+              await github.issues.createComment({ owner, repo, issue_number: number, body: commentBody });
+              console.log(`Commented on the closed PR #${number} by ${commentAuthor}.`);
+            } catch (error) {
+              console.error(`Error posting comment: ${error.message}`);
+            }
