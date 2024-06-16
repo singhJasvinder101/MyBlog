@@ -110,7 +110,7 @@ npm run both
 
 ## 🤝 Contributing
 
-If you'd like to contribute to MyBlog, please follow these steps:
+If you'd like to contribute to TechBytes, please follow these steps:
 
 1. Fork the repository.
 2. Create a new branch for your feature or bug fix.
