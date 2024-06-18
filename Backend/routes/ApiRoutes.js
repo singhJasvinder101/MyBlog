@@ -3,7 +3,8 @@ const app = express.Router()
 const blogRoutes = require('./blogRoutes')
 const userRoutes = require('./userRoutes')
 const jwt = require('jsonwebtoken')
-
+const cors = require('cors');
+app.use(cors());
 
 app.get('/', (req, res) => {
     res.status(200).send("this is api route")
