@@ -12,6 +12,7 @@ import BlogSpecificPage from './pages/BlogSpecificPage'
 import ProtectedRoutesComponent from './components/ProtectedRoutesComponent'
 import SpeedDialComponent from './components/SpeedDialComponente'
 import CreatePostPage from './pages/CreatePostPage'
+import ContactUsPage from './pages/ContactUs'
 import {  useState } from 'react'
 import NotFoundPage from './pages/404Page'
 import Profile from './pages/Profile'
@@ -42,6 +43,7 @@ function App() {
             <Route path="/login" element={<LoginPage setIsLoading={setIsLoading} />} />
             <Route path="/profile" element={<Profile setIsLoading={setIsLoading} />} />
             <Route path="/register" element={<RegisterPage setIsLoading={setIsLoading} />} />
+            <Route path="/contactus" element={<ContactUsPage setIsLoading={setIsLoading} />} />
             <Route element={<ProtectedRoutesComponent />}>
               <Route path="/post-details/:postId" element={<BlogDescriptionPage setIsLoading={setIsLoading} />} />
               <Route path="/blogs/:tag" element={<BlogSpecificPage setIsLoading={setIsLoading} />} />

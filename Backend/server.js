@@ -12,6 +12,7 @@ const cookieParser = require("cookie-parser")
 const fileUpload = require("express-fileupload")
 const cors = require('cors');
 const session = require("express-session");
+const contactRoute = require("./routes/contactRoute");
 
 // middleware to recognize the body by express
 app.use(express.json())
@@ -68,6 +69,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api', apiRoutes)
+app.use("/api/form", contactRoute);
 
 app.use((error, req, res, next) => {
     if (process.env.NODE_ENV === 'development') {
