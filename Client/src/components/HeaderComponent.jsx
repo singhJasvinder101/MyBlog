@@ -97,6 +97,15 @@ const HeaderComponent = () => {
                 SECURITY
               </Link>
             </li>
+
+            <li className="nav-item">
+              <Link style={{ 'color': '#a7acb3' }}
+               className={`nav-link`}
+               to="contactus"
+             >
+              CONTACT US
+              </Link>
+            </li>
           </ul>
         </div>
 
