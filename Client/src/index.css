@@ -26,6 +26,9 @@ body {
 }
 
 @media (max-width: 768px) {
+  .navbar-collapse{
+    text-align: center;
+  }
   .navbar-nav {
     margin-left: -1rem;
     margin-right: -1rem;

@@ -2,6 +2,8 @@ const Blog = require("../models/blogModel");
 const User = require("../models/userModel");
 const imageValidate = require("../utils/imageValidate")
 const axios = require('axios');
+
+
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 require('dotenv').config()
 const adminCreatePost = async (req, res, next) => {
