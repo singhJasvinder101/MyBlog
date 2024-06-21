@@ -17,7 +17,7 @@ const session = require("express-session");
 app.use(express.json())
 app.use(cookieParser())
 app.use(fileUpload())
-app.use(cors());
+
 
 
 const allowedOrigins = [
