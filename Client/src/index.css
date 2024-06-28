@@ -1231,6 +1231,8 @@ pre[class*="language-"] {
   }
 
   .footer {
+    display: flex;
+    flex-direction: column;
     height: 6rem !important;
   }
 

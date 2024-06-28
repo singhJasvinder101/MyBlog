@@ -32,7 +32,7 @@ const FooterComponent = () => {
                 className='pb-1'
                 style={{
                     position: 'absolute',
-                    right: '2rem',
+                    right: '5rem',
                     fontSize: '1.2rem',
                     fontFamily: "'Dancing Script', cursive",
                 }}>
