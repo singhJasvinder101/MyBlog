@@ -32,12 +32,15 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git pull origin main
+          git pull --ff-only origin main
+
+      - name: Debug GitHub context
+        run: echo "${{ toJson(github) }}"
 
       - name: Review PR
         run: python -m mergemate.scripts.github.pr_review
         env:
-          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
   handle_comment:
@@ -61,10 +64,13 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git pull origin main
+          git pull --ff-only origin main
+
+      - name: Debug GitHub context
+        run: echo "${{ toJson(github) }}"
 
       - name: Handle Comment
         run: python -m mergemate.scripts.github.comment_handler
         env:
-          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
