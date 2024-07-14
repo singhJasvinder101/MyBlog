@@ -30,13 +30,14 @@ function ContactUs() {
         body: JSON.stringify(data),
       });
 
-      console.log("response: ", response);
+      //console.log("response: ", response);
       // alert(response);
 
       if (response.ok) {
         setData(defaultContactFormData);
         const responseData = await response.json();
         alert("Form Submitted Successfully");
+      
         //console.log(responseData);
       } else {
         // Handle API error here
@@ -48,54 +49,67 @@ function ContactUs() {
   };
 
   return (
-    <Container className="d-flex justify-content-center align-items-center vh-100 mt-0 ">
-      <Row className="w-100">
-        <Col md={{ span: 6, offset: 3 }}>
-          <div className="p-4 shadow rounded bg-white">
-            <h2 className="text-center mb-4">Contact Us</h2>
-            <Form onSubmit={handleSubmit}>
-              <Form.Group controlId="formName" className="mb-3">
-                <Form.Label>Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter your name"
-                  onChange={handleChange}
-                   name="username"
-                  required
-                />
-              </Form.Group>
+    <div
+      className="min-h-screen flex items-center justify-center w-full pt-40"
+      style={{
+        backgroundImage: "url('https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }}
+    >
+      <Container className="flex justify-center items-center w-full h-full" >
+        <Row className="w-100">
+          <Col md={{ span: 6, offset: 3 }}>
+            <div className="p-4 shadow rounded bg-white mt-5 mb-5" >
+              <h2 className="text-center mb-4">Contact Us</h2>
+              <Form onSubmit={handleSubmit}>
+                <Form.Group controlId="formName" className="mb-3">
+                  <Form.Label>Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter your name"
+                    onChange={handleChange}
+                    value={data.username}
+                    name="username"
+                    required
+                  />
+                </Form.Group>
 
-              <Form.Group controlId="formEmail" className="mb-3">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control
-                  type="email"
-                  placeholder="Enter your email"
-                   name="email"
-                  onChange={handleChange}
-                  required
-                />
-              </Form.Group>
+                <Form.Group controlId="formEmail" className="mb-3">
+                  <Form.Label>Email address</Form.Label>
+                  <Form.Control
+                    type="email"
+                    placeholder="Enter your email"
+                    name="email"
+                    value={data.email}
+                    onChange={handleChange}
+                    required
+                  />
+                </Form.Group>
 
-              <Form.Group controlId="formMessage" className="mb-3">
-                <Form.Label>Message</Form.Label>
-                <Form.Control
-                  as="textarea"
-                  rows={3}
-                  placeholder="Enter your message"
-                   name="message"
-                  onChange={handleChange}
-                  required
-                />
-              </Form.Group>
+                <Form.Group controlId="formMessage" className="mb-3">
+                  <Form.Label>Message</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    rows={3}
+                    placeholder="Enter your message"
+                    name="message"
+                    value={data.message}
+                    onChange={handleChange}
+                    required
+                  />
+                </Form.Group>
 
-              <Button variant="primary" type="submit" className="w-100">
-                Submit
-              </Button>
-            </Form>
-          </div>
-        </Col>
-      </Row>
-    </Container>
+                <Button variant="primary" type="submit" className="w-100">
+                  Submit
+                </Button>
+              </Form>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   );
 }
 
