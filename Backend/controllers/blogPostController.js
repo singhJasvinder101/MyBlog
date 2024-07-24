@@ -301,16 +301,9 @@ const geminiModel = googleAI.getGenerativeModel({
     try {
         const prompt = req.body.prompt;
         const detailedPrompt = `
-            You are a creative writer. Your task is to write a compelling and engaging description based on the given title.
-            Title: ${prompt}
-            
-            Please include the following elements in your description:
-            1. A captivating opening sentence that grabs the reader's attention.
-            2. A brief summary of the main idea or theme.
-            3. Key highlights or interesting points that make the title unique.
-            4. An intriguing closing sentence that leaves the reader wanting more.
-            
-            Write the description of 1000 words in a professional yet engaging tone.
+            You are a creative writer. Write a compelling and engaging description based on the title: ${prompt}.
+            Include a captivating opening sentence, a brief summary, key highlights, and an intriguing closing sentence.
+            Write in a professional yet engaging tone.
         `;
 
         const result = await geminiModel.generateContent(detailedPrompt);
@@ -318,11 +311,10 @@ const geminiModel = googleAI.getGenerativeModel({
 
         res.send(response.text());
     } catch (error) {
-        console.log('response error', error);
-        res.send('error');
+        console.error('Response error:', error);
+        res.status(500).send('An error occurred while processing your request.');
     }
 };
-
 
 
 module.exports = {
