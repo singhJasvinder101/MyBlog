@@ -22,7 +22,7 @@ function ContactUs() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:3000/api/form/contactus", {
+      const response = await fetch(`${import.meta.env.VITE_API_URI}/api/form/contactus`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
