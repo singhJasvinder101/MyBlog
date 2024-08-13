@@ -181,8 +181,8 @@ const RegisterPage = () => {
                             </div>
                             </Form.Group>
              
-                            <h6 className="text-center">Or</h6>
-                            <RegisterButton/>
+{/*                             <h6 className="text-center">Or</h6>
+                            <RegisterButton/> */}
 
                             <Button type="submit" className='custom-button px-4 py-2 rounded-pill'>
                                 {registerUserResponseState &&

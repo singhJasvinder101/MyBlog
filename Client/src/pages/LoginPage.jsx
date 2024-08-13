@@ -122,9 +122,9 @@ const LoginPage = () => {
                                     label='Remember Me' />
                             </Form.Group>
                             
-                            <h6 className="text-center">Or</h6>
+{/*                             <h6 className="text-center">Or</h6> */}
 
-                            <SignInButton />
+{/*                             <SignInButton /> */}
 
 
 
