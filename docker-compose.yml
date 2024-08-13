@@ -1,0 +1,44 @@
+version: '3.7'
+
+services:
+  frontend:
+    build:
+      context: "./client"
+      args:
+        VITE_FIREBASE_APIKEY: ${VITE_FIREBASE_APIKEY}
+        VITE_API_URI: ${VITE_API_URI}
+        VITE_HF_ACCESS_TOKEN: ${VITE_HF_ACCESS_TOKEN}
+    ports:
+      - "5173:80"
+    env_file:
+      - './client/.env'
+
+  backend:
+    build:
+      context: './backend'
+    ports:
+      - "3000:3000"
+    env_file:
+      - './backend/.env'
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME_FILE: /run/secrets/mongo_username
+      MONGO_INITDB_ROOT_PASSWORD_FILE: /run/secrets/mongo_password
+      MONGO_INITDB_DATABASE: Blog
+    secrets:
+      - mongo_username
+      - mongo_password
+
+secrets:
+  mongo_username:
+    file: ./mongo_username.txt
+  mongo_password:
+    file: ./mongo_password.txt
+
+
