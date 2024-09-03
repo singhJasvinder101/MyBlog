@@ -3,6 +3,9 @@ const { hashingPassword, comparePassword } = require('../utils/HashingPassword')
 const { generatingAuthToken } = require('../utils/generatingAuthToken')
 const Review = require('../models/reviewModel')
 const Blog = require('../models/blogModel')
+const {generateOTP} = require('../utils/otp-services')
+
+const {sendMail}= require('../utils/otp-services')
 
 const registerUser = async (req, res, next) => {
     try {
@@ -110,6 +113,68 @@ const loginUser = async (req, res, next) => {
         next(error)
     }
 }
+
+
+const forgetPassword = async (req, res, next) => {
+    try {
+        const { email } = req.body;
+        if (!email) {
+            return res.status(400).send("Email is required");
+        }
+
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(404).send("User not found");
+        }
+
+        const otp = await generateOTP(email); 
+
+        await sendMail(email,otp); 
+        // Save the OTP and its expiration time in the user document
+        user.resetPasswordOTP = otp;
+        user.resetPasswordOTPExpires = Date.now() + 600000; // OTP expires in 10 minutes
+        await user.save();
+
+        res.json({
+            success: true,
+            message: "OTP sent to your email",
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
+const resetPassword = async (req, res, next) => {
+    try {
+        const { email, otp, newPassword } = req.body;
+        if (!email || !otp || !newPassword) {
+            return res.status(400).send("All input fields are required");
+        }
+
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(404).send("User not found");
+        }
+
+        if (user.resetPasswordOTP !== parseInt(otp) || user.resetPasswordOTPExpires < Date.now()) {
+            return res.status(400).send("Invalid OTP");
+        }
+
+        user.password = hashingPassword(newPassword); 
+        user.resetPasswordOTP = undefined;
+        user.resetPasswordOTPExpires = undefined;
+        await user.save();
+
+        res.json({
+            success: true,
+            message: "Password reset successful",
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
+
 
 const updateUserProfile = async (req, res, next) => {
     try {
@@ -262,7 +327,6 @@ const deletingComment = async (req, res, next) => {
     }
 }
 
-
 module.exports = {
     registerUser,
     loginUser,
@@ -271,5 +335,9 @@ module.exports = {
     writeReview,
     likePost,
     likeComment,
-    deletingComment
-}
+    deletingComment,
+    forgetPassword,
+    resetPassword,
+};
+
+

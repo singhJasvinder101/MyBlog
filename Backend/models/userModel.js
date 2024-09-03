@@ -42,7 +42,13 @@ const userSchema = new Schema({
         type: Boolean,
         required: true,
         default: false,
-    }
+    },
+    resetPasswordOTP: {
+        type: Number,
+    },
+    resetPasswordOTPExpires: {
+        type: Date,
+    },
 }, {
     timestamps: true
 })

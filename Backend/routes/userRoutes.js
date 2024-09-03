@@ -1,6 +1,6 @@
 const express = require('express');
 const { 
-    registerUser, loginUser, updateUserProfile, getUserProfile, writeReview, likePost, likeComment, deletingComment
+    registerUser, loginUser, updateUserProfile, getUserProfile, writeReview, likePost, likeComment, deletingComment,forgetPassword,resetPassword
 } = require('../controllers/userController');
 const { verifyIsLoggedIn } = require('../middlewares/verifyAuthToken');
 const { followUser, getfollowers } = require('../controllers/blogPostController');
@@ -8,6 +8,8 @@ const router = express.Router();
 
 router.post('/register', registerUser)
 router.post('/login', loginUser)
+router.post('/forgot-password',forgetPassword)
+router.post('/reset-password',resetPassword)
 
 router.use(verifyIsLoggedIn)
 router.patch("/profile", updateUserProfile)
