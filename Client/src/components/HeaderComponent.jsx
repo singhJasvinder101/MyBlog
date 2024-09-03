@@ -57,7 +57,7 @@ const HeaderComponent = () => {
             TechBytes
           </Link>
           <ul className="navbar-nav align-items-center">
-            <li className="nav-item">
+            <li className="nav-item" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="true" aria-label="Toggle navigation">
               <Link style={{ 'color': '#a7acb3' }}
                 className={`nav-link ${location.pathname === "/technology" ? "active-link" : ""}`}
                 to="/blogs/technology"
