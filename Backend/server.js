@@ -19,6 +19,7 @@ app.use(cookieParser())
 app.use(fileUpload())
 
 
+
 const allowedOrigins = [
     process.env.BACKEND_URL,
     process.env.CLIENT_URL,

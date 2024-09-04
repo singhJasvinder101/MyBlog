@@ -4,7 +4,6 @@ const blogRoutes = require('./blogRoutes')
 const userRoutes = require('./userRoutes')
 const jwt = require('jsonwebtoken')
 
-
 app.get('/', (req, res) => {
     res.status(200).send("this is api route")
 })
