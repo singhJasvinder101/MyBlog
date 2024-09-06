@@ -59,8 +59,7 @@ representative at an online or offline event.
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported to the community leaders responsible for enforcement at
-https://www.linkedin.com/in/avdhesh-varshney-5314a4233/.
+reported to the community leaders at [here](https://www.linkedin.com/in/jasvinder-singh-466a72256/).
 All complaints will be reviewed and investigated promptly and fairly.
 
 All community leaders are obligated to respect the privacy and security of the
