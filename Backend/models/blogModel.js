@@ -18,7 +18,7 @@ const blogSchema = new Schema({
     images: [imageSchema],
     body_html: {
         type: String,
-        // required: true,
+        required: true,
     },
     postLikes: {
         type: Number,
