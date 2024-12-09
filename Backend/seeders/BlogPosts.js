@@ -10,7 +10,7 @@ function convertToJSX(bodyHtml) {
 }
 
 async function fetchData() {
-    const apiUrl = 'https://dev.to/api/articles?limit=100&page=25';
+    const apiUrl = 'https://dev.to/api/articles?limit=100&page=6';
     const response = await axios.get(apiUrl);
     const articles = response.data;
 

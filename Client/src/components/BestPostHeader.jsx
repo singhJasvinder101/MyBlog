@@ -18,15 +18,28 @@ import { useQuery } from "@tanstack/react-query";
 function BestPostHeader({ setIsLoading }) {
     const apiUrl = import.meta.env.VITE_API_URI;
 
+    const fetchArticles = async () => {
+        try {
+            const { data } = await axios.get(`${apiUrl}/api/blogs`);
+            return data.posts;
+        } catch (error) {
+            throw new Error('Failed to fetch articles');
+        }
+    };
+
     const fetchPostDetails = async () => {
-        const { data } = await axios.get(`${apiUrl}/api/blogs/get-one/64d389ce616237b9dccef2d2`)
-        return data
+        const posts = await fetchArticles();
+        const shuffled = posts.sort(() => 0.5 - Math.random());
+        console.log(posts)
+        console.log(shuffled)
+        // const { data } = await axios.get(`${apiUrl}/api/blogs/get-one/6756ba28580ef004f60ce5b2`)
+        return shuffled[0];
     }
 
     const { data: postDetails, postStatus: status, isLoading: postLoading, isError: postError, error: postErrorMessage } = useQuery({
         QueryKey: ['postsDetails'],
         queryFn: fetchPostDetails,
-        staletime: 1000 * 60 * 60 * 24,
+        // staletime: 1000 * 60 * 60 * 24,
     })
 
     const shareUrl = "https://tech-stuffs.netlify.app/"

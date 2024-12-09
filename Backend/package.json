@@ -16,6 +16,7 @@
     "firebase-functions": "^4.4.1",
     "helmet": "^7.0.0",
     "jsonwebtoken": "^9.0.0",
+    "mongodb": "^6.11.0",
     "mongoose": "^7.4.1",
     "nodemon": "^3.0.1",
     "react-redux": "^8.1.2",

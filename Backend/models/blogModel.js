@@ -18,25 +18,25 @@ const blogSchema = new Schema({
     images: [imageSchema],
     body_html: {
         type: String,
-        required: true,
+        // required: true,
     },
     postLikes: {
         type: Number,
-        default: 0, 
+        default: 0,
     },
     likedBy: [{
-        type: mongoose.Schema.Types.ObjectId, 
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
     }],
     tags: {
-        type: [String], 
+        type: [String],
         required: true,
     },
     reviewsNumber: {
         type: Number,
     },
     reviews: [{
-        type: mongoose.Schema.Types.ObjectId, 
+        type: mongoose.Schema.Types.ObjectId,
         ref: Review
     }],
     author: {

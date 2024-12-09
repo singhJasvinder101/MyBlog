@@ -12,7 +12,7 @@ const importData = async () => {
         // await Blog.collection.deleteMany({})
         const blogposts = await fetchData();
         await Blog.insertMany(blogposts);
-        console.log('Data seeding completed.'); 
+        console.log('Data seeding completed.');
     } catch (error) {
         console.error('Error while seeding:', error);
         process.exit(1);
